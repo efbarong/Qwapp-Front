@@ -1,9 +1,16 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>producto</ion-title>
+    <ion-title>Producto</ion-title>
+  </ion-toolbar>
+  <ion-toolbar>
+    <ion-searchbar animated placeholder="Buscar" ></ion-searchbar>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
-
+<ion-slides [options]="sliderOpt">
+  <ion-slide *ngFor="let img of [1,2,3]">
+    <img src="assets/img/{{ img }}.png" tappable (click)="openPreview(img)" alt="Dinos">
+  </ion-slide>
+</ion-slides>
 </ion-content>

@@ -22,7 +22,8 @@ const routes: Routes = [
   { path: 'producto', loadChildren: './views/producto/producto.module#ProductoPageModule' },
   { path: 'producto-edit', loadChildren: './views/producto-edit/producto-edit.module#ProductoEditPageModule' },
   { path: 'chat-lista', loadChildren: './views/chat-lista/chat-lista.module#ChatListaPageModule' },
-  { path: 'chat-mensajes', loadChildren: './views/chat-mensajes/chat-mensajes.module#ChatMensajesPageModule' }
+  { path: 'chat-mensajes', loadChildren: './views/chat-mensajes/chat-mensajes.module#ChatMensajesPageModule' },  { path: 'image-modal', loadChildren: './image-modal/image-modal.module#ImageModalPageModule' }
+
 ];
 
 
