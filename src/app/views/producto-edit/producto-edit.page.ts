@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { IonSlides} from '@ionic/angular';
 
 @Component({
   selector: 'app-producto-edit',
@@ -6,10 +7,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./producto-edit.page.scss'],
 })
 export class ProductoEditPage implements OnInit {
-
   constructor() { }
-
+  @ViewChild('mySlider', null)slides: IonSlides;
+  public next() {
+    this.slides.slideNext();
+  }
+  public prev() {
+    this.slides.slidePrev();
+  }
   ngOnInit() {
   }
-
 }

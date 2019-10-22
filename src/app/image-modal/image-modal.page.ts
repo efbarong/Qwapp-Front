@@ -8,21 +8,18 @@ import { NavParams, ModalController } from '@ionic/angular';
 })
 export class ImageModalPage implements OnInit {
   img: any;
-
-  @ViewChild('slider', { read: ElementRef, static: false})slider: ElementRef;
-
+  @ViewChild('slider', { read: ElementRef, static: false }) slider: ElementRef;
   sliderOpt = {
     zoom: {
-      maxRatio: 3
+      maxRatio: 2
     }
   };
   constructor(private navParams: NavParams, private modalController: ModalController) { }
-
   ngOnInit() {
     this.img = this.navParams.get('img');
   }
   zoom(zoomIn: boolean) {
-    let zoom = this.slider.nativeElement.swiper.zoom;
+    const zoom = this.slider.nativeElement.swiper.zoom;
     if (zoomIn) {
       zoom.in();
     } else {
@@ -32,5 +29,4 @@ export class ImageModalPage implements OnInit {
   close() {
     this.modalController.dismiss();
   }
-
 }
