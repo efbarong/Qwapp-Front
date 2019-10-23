@@ -12,9 +12,14 @@ export class ProductoEditPage implements OnInit {
   public next() {
     this.slides.slideNext();
   }
+
   public prev() {
     this.slides.slidePrev();
   }
-  ngOnInit() {
+
+  ngOnInit() {}
+
+  segmentChanged(ev: any) {
+    console.log('Segmento cambiado', ev);
   }
 }
