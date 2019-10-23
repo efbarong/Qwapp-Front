@@ -22,7 +22,12 @@
 				<ion-textarea></ion-textarea>
 			</ion-item>
 			<!--Lugar-->
-			
+			<ion-item>
+				<ion-label>Ciudad</ion-label>
+				<ion-select (ionChange)= "test()" [(ngModel)] = "cc">
+					<ion-select-option *ngFor="let c of ciudades" [value]='c.value'>{{ c.name }}</ion-select-option>
+				</ion-select>
+			</ion-item>
 			<!--Estado-->
 			<ion-segment (ionChange)="segmentChanged($event)" checked>
 				<ion-segment-button value="new">
@@ -37,7 +42,8 @@
 			<ion-item lines="none">
 				<ion-buttons slot="end">
 					<ion-button fill="solid" (click)="next()">
-						Next
+						Next  
+						<ion-icon name="arrow-dropright-circle"></ion-icon>
 					</ion-button>
 				</ion-buttons>
 			</ion-item>

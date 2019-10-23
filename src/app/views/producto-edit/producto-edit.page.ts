@@ -7,8 +7,17 @@ import { IonSlides} from '@ionic/angular';
   styleUrls: ['./producto-edit.page.scss'],
 })
 export class ProductoEditPage implements OnInit {
-  constructor() { }
   @ViewChild('mySlider', null)slides: IonSlides;
+  ciudades: any;
+  cc: any;
+  constructor() {
+    this.ciudades = [
+      {name: 'Bogota',   value: 'A' },
+      {name: 'Cali',     value: 'B' },
+      {name: 'Medallo',  value: 'C' },
+      {name: 'El rosal', value: 'D' },
+    ];
+   }
   public next() {
     this.slides.slideNext();
   }
@@ -21,5 +30,9 @@ export class ProductoEditPage implements OnInit {
 
   segmentChanged(ev: any) {
     console.log('Segmento cambiado', ev);
+  }
+
+  test() {
+    console.log('Ciudad cambiada', this.cc);
   }
 }
