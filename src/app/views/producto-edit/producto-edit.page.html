@@ -52,7 +52,32 @@
 		<!--Slide 2-->
 		<ion-slide>
 			<!-- Content -->
-			<h2>Sube tus fotos</h2>
+			<h2>Imagenes del producto</h2>
+			<h3 *ngIf ="images.length === 0" text-center>Seleccione Imagenes</h3>
+			
+			<ion-list>
+				<ion-item *ngFor ="let img of images; index as pos">
+					<ion-thumbnail slot="start">
+						<ion-img [src]="img.path"></ion-img>
+					</ion-thumbnail>
+
+					<ion-button  slot="end" fill="clear" (click)="deleteImg(img, pos)">
+						<ion-icon slot="icon-only" name="trash"></ion-icon>
+					</ion-button>
+				</ion-item>
+			</ion-list>
+			
+			<!--Subir foto-->
+			<ion-footer>
+				<ion-toolbar>
+					<ion-button fill="clear" expand="full" (click)="selectImg()">
+						<ion-icon slot="start" name="camera"></ion-icon>
+						Seleccionar Imagenes
+					</ion-button>
+				</ion-toolbar>
+			</ion-footer>  
+			
+			<!--Botones-->
 			<ion-item lines="none">
 				<ion-buttons>
 					<ion-button fill="solid" (click)="prev()">
