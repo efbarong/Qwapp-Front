@@ -35,7 +35,7 @@ export class ProductoEditPage implements OnInit {
     const toast = await this.toastController.create({
       message: text,
       position: 'bottom',
-      duration: 3000
+      duration: 2500
     });
     toast.present();
   }
@@ -109,6 +109,7 @@ export class ProductoEditPage implements OnInit {
       console.log(imageData);
       console.log(imag);
       this.images.push({path: imag});
+      this.presentToast('Foto subida');
     }, (err) => {
       console.log('fasho');
     });
@@ -119,6 +120,7 @@ export class ProductoEditPage implements OnInit {
     this.storage.get(STORAGE_KEY).then(images => {
       const arr = JSON.parse(images);
       console.log('img entry ' + imgEntry.name);
+      // tslint:disable-next-line: triple-equals
       const filtered = arr.filter(name => name != imgEntry.name);
       console.log(filtered);
       this.storage.set(STORAGE_KEY, JSON.stringify(filtered));
@@ -126,7 +128,7 @@ export class ProductoEditPage implements OnInit {
       const correctPath = imgEntry.filePath.substr(0, imgEntry.filepath.lastIndexOf('/') + 1);
 
       this.file.removeFile(correctPath, imgEntry.name).then(res => {
-        this.presentToast('Archivo eliminado');
+      this.presentToast('Foto eliminada');
       });
     });
   }
