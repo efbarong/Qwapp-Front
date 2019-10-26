@@ -29,20 +29,23 @@
 				</ion-select>
 			</ion-item>
 			<!--Estado-->
-			<ion-segment (ionChange)="segmentChanged($event)" checked>
-				<ion-segment-button value="new">
-					<ion-label>Nuevo</ion-label>
-				</ion-segment-button>
-				<ion-segment-button value="used">
-					<ion-label>Usado</ion-label>
-				</ion-segment-button>
-			</ion-segment>
+			<h5 class="text-center">Estado</h5>
+			<ion-item>
+				<ion-segment (ionChange)="segmentChanged($event)">
+					<ion-segment-button value="new">
+						<ion-label>Nuevo</ion-label>
+					</ion-segment-button>
+					<ion-segment-button value="used">
+						<ion-label>Usado</ion-label>
+					</ion-segment-button>
+				</ion-segment>
+			</ion-item>
 			
 			<!--Botones-->
 			<ion-item lines="none">
 				<ion-buttons slot="end">
 					<ion-button fill="solid" (click)="next()">
-						Next  
+						Continuar  
 						<ion-icon name="arrow-dropright-circle"></ion-icon>
 					</ion-button>
 				</ion-buttons>
@@ -52,14 +55,41 @@
 		<!--Slide 2-->
 		<ion-slide>
 			<!-- Content -->
-			<h2>Sube tus fotos</h2>
+			<h2>Imagenes del producto</h2>
+			<h3 *ngIf ="images.length === 0" text-center>Seleccione Imagenes<ion-text color="danger">*</ion-text></h3>
+			
+			<ion-list>
+				<ion-item *ngFor ="let img of images; index as pos">
+					<ion-thumbnail slot="start">
+						<ion-img [src]="img.path"></ion-img>
+					</ion-thumbnail>
+					
+					<ion-button  slot="end" fill="clear" (click)="deleteImg(img, pos)">
+						<ion-icon slot="icon-only" name="trash"></ion-icon>
+					</ion-button>
+				</ion-item>
+			</ion-list>
+			
+			<!--Subir foto-->
+			<ion-footer>
+				<ion-toolbar>
+					<ion-button fill="clear" expand="full" (click)="selectImg()">
+						<ion-icon slot="start" name="camera"></ion-icon>
+						Seleccionar Imagenes
+					</ion-button>
+				</ion-toolbar>
+			</ion-footer>  
+			
+			<!--Botones-->
 			<ion-item lines="none">
 				<ion-buttons>
 					<ion-button fill="solid" (click)="prev()">
-						Prev
+						Atras
+						<ion-icon name="arrow-dropleft-circle"></ion-icon>
 					</ion-button>
 					<ion-button fill="solid" (click)="next()">
-						Next
+						Continuar
+						<ion-icon name="arrow-dropright-circle"></ion-icon>
 					</ion-button>
 				</ion-buttons>
 			</ion-item>
@@ -67,22 +97,23 @@
 		</ion-slide>
 		
 		<ion-slide>
-			<h2>What is Ionic Pro?</h2>
-			<ion-buttons slot="end">
-				<ion-button (click)="next()">
-					Next
-				</ion-button>
-			</ion-buttons>
+			<h2>Estas a punto de actualizar tu producto. Pulsa <b>Continuar</b> para terminar.</h2>
+			
+			<!--Botones-->
+			<ion-item lines="none">
+				<ion-buttons>
+					<ion-button fill="solid" (click)="prev()">
+						Atras
+						<ion-icon name="arrow-dropleft-circle"></ion-icon>
+					</ion-button>
+					<ion-button fill="solid" (click)="next()">
+						Continuar
+						<ion-icon name="arrow-dropright-circle"></ion-icon>
+					</ion-button>
+				</ion-buttons>
+			</ion-item>
 		</ion-slide>
 		
-		<ion-slide>
-			<h2>Ready to Play?</h2>
-			<ion-buttons slot="end">
-				<ion-button>
-					Continue
-				</ion-button>
-			</ion-buttons>
-		</ion-slide>
 		
 	</ion-slides>
 </ion-content>

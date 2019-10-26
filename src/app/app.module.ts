@@ -9,6 +9,12 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { ImageModalPageModule } from './image-modal/image-modal.module';
+import { IonicStorageModule } from '@ionic/storage';
+
+import { Camera } from '@ionic-native/camera/ngx';
+import { File } from '@ionic-native/file/ngx';
+import { WebView} from '@ionic-native/ionic-webview/ngx';
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -17,12 +23,14 @@ import { ImageModalPageModule } from './image-modal/image-modal.module';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
-    ImageModalPageModule
+    ImageModalPageModule,
+    IonicStorageModule.forRoot()
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy }
+    { provide: RouteReuseStrategy, useClass: IonicRouteStrategy },
+    Camera, File, WebView
   ],
   bootstrap: [AppComponent]
 })
