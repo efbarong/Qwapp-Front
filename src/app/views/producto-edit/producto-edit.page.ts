@@ -12,11 +12,13 @@ const STORAGE_KEY = 'my_imgs';
   styleUrls: ['./producto-edit.page.scss'],
 })
 export class ProductoEditPage implements OnInit {
+  
   // Variables
   ciudades: any;
   cc: any;
   images: Array<any>;
   stateProd: any;
+  posSlide: any;
 
   // Slides
   @ViewChild('mySlider', null) slides: IonSlides;
