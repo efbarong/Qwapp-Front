@@ -109,9 +109,10 @@ export class ProductoEditPage implements OnInit {
       console.log(imageData);
       console.log(imag);
       this.images.push({path: imag});
-      this.presentToast('Foto subida');
+      this.presentToast('Foto subida correctamente');
     }, (err) => {
-      console.log('fasho');
+      console.log('Flasho o cancelo');
+      this.presentToast('Ups!, Algo fallo');
     });
   }
 

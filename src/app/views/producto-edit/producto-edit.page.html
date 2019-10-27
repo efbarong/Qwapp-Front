@@ -4,7 +4,7 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen padding scroll-y="false">
+<ion-content fullscreen class="ion-padding-horizontal" scroll-y="false">
 	<ion-slides #mySlider>
 		<!--Slide 1-->
 		<ion-slide>
@@ -56,8 +56,7 @@
 		<ion-slide>
 			<!-- Content -->
 			<h2>Imagenes del producto</h2>
-			<h3 *ngIf ="images.length === 0" text-center>Seleccione Imagenes<ion-text color="danger">*</ion-text></h3>
-			
+			<h3 class="ion-text-center" *ngIf ="images.length === 0">Seleccione Imagenes<ion-text color="danger">*</ion-text></h3>
 			<ion-list>
 				<ion-item *ngFor ="let img of images; index as pos">
 					<ion-thumbnail slot="start">
