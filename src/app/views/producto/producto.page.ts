@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { ImageModalPageModule } from 'src/app/image-modal/image-modal.module';
+import { ImageModalPage } from 'src/app/image-modal/image-modal.page';
 
 @Component({
   selector: 'app-producto',
@@ -6,9 +9,23 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./producto.page.scss'],
 })
 export class ProductoPage implements OnInit {
+  sliderOpt = {
+    zoom: false,
+    slidesPerView: 1.2,
+    centeredSlides: true,
+    spaceBetween: 20
+  };
 
-  constructor() { }
-
+  constructor(private modalController: ModalController) {
+  }
+  openPreview(img) {
+    this.modalController.create({
+      component: ImageModalPage,
+      componentProps: {
+        img: img
+      }
+    }).then(modal => modal.present());
+  }
   ngOnInit() {
   }
 
