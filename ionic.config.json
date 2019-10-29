@@ -1,5 +1,7 @@
 {
   "name": "Qwapp",
-  "integrations": {},
+  "integrations": {
+    "cordova": {}
+  },
   "type": "angular"
 }
