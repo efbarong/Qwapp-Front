@@ -4,23 +4,26 @@
 	</ion-toolbar>
 </ion-header>
 
-<ion-content fullscreen padding scroll-y="false">
+<ion-content fullscreen class="ion-padding-horizontal" scroll-y="false">
 	<ion-slides #mySlider>
 		<!--Slide 1-->
 		<ion-slide>
 			<!-- Content -->
 			<h2>Edita tu producto</h2>
+			
 			<!--Nombre-->
 			<ion-item>
-				<ion-label position="floating">Nombre del articulo<ion-text color="danger">*</ion-text>
+				<ion-label position="floating">Nombre del producto<ion-text color="danger">*</ion-text>
 				</ion-label>
 				<ion-input required type="text"></ion-input>
 			</ion-item>
+			
 			<!--Descripcion-->
 			<ion-item>
 				<ion-label position="floating">Descripción</ion-label>
 				<ion-textarea></ion-textarea>
 			</ion-item>
+			
 			<!--Lugar-->
 			<ion-item>
 				<ion-label>Ciudad</ion-label>
@@ -28,21 +31,31 @@
 					<ion-select-option *ngFor="let c of ciudades" [value]='c.value'>{{ c.name }}</ion-select-option>
 				</ion-select>
 			</ion-item>
+			
 			<!--Estado-->
-			<h5 class="text-center">Estado</h5>
+			<h5 class="text-center">Estado del producto</h5>
 			<ion-item>
-				<ion-segment (ionChange)="segmentChanged($event)">
-					<ion-segment-button value="new">
+				<ion-segment (ionChange)="segmentChanged($event)" [(ngModel)]="stateProd">
+					<ion-segment-button value="1">
 						<ion-label>Nuevo</ion-label>
 					</ion-segment-button>
-					<ion-segment-button value="used">
+					<ion-segment-button value="0">
 						<ion-label>Usado</ion-label>
 					</ion-segment-button>
 				</ion-segment>
 			</ion-item>
 			
+			<!-- Rating -->
+			<div *ngIf ="stateProd == 0">
+				<ion-item lines = "none">
+					<ion-label class="ion-text-center">Califica el estado de tu producto</ion-label>
+				</ion-item>
+				<rating [(ngModel)]="rate" readonly="false" size="default" (ngModelChange)="onRateChange($event)">
+				</rating>
+			</div>
+				
 			<!--Botones-->
-			<ion-item lines="none">
+			<ion-item lines="none" id="btnnp">
 				<ion-buttons slot="end">
 					<ion-button fill="solid" (click)="next()">
 						Continuar  
@@ -56,8 +69,7 @@
 		<ion-slide>
 			<!-- Content -->
 			<h2>Imagenes del producto</h2>
-			<h3 *ngIf ="images.length === 0" text-center>Seleccione Imagenes<ion-text color="danger">*</ion-text></h3>
-			
+			<h3 class="ion-text-center" *ngIf ="images.length === 0">Seleccione Imagenes<ion-text color="danger">*</ion-text></h3>
 			<ion-list>
 				<ion-item *ngFor ="let img of images; index as pos">
 					<ion-thumbnail slot="start">
@@ -81,7 +93,7 @@
 			</ion-footer>  
 			
 			<!--Botones-->
-			<ion-item lines="none">
+			<ion-item lines="none" id="btnnp">
 				<ion-buttons>
 					<ion-button fill="solid" (click)="prev()">
 						Atras
@@ -100,7 +112,7 @@
 			<h2>Estas a punto de actualizar tu producto. Pulsa <b>Continuar</b> para terminar.</h2>
 			
 			<!--Botones-->
-			<ion-item lines="none">
+			<ion-item lines="none" id="btnnp">
 				<ion-buttons>
 					<ion-button fill="solid" (click)="prev()">
 						Atras

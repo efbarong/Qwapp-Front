@@ -6,13 +6,19 @@
     display: block;
 }
 ion-slide > h2 {
-    margin-top: 2.8rem;
+    margin-top: 2rem;
 }
 ion-slide > img {
     max-height: 50%;
     max-width: 60%;
     margin: 36px 0;
 }
-ion-segment {
-    padding: 5px;
+ion-item > ion-label {
+    font-size: 18px;
+}
+ion-slide, ion-slides{
+    height: 100%;
+}
+ion-item > ion-buttons{
+    padding-top: 250px;
 }

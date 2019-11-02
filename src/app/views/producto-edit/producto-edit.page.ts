@@ -16,9 +16,10 @@ export class ProductoEditPage implements OnInit {
   ciudades: any;
   cc: any;
   images: Array<any>;
+  stateProd: any;
 
   // Slides
-  @ViewChild('mySlider', null)slides: IonSlides;
+  @ViewChild('mySlider', null) slides: IonSlides;
 
   // tslint:disable-next-line: max-line-length
   constructor( private camera: Camera, private file: File, private storage: Storage, private plt: Platform, private webView: WebView, private actionSheetController: ActionSheetController, private toastController: ToastController) {
@@ -30,6 +31,7 @@ export class ProductoEditPage implements OnInit {
     ];
     this.images = new Array<any>();
   }
+
   // Mostrar notificación
   async presentToast(text) {
     const toast = await this.toastController.create({
@@ -49,21 +51,6 @@ export class ProductoEditPage implements OnInit {
   }
 
   // Imagenes Slide 2 (Captura de camara o galeria)
-
-  loadStoredImages() {
-    this.storage.get(STORAGE_KEY).then(images => {
-      if (images) {
-        const arr = JSON.parse(images);
-        this.images = [];
-        for ( const img of arr) {
-          const filePath = this.file.dataDirectory + img;
-          const resPath = this.pathForImage(filePath);
-          this.images.push({name: img, path: resPath, filePath});
-        }
-      }
-    });
-  }
-
   pathForImage(img) {
     if (img === null) {
       return '';
@@ -109,9 +96,10 @@ export class ProductoEditPage implements OnInit {
       console.log(imageData);
       console.log(imag);
       this.images.push({path: imag});
-      this.presentToast('Foto subida');
+      this.presentToast('Foto subida correctamente');
     }, (err) => {
-      console.log('fasho');
+      console.log('Flasho o cancelo');
+      this.presentToast('Ups!, Algo fallo');
     });
   }
 
@@ -128,24 +116,24 @@ export class ProductoEditPage implements OnInit {
       const correctPath = imgEntry.filePath.substr(0, imgEntry.filepath.lastIndexOf('/') + 1);
 
       this.file.removeFile(correctPath, imgEntry.name).then(res => {
-      this.presentToast('Foto eliminada');
+        this.presentToast('Foto eliminada');
       });
     });
   }
 
-  ngOnInit() {
-    this.plt.ready().then(() => {
-      this.loadStoredImages();
-    });
-  }
+  ngOnInit() {}
 
 
   // Pruebas
   segmentChanged(ev: any) {
-    console.log('Segmento cambiado', ev);
+    console.log('Segmento cambiado', this.stateProd);
   }
 
   test() {
     console.log('Ciudad cambiada', this.cc);
+  }
+
+  onRateChange(event) {
+    console.log('Calificación:', event);
   }
 }
