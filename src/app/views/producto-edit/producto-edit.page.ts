@@ -12,14 +12,16 @@ const STORAGE_KEY = 'my_imgs';
   styleUrls: ['./producto-edit.page.scss'],
 })
 export class ProductoEditPage implements OnInit {
-  
+
   // Variables
   ciudades: any;
   cc: any;
+  categorias: any;
+  ctg: any;
   images: Array<any>;
   stateProd: any;
-  posSlide: any;
-
+  posSlide: any = 1;
+ 
   // Slides
   @ViewChild('mySlider', null) slides: IonSlides;
 
@@ -30,6 +32,18 @@ export class ProductoEditPage implements OnInit {
       {name: 'Cali',     value: 'B' },
       {name: 'Medallo',  value: 'C' },
       {name: 'El rosal', value: 'D' },
+    ];
+
+    this.categorias = [
+      {name: 'Tecnologia',   value: 'A' },
+      {name: 'Celulares',     value: 'B' },
+      {name: 'Otros',  value: 'C' },
+      {name: 'Libros', value: 'D' },
+      {name: 'Electronica', value: 'E' },
+      {name: 'Laptops', value: 'F' },
+      {name: 'Ropa', value: 'G' },
+      {name: 'Tenis', value: 'H' },
+      {name: 'Calzado', value: 'I' }
     ];
     this.images = new Array<any>();
   }
@@ -47,9 +61,11 @@ export class ProductoEditPage implements OnInit {
   // Botones del Slide
   public next() {
     this.slides.slideNext();
+    this.posSlide++;
   }
   public prev() {
     this.slides.slidePrev();
+    this.posSlide--;
   }
 
   // Imagenes Slide 2 (Captura de camara o galeria)

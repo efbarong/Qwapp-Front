@@ -9,7 +9,7 @@ import { ImageModalPage } from 'src/app/image-modal/image-modal.page';
   styleUrls: ['./producto.page.scss'],
 })
 export class ProductoPage implements OnInit {
-  sliderOpt = {
+   sliderOpt = {
     zoom: false,
     slidesPerView: 1.2,
     centeredSlides: true,
@@ -18,6 +18,7 @@ export class ProductoPage implements OnInit {
 
   constructor(private modalController: ModalController) {
   }
+
   openPreview(img) {
     this.modalController.create({
       component: ImageModalPage,
