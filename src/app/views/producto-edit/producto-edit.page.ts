@@ -21,7 +21,6 @@ export class ProductoEditPage implements OnInit {
   images: Array<any>;
   stateProd: any;
   posSlide: any = 1;
- 
   // Slides
   @ViewChild('mySlider', null) slides: IonSlides;
 

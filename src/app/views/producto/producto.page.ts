@@ -23,6 +23,7 @@ export class ProductoPage implements OnInit {
     this.modalController.create({
       component: ImageModalPage,
       componentProps: {
+        // tslint:disable-next-line: object-literal-shorthand
         img: img
       }
     }).then(modal => modal.present());
