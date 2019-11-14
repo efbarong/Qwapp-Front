@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -7,9 +8,27 @@ import { Component, OnInit } from '@angular/core';
 })
 export class LoginPage implements OnInit {
 
-  constructor() { }
+  hide: boolean;
+  user: any;
+  pass: any;
+  constructor(private router: Router) {
+    this.hide = true;
+  }
+
+  iniciarSesion() {
+    if (this.user && this.pass) {
+      console.log(this.user);
+      localStorage.setItem('sesion', this.user.toString());
+      this.router.navigateByUrl('/perfil');
+    } else {
+      console.log('Completa los campos');
+    }
+  }
+
+  registrarse() {
+    this.router.navigateByUrl('/register');
+  }
 
   ngOnInit() {
   }
-
 }
