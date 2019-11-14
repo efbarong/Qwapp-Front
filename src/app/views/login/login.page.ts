@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { AuthServices } from 'src/services/AuthServices';
 
 @Component({
   selector: 'app-login',
@@ -11,15 +12,15 @@ export class LoginPage implements OnInit {
   hide: boolean;
   user: any;
   pass: any;
-  constructor(private router: Router) {
+  constructor(private router: Router, private login: AuthServices) {
     this.hide = true;
   }
 
   iniciarSesion() {
     if (this.user && this.pass) {
+      this.login.doLogin(this.user, this.pass, this.router);
       console.log(this.user);
-      localStorage.setItem('sesion', this.user.toString());
-      this.router.navigateByUrl('/perfil');
+
     } else {
       console.log('Completa los campos');
     }
