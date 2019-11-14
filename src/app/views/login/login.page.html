@@ -18,7 +18,7 @@
           <ion-label>Contraseña</ion-label>
           <ion-item lines="none">
             <ion-input [type]="hide ? 'password' : 'text'" [(ngModel)]="pass"></ion-input>
-            <ion-icon name="eye" slot="end" (click)="hide = !hide"></ion-icon>
+            <ion-icon [name]="hide ? 'eye':'eye-off'" slot="end" (click)="hide = !hide"></ion-icon>
           </ion-item>
           <ion-label class="label">¿Olvidaste tu contraseña?</ion-label>
         </div>
@@ -26,14 +26,17 @@
           <button class="buttonSesion" (click)="iniciarSesion()">Iniciar sesión</button>
           <div>
             <ion-label><i>¿No tienes una cuenta?</i></ion-label><br>
-            <ion-label (click)="registrarse()"><b>Registrate aqui</b></ion-label>
+            <ion-label routerLink="/register"><b>Registrate aqui</b></ion-label>
           </div>
         </div>
       </div>
 
       <div class="cardBottom">
         <div class="center">
-          <ion-label style="color: white">V0.0.1</ion-label>
+          <ion-label style="color: white">Sobre nosotros
+            <span class="aboutIcon">
+              <ion-icon slot="end" name="alert"></ion-icon>
+            </span></ion-label>
         </div>
 
       </div>

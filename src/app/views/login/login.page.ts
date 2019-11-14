@@ -25,10 +25,10 @@ export class LoginPage implements OnInit {
     }
   }
 
-  registrarse() {
-    this.router.navigateByUrl('/register');
-  }
-
   ngOnInit() {
+    // Validar sesion antes de mostrar login
+    if (localStorage.getItem('sesion')) {
+      this.router.navigateByUrl('/perfil');
+    }
   }
 }
