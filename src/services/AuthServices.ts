@@ -57,7 +57,8 @@ export class AuthServices {
 
     }
 
-    deleteUser(user: user){
+    doLogout(){
+        firebase.auth().signOut();
     }
 
     getUser(): any{

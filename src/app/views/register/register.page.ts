@@ -16,31 +16,33 @@ export class RegisterPage implements OnInit {
   constructor(private router: Router, private auth: AuthServices) {
 
     this.registerForm = new FormGroup({
-      correo : new FormControl('', Validators.required),
-      nombre : new FormControl('', Validators.required),
-      edad : new FormControl('', Validators.required),
-      departamento : new FormControl('', Validators.required),
-      ciudad : new FormControl('', Validators.required),
-      pass1 : new FormControl('', Validators.required),
-      pass2 : new FormControl('', Validators.required),
+      correo: new FormControl('', Validators.required),
+      nombre: new FormControl('', Validators.required),
+      edad: new FormControl('', Validators.required),
+      departamento: new FormControl('', Validators.required),
+      ciudad: new FormControl('', Validators.required),
+      pass1: new FormControl('', Validators.required),
+      pass2: new FormControl('', Validators.required),
     });
 
   }
 
   onSubmit() {
     console.log(this.registerForm.value);
-    let v = this.registerForm.value;
-    
-    var e: user;
-    e = new user()
+    const v = this.registerForm.value;
+    let e: user;
+    e = new user();
     e.name = v.nombre;
     e.email = v.correo;
     e.age = v.edad;
     e.locality = v.departamento;
     e.city = v.ciudad;
     e.numberChanges = 0;
-    
-    this.auth.doRegister(e, v.pass1);
+    this.auth.doRegister(e, v.pass1).then(res => {
+      if (res) {
+        this.router.navigateByUrl('/login');
+      }
+    });
   }
 
   ngOnInit() {

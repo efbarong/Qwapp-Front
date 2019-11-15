@@ -15,13 +15,13 @@
 			<ion-item>
 				<ion-label position="floating">Nombre del producto<ion-text color="danger">*</ion-text>
 				</ion-label>
-				<ion-input required type="text"></ion-input>
+				<ion-input required type="text" [(ngModel)] = "name"></ion-input>
 			</ion-item>
 			
 			<!--Descripcion-->
 			<ion-item>
-				<ion-label position="floating">Descripción</ion-label>
-				<ion-textarea></ion-textarea>
+				<ion-label position="floating" >Descripción</ion-label>
+				<ion-textarea [(ngModel)] = "description"></ion-textarea>
 			</ion-item>
 			
 			<!--Lugar-->
@@ -36,7 +36,7 @@
 			<ion-item>
 				<ion-label>Categorias</ion-label>
 				<ion-select ok-text="Okay" cancel-text="Cancel" [(ngModel)] = "ctg" multiple= "true">
-					<ion-select-option *ngFor="let cat of categorias" [value]= 'cat.value'>{{cat.name}}</ion-select-option>
+					<ion-select-option *ngFor="let cat of categorias" [value]= 'cat.name'>{{cat.name}}</ion-select-option>
 				</ion-select>
 			</ion-item>
 			
@@ -111,7 +111,7 @@
 				<ion-button fill="solid" expand="full" (click)="next()" *ngIf="posSlide < 3">
 					Siguiente <ion-icon name="arrow-dropright-circle"></ion-icon>
 				</ion-button>
-				<ion-button fill="solid" expand="full" *ngIf="posSlide == 3">
+				<ion-button fill="solid" expand="full" *ngIf="posSlide == 3" (click) = "createProduct()">
 					Continuar <ion-icon name="checkmark-circle"></ion-icon>
 				</ion-button>
 			</ion-col>
