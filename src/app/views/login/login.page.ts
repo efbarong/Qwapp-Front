@@ -26,7 +26,6 @@ export class LoginPage implements OnInit {
       console.log('Completa los campos');
     }
   }
-
   registrarse() {
     this.router.navigateByUrl('/register');
   }
@@ -40,6 +39,11 @@ export class LoginPage implements OnInit {
 
     }
   }
+
   ngOnInit() {
+    // Validar sesion antes de mostrar login
+    if (localStorage.getItem('sesion')) {
+      this.router.navigateByUrl('/perfil');
+    }
   }
 }
