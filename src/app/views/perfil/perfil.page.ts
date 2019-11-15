@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserServices } from 'src/services/UserServices';
+import { user } from 'src/model/user';
 
 @Component({
   selector: 'app-perfil',
@@ -9,9 +11,11 @@ import { Router } from '@angular/router';
 export class PerfilPage implements OnInit {
 
   image: any;
+  user: user;
   
-  constructor(private router: Router) {
+  constructor(private router: Router, private uService: UserServices) {
     this.image = 'https://s3-us-west-1.amazonaws.com/malv.images/images/LhUPHDwes61dbkvaHKZBkJGeFMuV74APSn9Y0M5G.jpg';
+    this.user = uService.user;
    }
 
   ngOnInit() {

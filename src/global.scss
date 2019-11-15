@@ -101,6 +101,22 @@ ion-input {
   font-weight: bold;
 }
 
+.containerCenter {
+  width: 100%;
+  margin: 0px;
+  padding: 0px;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+  text-align: center;
+}
+
+.marginBottom {
+  margin-bottom: 15px;
+}
+
+form {
+  padding: 0px 20px;
+}
+
 .titulos {
   color: black;
   font-weight: 600;
@@ -150,13 +166,13 @@ div.center {
   text-align: center;
 }
 
-div.center>div {
+div.center > div {
   margin-top: 10%;
 }
 
-div.center>div>ion-label {
-  color: #D54C2A;
-  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+div.center > div > ion-label {
+  color: #d54c2a;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
 .buttonSesion {
@@ -167,4 +183,10 @@ div.center>div>ion-label {
   font-size: 18px;
   color: white;
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.aboutIcon{
+  height: 100%;
+  text-align: center;
+  vertical-align: middle;
 }

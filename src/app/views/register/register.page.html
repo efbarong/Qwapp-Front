@@ -1,9 +1,59 @@
-<ion-header>
+<ion-header no-border>
   <ion-toolbar>
-    <ion-title>register</ion-title>
+    <ion-buttons slot="start">
+      <ion-back-button color="tertiary" defaultHref="login"></ion-back-button>
+    </ion-buttons>
   </ion-toolbar>
 </ion-header>
-
 <ion-content>
+
+  <div class="containerCenter marginBottom">
+    <span class="titulos">Registro</span>
+  </div>
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <ion-list lines="none">
+      <ion-item class="input">
+        <ion-label position="floating">Nombre<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required formControlName="nombre" type="text"></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label position="floating">Edad<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required formControlName="edad" type="number"></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label position="floating">Departamento<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required formControlName="departamento" type="text"></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label position="floating">Ciudad<ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required formControlName="ciudad" type="text"></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label position="floating">Correo <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required formControlName="correo" type="email"></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label position="floating">Contraseña <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required formControlName="pass1" type="password"></ion-input>
+      </ion-item>
+      <ion-item class="input">
+        <ion-label position="floating">Confirmar Contraseña <ion-text color="danger">*</ion-text>
+        </ion-label>
+        <ion-input required formControlName="pass2" type="password"></ion-input>
+      </ion-item>
+    </ion-list>
+    <div class="containerCenter">
+      <ion-button block color="primary" type="submit" [disabled]="registerForm.invalid">
+        Registrarse
+      </ion-button>
+    </div>
+  </form>
+
 
 </ion-content>
