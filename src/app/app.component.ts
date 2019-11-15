@@ -35,6 +35,11 @@ export class AppComponent {
       icon: 'home'
     },
     {
+      title: 'Crear Producto',
+      url: '/producto-create',
+      icon: 'home'
+    },
+    {
       title: 'Ver Chat',
       url: '/chat-mesaje',
       icon: 'home'
