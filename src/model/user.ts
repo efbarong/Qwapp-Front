@@ -6,4 +6,7 @@ export class user{
     numberChanges: number;
     age: number;
     email: string;
+
+    constructor(){
+    }
 }

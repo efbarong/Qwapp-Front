@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { ActivatedRouteSnapshot, RouterStateSnapshot, UrlTree, CanActivate, Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { UserServices } from 'src/services/UserServices';
+import { environment } from 'src/environments/environment';
+import { FirebaseApp } from '@angular/fire';
 
 @Injectable({
   providedIn: 'root'
@@ -16,12 +18,8 @@ export class AuthGuard implements CanActivate {
       return this.router.navigateByUrl('/login');
     }
     console.log('Acceso Exitoso');
-    if(!this.uService.user){
-      this.uService.trailUser(localStorage.getItem('sesion'), null);
-      return true;
-
-    }
-    else
-      return true;
+    if(!this.uService.user)
+      this.uService.setUserJSON(localStorage.getItem('sesion'));
+    return true;
   }
 }

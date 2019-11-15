@@ -16,7 +16,7 @@
     <ion-item>
       <ion-label position="stacked" class="ion-text-center">Nombres<ion-text color="danger">*</ion-text>
       </ion-label>
-      <ion-input >Carlos Eduardo</ion-input>
+      <ion-input >{{u.name}}</ion-input>
     </ion-item>
     <br>
     <ion-item>
@@ -55,7 +55,7 @@
       <ion-input>3004006740</ion-input>
     </ion-item>
     <br>
-    <ion-button expand="full" class="ion-text-center">Confirmar</ion-button>
+    <ion-button expand="full" class="ion-text-center" (click) = "send()">Confirmar</ion-button>
 
 
   </ion-list>
