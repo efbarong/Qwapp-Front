@@ -4,6 +4,8 @@ import * as firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { UserServices } from './UserServices';
+import { user } from 'src/model/user';
+import { resolve } from 'url';
 
 @Injectable({
     providedIn: 'root'
@@ -37,6 +39,14 @@ export class AuthServices {
 
                 })
         });
+    }
+
+    doRegister(user: user, password: string){
+        return new Promise<any>((resolve, reject) =>{
+            firebase.auth().signInWithEmailAndPassword(user.email, password);
+            
+        })
+
     }
 
     getUser(): any{

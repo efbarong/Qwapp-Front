@@ -4,4 +4,6 @@ export class user{
     city: string;
     locality: string;
     numberChanges: number;
+    age: number;
+    email: string;
 }
