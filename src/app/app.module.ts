@@ -16,6 +16,13 @@ import { File } from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
+import { WebView} from '@ionic-native/ionic-webview/ngx';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+
+
 
 @NgModule({
   declarations: [AppComponent],
@@ -26,8 +33,11 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
     AppRoutingModule,
     ImageModalPageModule,
     IonicStorageModule.forRoot(),
+    FormsModule, ReactiveFormsModule,
 
-    FormsModule, ReactiveFormsModule
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule
   ],
   providers: [
     StatusBar,
