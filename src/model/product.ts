@@ -6,4 +6,7 @@ export class product{
     state       : boolean;
     images      : Array<string>;
     user        : string;
+    date        : Date;
+    city        : string;
+    locality    : string;
 }

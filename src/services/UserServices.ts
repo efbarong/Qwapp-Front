@@ -29,6 +29,7 @@ export class UserServices {
     }
     setUserJSON(json: string){
       this.user = JSON.parse(json);
+      console.log(this.user);
       this.pServices.trailUserProducts(this.user.id);
 
     }
@@ -40,6 +41,8 @@ export class UserServices {
         // this.user.
         this.user = JSON.parse(JSON.stringify(query.data()));
         this.user.id = query.id;
+        // console.log(this.user);
+
         this.pServices.trailUserProducts(query.id);
         localStorage.setItem('sesion', JSON.stringify(this.user));
         console.log(this.user);

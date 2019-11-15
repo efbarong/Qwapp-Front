@@ -27,6 +27,7 @@ export class PerfilPage implements OnInit {
   }
 
   ionViewDidEnter(){
+    this.user = this.uService.user;
     console.log(this.pService.productList);    
   }
 

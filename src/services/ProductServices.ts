@@ -39,9 +39,11 @@ export class ProductServices {
             
         }
         var ref = firebase.firestore().collection('Products');
-        ref.where('user' , '==', id);
-        ref.get().then( res =>{
+        // console.log(zid + " ALV");
+        
+        ref.where('user' , '==', id).get().then( res =>{
             res.forEach(element => {
+                // console.log(id + "     " + element.data());
                this.productList.push(JSON.parse(JSON.stringify(element.data()))); 
             });
         });
