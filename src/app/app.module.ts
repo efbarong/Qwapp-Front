@@ -13,7 +13,8 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
-import { WebView} from '@ionic-native/ionic-webview/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 
 @NgModule({
@@ -24,7 +25,9 @@ import { WebView} from '@ionic-native/ionic-webview/ngx';
     IonicModule.forRoot(),
     AppRoutingModule,
     ImageModalPageModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+
+    FormsModule, ReactiveFormsModule
   ],
   providers: [
     StatusBar,
@@ -34,4 +37,4 @@ import { WebView} from '@ionic-native/ionic-webview/ngx';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }
