@@ -5,6 +5,9 @@ import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { user } from 'src/model/user';
 import { reject, resolve } from 'q';
+import { product } from 'src/model/product';
+import { ProductServices } from './ProductServices';
+import { environment } from 'src/environments/environment';
 
 @Injectable({
     providedIn: 'root'
@@ -14,7 +17,8 @@ export class UserServices {
 
   public user: user;
 
-    constructor() {
+    constructor(private pServices: ProductServices) {
+
     }
 
     getUser(): user{
@@ -25,6 +29,8 @@ export class UserServices {
     }
     setUserJSON(json: string){
       this.user = JSON.parse(json);
+      this.pServices.trailUserProducts(this.user.id);
+
     }
     
     trailUser(id: string, router: Router){
@@ -34,10 +40,12 @@ export class UserServices {
         // this.user.
         this.user = JSON.parse(JSON.stringify(query.data()));
         this.user.id = query.id;
+        this.pServices.trailUserProducts(query.id);
         localStorage.setItem('sesion', JSON.stringify(this.user));
         console.log(this.user);
         router.navigateByUrl('/perfil');
       });
+
     }
 
     createUser(u: user){
@@ -59,6 +67,11 @@ export class UserServices {
     }
 
     updateUser(u: user){
+      try {
+        firebase.initializeApp(environment.firebase);
+    } catch (error) {
+        
+    }
       firebase.firestore().collection('Users').doc(u.id).set(JSON.parse(JSON.stringify(u)))
       .then(res =>{
         this.user = u;
@@ -71,5 +84,7 @@ export class UserServices {
         reject(err);
       });    
     }
+
+
 
 }

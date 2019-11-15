@@ -4,6 +4,7 @@ import { Observable } from 'rxjs';
 import { UserServices } from 'src/services/UserServices';
 import { environment } from 'src/environments/environment';
 import { FirebaseApp } from '@angular/fire';
+import * as firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
