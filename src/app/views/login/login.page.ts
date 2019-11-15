@@ -13,7 +13,7 @@ export class LoginPage implements OnInit {
   hide: boolean;
   user: any;
   pass: any;
-  constructor(private router: Router, private login: AuthServices; private uServices: UserServices) {
+  constructor(private router: Router, private login: AuthServices, private uServices: UserServices) {
     this.hide = true;
   }
 
