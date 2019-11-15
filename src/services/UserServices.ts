@@ -4,8 +4,7 @@ import * as firebase from 'firebase/app';
 import { AngularFireAuth } from '@angular/fire/auth';
 import { Router } from '@angular/router';
 import { user } from 'src/model/user';
-import { resolve } from 'url';
-import { reject } from 'q';
+import { reject, resolve } from 'q';
 
 @Injectable({
     providedIn: 'root'
@@ -24,6 +23,9 @@ export class UserServices {
     setUser(user: user){
       this.user = user;
     }
+    setUserJSON(json: string){
+      this.user = JSON.parse(json);
+    }
     
     trailUser(id: string, router: Router){
       firebase.firestore().collection('Users').doc(id).get().then((query) =>{
@@ -32,9 +34,42 @@ export class UserServices {
         // this.user.
         this.user = JSON.parse(JSON.stringify(query.data()));
         this.user.id = query.id;
+        localStorage.setItem('sesion', JSON.stringify(this.user));
         console.log(this.user);
-      });
-      if(router)
         router.navigateByUrl('/perfil');
+      });
     }
+
+    createUser(u: user){
+      console.log(firebase.auth().currentUser);
+      console.log(u);
+      
+
+      firebase.firestore().collection('Users').doc(u.id).set(JSON.parse(JSON.stringify(u)))
+      .then(res =>{
+        console.log("User sucessfully register");
+        resolve(res);
+      },
+      err =>{
+        firebase.auth().currentUser.delete().then((res)=>{
+          console.log("deleted");
+        });
+        reject(err);
+      });
+    }
+
+    updateUser(u: user){
+      firebase.firestore().collection('Users').doc(u.id).set(JSON.parse(JSON.stringify(u)))
+      .then(res =>{
+        this.user = u;
+        console.log("User sucessfully updated");
+        console.log(u);
+        localStorage.setItem('sesion', JSON.stringify(u));
+        resolve(res);
+      },
+      err =>{
+        reject(err);
+      });    
+    }
+
 }

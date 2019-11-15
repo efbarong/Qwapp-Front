@@ -30,7 +30,6 @@ export class AuthServices {
             firebase.auth().signInWithEmailAndPassword(email, password).
             then(
                 res =>{ 
-                    localStorage.setItem('sesion', res.user.uid);
                     this.uServices.trailUser(res.user.uid, router);
                     resolve(res);},
                 err => {
@@ -43,10 +42,22 @@ export class AuthServices {
 
     doRegister(user: user, password: string){
         return new Promise<any>((resolve, reject) =>{
-            firebase.auth().signInWithEmailAndPassword(user.email, password);
-            
+            firebase.auth().createUserWithEmailAndPassword(user.email, password)
+            .then(
+                res =>{
+                    user.id = res.user.uid;
+                    this.uServices.createUser(user);
+                    resolve(res);
+                },
+                err =>{
+                    reject(err);
+                }
+            );
         })
 
+    }
+
+    deleteUser(user: user){
     }
 
     getUser(): any{
