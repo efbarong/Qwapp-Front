@@ -43,9 +43,12 @@
       <ion-input [(ngModel)]="u.phone"></ion-input>
     </ion-item>
     <br>
-    <ion-button expand="full" class="ion-text-center" (click) = "send()">Confirmar</ion-button>
+    <div class="centrado">
 
-
+        <button class="buttonSesion" (click) = "send()" routerLink="/perfil" > Confirmar</button>
+    <button class="buttonCancel" routerLink="/perfil" > Cancelar</button>
+    
+  </div>
   </ion-list>
 
 

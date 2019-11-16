@@ -196,6 +196,15 @@ div.center > div > ion-label {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
+.buttonCancel {
+  background-color: var(--ion-color-danger-shade);
+  width: 50%;
+  padding: 15px;
+  border-radius: 16px;
+  font-size: 18px;
+  color: white;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
 .aboutIcon{
   height: 100%;
   text-align: center;
