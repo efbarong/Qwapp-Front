@@ -4,9 +4,9 @@ import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/n
 import { File } from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { Storage } from '@ionic/storage';
-import { product } from 'src/model/product';
-import { UserServices } from 'src/services/UserServices';
-import { ProductServices } from 'src/services/ProductServices';
+import { Product } from '../../models/product';
+import { UserServices } from 'src/app/services/UserServices';
+import { ProductServices } from 'src/app/services/ProductServices';
 
 const STORAGE_KEY = 'my_imgs';
 @Component({
@@ -30,33 +30,33 @@ export class ProductoEditPage implements OnInit {
   @ViewChild('mySlider', null) slides: IonSlides;
 
   // tslint:disable-next-line: max-line-length
-  constructor( 
-    private camera: Camera, 
+  constructor(
+    private camera: Camera,
     private file: File,
     private storage: Storage,
-    private plt: Platform, 
-    private webView: WebView, 
-    private actionSheetController: ActionSheetController, 
+    private plt: Platform,
+    private webView: WebView,
+    private actionSheetController: ActionSheetController,
     private toastController: ToastController,
     private uService: UserServices,
     private pService: ProductServices) {
     this.ciudades = [
-      {name: 'Bogota',   value: 'A' },
-      {name: 'Cali',     value: 'B' },
-      {name: 'Medallo',  value: 'C' },
-      {name: 'El rosal', value: 'D' },
+      { name: 'Bogota', value: 'A' },
+      { name: 'Cali', value: 'B' },
+      { name: 'Medallo', value: 'C' },
+      { name: 'El rosal', value: 'D' },
     ];
 
     this.categorias = [
-      {name: 'Tecnologia',   value: 'A' },
-      {name: 'Celulares',     value: 'B' },
-      {name: 'Otros',  value: 'C' },
-      {name: 'Libros', value: 'D' },
-      {name: 'Electronica', value: 'E' },
-      {name: 'Laptops', value: 'F' },
-      {name: 'Ropa', value: 'G' },
-      {name: 'Tenis', value: 'H' },
-      {name: 'Calzado', value: 'I' }
+      { name: 'Tecnologia', value: 'A' },
+      { name: 'Celulares', value: 'B' },
+      { name: 'Otros', value: 'C' },
+      { name: 'Libros', value: 'D' },
+      { name: 'Electronica', value: 'E' },
+      { name: 'Laptops', value: 'F' },
+      { name: 'Ropa', value: 'G' },
+      { name: 'Tenis', value: 'H' },
+      { name: 'Calzado', value: 'I' }
     ];
     this.images = new Array<any>();
   }
@@ -126,7 +126,7 @@ export class ProductoEditPage implements OnInit {
       const imag = this.webView.convertFileSrc(imageData);
       console.log(imageData);
       console.log(imag);
-      this.images.push({path: imag});
+      this.images.push({ path: imag });
       this.presentToast('Foto subida correctamente');
     }, (err) => {
       console.log('Flasho o cancelo');
@@ -152,7 +152,7 @@ export class ProductoEditPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() { }
 
 
   // Pruebas
@@ -168,16 +168,16 @@ export class ProductoEditPage implements OnInit {
     console.log('Calificación:', event);
   }
 
-  createProduct(){
+  createProduct() {
     // this.ctg.forEach(element => {
     //   console.log(this.categorias.get(element));
     // });
-    let p : product = new product();
-    
+    const p: Product = new Product();
+
     p.name = this.name;
     p.description = this.description;
     p.category = this.ctg;
-    p.state = this.stateProd != 0;
+    p.state = this.stateProd !== 0;
     p.user = this.uService.user.id;
     p.date = new Date();
     p.city = this.uService.user.city;

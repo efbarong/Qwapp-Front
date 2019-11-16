@@ -1,49 +1,56 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>perfil-edit</ion-title>
-  </ion-toolbar>
+<ion-header no-border>
+	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
+		<ion-title>Editar Perfil</ion-title>
+	</ion-toolbar>
 </ion-header>
 
 <ion-content>
-
   <ion-list lines="none">
-    <ion-item align-items-center>
+    <ion-item>
       <ion-avatar class="avatar">
         <img [src]="image" />
       </ion-avatar>
     </ion-item>
     <br>
     <ion-item>
-      <ion-label position="stacked" class="ion-text-center">Nombres<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked" >Nombres<ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input [(ngModel)]="u.name"></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-label position="stacked" class="ion-text-center">Ciudad<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked" >Ciudad<ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input [(ngModel)]="u.city"></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-label position="stacked" class="ion-text-center">Localidad<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked" >Localidad<ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input [(ngModel)]="u.locality"></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-label position="stacked" class="ion-text-center">Dirección<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked" c>Dirección<ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input [(ngModel)]="u.direction"></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-label position="stacked" class="ion-text-center">Telefono<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked" >Telefono<ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input [(ngModel)]="u.phone"></ion-input>
     </ion-item>
     <br>
+<<<<<<< HEAD
     <div class="centrado">
+=======
+    <ion-button expand="full" (click) = "send()">Confirmar</ion-button>
+
+>>>>>>> f95dbd13a06ce568eabd882096c85765467722e1
 
         <button class="buttonSesion" (click) = "send()" routerLink="/perfil" > Confirmar</button>
     <button class="buttonCancel" routerLink="/perfil" > Cancelar</button>

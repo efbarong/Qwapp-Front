@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { PerfilEditPage } from './perfil-edit.page';
+import { ToolbarComponent } from '../../components/toolbar/toolbar.component';
 
 const routes: Routes = [
   {
