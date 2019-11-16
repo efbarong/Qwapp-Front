@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserServices } from 'src/services/UserServices';
-import { user } from 'src/model/user';
+import { UserServices } from 'src/app/services/UserServices';
+import { user } from '../../models/user';
 
 @Component({
   selector: 'app-perfil-edit',
@@ -14,13 +14,12 @@ export class PerfilEditPage implements OnInit {
   constructor(private router: Router, private uServices: UserServices) {
     this.image = 'https://s3-us-west-1.amazonaws.com/malv.images/images/LhUPHDwes61dbkvaHKZBkJGeFMuV74APSn9Y0M5G.jpg';
     this.u = this.uServices.user;
-   }
-
+  }
 
   ngOnInit() {
   }
 
-  send(){
+  send() {
     this.uServices.updateUser(this.u);
   }
 

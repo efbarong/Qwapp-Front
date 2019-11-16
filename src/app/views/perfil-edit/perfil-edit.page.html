@@ -7,43 +7,43 @@
 <ion-content>
 
   <ion-list lines="none">
-    <ion-item align-items-center>
+    <ion-item>
       <ion-avatar class="avatar">
         <img [src]="image" />
       </ion-avatar>
     </ion-item>
     <br>
     <ion-item>
-      <ion-label position="stacked" class="ion-text-center">Nombres<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked" >Nombres<ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input [(ngModel)]="u.name"></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-label position="stacked" class="ion-text-center">Ciudad<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked" >Ciudad<ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input [(ngModel)]="u.city"></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-label position="stacked" class="ion-text-center">Localidad<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked" >Localidad<ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input [(ngModel)]="u.locality"></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-label position="stacked" class="ion-text-center">Dirección<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked" c>Dirección<ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input [(ngModel)]="u.direction"></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-label position="stacked" class="ion-text-center">Telefono<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked" >Telefono<ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input [(ngModel)]="u.phone"></ion-input>
     </ion-item>
     <br>
-    <ion-button expand="full" class="ion-text-center" (click) = "send()">Confirmar</ion-button>
+    <ion-button expand="full" (click) = "send()">Confirmar</ion-button>
 
 
   </ion-list>

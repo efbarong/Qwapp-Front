@@ -2,12 +2,10 @@ import { Component } from '@angular/core';
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
-import { AuthServices } from 'src/services/AuthServices';
-import { User } from 'firebase';
-import { UserServices } from 'src/services/UserServices';
+import { AuthServices } from 'src/app/services/AuthServices';
+import { UserServices } from 'src/app/services/UserServices';
 import { Router } from '@angular/router';
-import { ProductServices } from 'src/services/ProductServices';
-import { ThrowStmt } from '@angular/compiler';
+import { ProductServices } from 'src/app/services/ProductServices';
 
 @Component({
   selector: 'app-root',
@@ -74,15 +72,15 @@ export class AppComponent {
     });
   }
 
-  logout(){
+  logout() {
     localStorage.removeItem('sesion');
-    this.auth.doLogout(); 
+    this.auth.doLogout();
     this.uServices.user = null;
     this.pProduct.productList = new Array();
-    console.log("LIST");
+    console.log('LIST');
     console.log(this.pProduct);
-    
-    
-    this.router.navigateByUrl("/login");
+
+
+    this.router.navigateByUrl('/login');
   }
 }
