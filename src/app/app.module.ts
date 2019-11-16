@@ -35,9 +35,7 @@ import { ToolbarModule } from './components/toolbar/toolbar.module';
 
     AngularFireModule.initializeApp(environment.firebase),
     AngularFireAuthModule,
-    AngularFirestoreModule,
-
-    ToolbarModule
+    AngularFirestoreModule
   ],
   providers: [
     StatusBar,

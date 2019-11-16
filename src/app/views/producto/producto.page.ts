@@ -9,6 +9,8 @@ import { ImageModalPage } from 'src/app/image-modal/image-modal.page';
   styleUrls: ['./producto.page.scss'],
 })
 export class ProductoPage implements OnInit {
+   bar = {name: 'Producto', display: 'normal'};
+
    sliderOpt = {
     zoom: false,
     slidesPerView: 1.2,

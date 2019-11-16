@@ -6,6 +6,8 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { PerfilPage } from './perfil.page';
+import { ToolbarComponent } from '../../components/toolbar/toolbar.component';
+import { ToolbarModule } from '../../components/toolbar/toolbar.module';
 
 
 const routes: Routes = [
@@ -24,4 +26,4 @@ const routes: Routes = [
   ],
   declarations: [PerfilPage]
 })
-export class PerfilPageModule {}
+export class PerfilPageModule { }

@@ -3,6 +3,7 @@ import { CommonModule } from '@angular/common';
 import { ToolbarComponent } from './toolbar.component';
 
 @NgModule({
+  entryComponents: [ToolbarComponent],
   declarations: [ToolbarComponent],
   exports: [ToolbarComponent],
   imports: [
