@@ -24,7 +24,9 @@ const routes: Routes = [
   { path: 'producto-edit', loadChildren: './views/producto-edit/producto-edit.module#ProductoEditPageModule', canActivate: [AuthGuard] },
   { path: 'chat-lista', loadChildren: './views/chat-lista/chat-lista.module#ChatListaPageModule', canActivate: [AuthGuard] },
   { path: 'chat-mensajes', loadChildren: './views/chat-mensajes/chat-mensajes.module#ChatMensajesPageModule', canActivate: [AuthGuard] },
-  { path: 'image-modal', loadChildren: './image-modal/image-modal.module#ImageModalPageModule', canActivate: [AuthGuard] }
+  { path: 'image-modal', loadChildren: './image-modal/image-modal.module#ImageModalPageModule', canActivate: [AuthGuard] },
+  { path: 'producto-create', loadChildren: './views/producto-create/producto-create.module#ProductoCreatePageModule' }
+
 
 ];
 

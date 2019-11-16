@@ -1,21 +1,18 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { IonSlides, ActionSheetController, ToastController, Platform } from '@ionic/angular';
+import { IonSlides, ActionSheetController, ToastController, Platform, AlertController } from '@ionic/angular';
 import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { Storage } from '@ionic/storage';
-import { product } from 'src/model/product';
-import { UserServices } from 'src/services/UserServices';
-import { ProductServices } from 'src/services/ProductServices';
 
 const STORAGE_KEY = 'my_imgs';
-@Component({
-  selector: 'app-producto-edit',
-  templateUrl: './producto-edit.page.html',
-  styleUrls: ['./producto-edit.page.scss'],
-})
-export class ProductoEditPage implements OnInit {
 
+@Component({
+  selector: 'app-producto-create',
+  templateUrl: './producto-create.page.html',
+  styleUrls: ['./producto-create.page.scss'],
+})
+export class ProductoCreatePage implements OnInit {
   // Variables
   ciudades: any;
   cc: any;
@@ -24,22 +21,11 @@ export class ProductoEditPage implements OnInit {
   images: Array<any>;
   stateProd: any;
   posSlide: any = 1;
-  name: string;
-  description: string;
   // Slides
   @ViewChild('mySlider', null) slides: IonSlides;
 
   // tslint:disable-next-line: max-line-length
-  constructor( 
-    private camera: Camera, 
-    private file: File,
-    private storage: Storage,
-    private plt: Platform, 
-    private webView: WebView, 
-    private actionSheetController: ActionSheetController, 
-    private toastController: ToastController,
-    private uService: UserServices,
-    private pService: ProductServices) {
+  constructor(private alert: AlertController, private camera: Camera, private file: File, private storage: Storage, private plt: Platform, private webView: WebView, private actionSheetController: ActionSheetController, private toastController: ToastController) {
     this.ciudades = [
       {name: 'Bogota',   value: 'A' },
       {name: 'Cali',     value: 'B' },
@@ -60,7 +46,14 @@ export class ProductoEditPage implements OnInit {
     ];
     this.images = new Array<any>();
   }
-
+  async presentAlert() {
+    const alert = await this.alert.create({
+      header: 'Bienvenido',
+      message: 'Vamos a crear un producto',
+      buttons: ['Listo!']
+    });
+    await alert.present();
+  }
   // Mostrar notificación
   async presentToast(text) {
     const toast = await this.toastController.create({
@@ -152,7 +145,9 @@ export class ProductoEditPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.presentAlert();
+  }
 
 
   // Pruebas
@@ -166,24 +161,5 @@ export class ProductoEditPage implements OnInit {
 
   onRateChange(event) {
     console.log('Calificación:', event);
-  }
-
-  createProduct(){
-    // this.ctg.forEach(element => {
-    //   console.log(this.categorias.get(element));
-    // });
-    let p : product = new product();
-    
-    p.name = this.name;
-    p.description = this.description;
-    p.category = this.ctg;
-    p.state = this.stateProd != 0;
-    p.user = this.uService.user.id;
-    p.date = new Date();
-    p.city = this.uService.user.city;
-    p.locality = this.uService.user.locality;
-    this.pService.createProduct(p);
-
-    console.log(p);
   }
 }

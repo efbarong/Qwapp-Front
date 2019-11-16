@@ -6,6 +6,8 @@ import { AuthServices } from 'src/services/AuthServices';
 import { User } from 'firebase';
 import { UserServices } from 'src/services/UserServices';
 import { Router } from '@angular/router';
+import { ProductServices } from 'src/services/ProductServices';
+import { ThrowStmt } from '@angular/compiler';
 
 @Component({
   selector: 'app-root',
@@ -35,6 +37,11 @@ export class AppComponent {
       icon: 'home'
     },
     {
+      title: 'Crear Producto',
+      url: '/producto-create',
+      icon: 'home'
+    },
+    {
       title: 'Ver Chat',
       url: '/chat-mesaje',
       icon: 'home'
@@ -50,7 +57,9 @@ export class AppComponent {
     private platform: Platform,
     private splashScreen: SplashScreen,
     private statusBar: StatusBar,
+    private auth: AuthServices,
     private uServices: UserServices,
+    private pProduct: ProductServices,
     private router: Router,
   ) {
     this.initializeApp();
@@ -67,7 +76,13 @@ export class AppComponent {
 
   logout(){
     localStorage.removeItem('sesion');
+    this.auth.doLogout(); 
     this.uServices.user = null;
+    this.pProduct.productList = new Array();
+    console.log("LIST");
+    console.log(this.pProduct);
+    
+    
     this.router.navigateByUrl("/login");
   }
 }

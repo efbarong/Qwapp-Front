@@ -10,7 +10,6 @@ import { user } from 'src/model/user';
 })
 export class PerfilEditPage implements OnInit {
   image: any;
-  
   u: user;
   constructor(private router: Router, private uServices: UserServices) {
     this.image = 'https://s3-us-west-1.amazonaws.com/malv.images/images/LhUPHDwes61dbkvaHKZBkJGeFMuV74APSn9Y0M5G.jpg';

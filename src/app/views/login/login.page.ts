@@ -32,11 +32,7 @@ export class LoginPage implements OnInit {
 
   ionViewDidEnter(){
     if(localStorage.getItem("sesion")){
-      if(!this.uServices.user){
-
-      }
       this.router.navigateByUrl("/perfil");
-
     }
   }
 
