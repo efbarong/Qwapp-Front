@@ -44,7 +44,6 @@ export class UserServices {
       this.pServices.trailUserProducts(query.id);
       localStorage.setItem('sesion', JSON.stringify(this.user));
       console.log(this.user);
-      router.navigateByUrl('/perfil');
     });
 
   }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserServices } from 'src/app/services/UserServices';
-import { user } from '../../models/user';
 import { ProductServices } from 'src/app/services/ProductServices';
+import { UserServices } from 'src/app/services/UserServices';
 import { Product } from '../../models/product';
+import { user } from '../../models/user';
 
 @Component({
   selector: 'app-perfil',
@@ -21,15 +21,34 @@ export class PerfilPage implements OnInit {
     this.user = uService.user;
   }
 
-  ngOnInit() {
-  }
-
-  mover() {
-    this.router.navigateByUrl('/login');
-  }
-
   ionViewDidEnter() {
     this.user = this.uService.user;
     this.products = this.pService.productList;
+  }
+
+  editProfile() {
+    this.router.navigateByUrl('/perfil-edit');
+  }
+
+  editProduct() {
+    /*
+    Enviar a la pagina de editar producto y pasar producto a editar como parametro
+    en la Url de abajo
+
+    Ejem:
+
+    editProduct(producto) {
+    this.router.navigate(['/producto-edit', {producto}]);
+    }
+   */
+
+    this.router.navigate(['/producto-edit']);
+  }
+
+  deleteProduct() {
+    // borrar producto
+  }
+
+  ngOnInit() {
   }
 }

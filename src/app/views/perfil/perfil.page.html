@@ -3,6 +3,11 @@
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="editProfile()">
+        <ion-icon slot="icon-only" name="settings"></ion-icon>
+      </ion-button>
+    </ion-buttons>
     <ion-title>Mi Perfil</ion-title>
   </ion-toolbar>
 </ion-header>
@@ -73,10 +78,10 @@
           <span style="font-size: 10px;">{{product.date | date:'MMM d, yyyy hh:mm'}}</span>
         </ion-text>
         <ion-buttons slot="end" style="margin: 0px;">
-          <ion-button (click)="onClick()">
+          <ion-button (click)="editProduct()">
             <ion-icon slot="icon-only" name="create"></ion-icon>
           </ion-button>
-          <ion-button (click)="onClick()">
+          <ion-button (click)="deleteProduct()">
             <ion-icon style="color: red" slot="icon-only" name="trash"></ion-icon>
           </ion-button>
         </ion-buttons>

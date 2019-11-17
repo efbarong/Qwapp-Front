@@ -20,21 +20,6 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Editar Perfil',
-      url: '/perfil-edit',
-      icon: 'home'
-    },
-    {
-      title: 'Ver Producto',
-      url: '/producto',
-      icon: 'home'
-    },
-    {
-      title: 'Editar Producto',
-      url: '/producto-edit',
-      icon: 'home'
-    },
-    {
       title: 'Crear Producto',
       url: '/producto-create',
       icon: 'home'
