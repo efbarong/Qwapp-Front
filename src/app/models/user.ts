@@ -7,7 +7,7 @@ export class user {
     age: number;
     email: string;
     direction: string;
-    phone: number;
+    phone: string;
 
     constructor() {
     }
