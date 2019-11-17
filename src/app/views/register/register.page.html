@@ -5,7 +5,7 @@
     </ion-buttons>
   </ion-toolbar>
 </ion-header>
-<ion-content>
+<ion-content class="ion-align-self-center">
 
   <div class="containerCenter marginBottom">
     <span class="titulos">Registro</span>
@@ -13,7 +13,7 @@
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <ion-list lines="none">
       <ion-item class="input">
-        <ion-label position="floating">Nombre<ion-text color="danger">*</ion-text>
+        <ion-label  position="floating">Nombre<ion-text color="danger">*</ion-text>
         </ion-label>
         <ion-input required formControlName="nombre" type="text"></ion-input>
       </ion-item>
@@ -49,9 +49,9 @@
       </ion-item>
     </ion-list>
     <div class="containerCenter">
-      <ion-button block color="primary" type="submit" [disabled]="registerForm.invalid">
+      <button class="buttonSesion" block  type="submit" [disabled]="registerForm.invalid">
         Registrarse
-      </ion-button>
+      </button>
     </div>
   </form>
 
