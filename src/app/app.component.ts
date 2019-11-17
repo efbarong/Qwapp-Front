@@ -21,7 +21,7 @@ export class AppComponent {
     },
     {
       title: 'Crear Producto',
-      url: '/producto-create',
+      url: '/producto-create/2',
       icon: 'home'
     },
     {

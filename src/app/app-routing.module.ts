@@ -26,7 +26,9 @@ const routes: Routes = [
   // tslint:disable-next-line: max-line-length
   { path: 'chat-mensajes/:name', loadChildren: './views/chat-mensajes/chat-mensajes.module#ChatMensajesPageModule', canActivate: [AuthGuard] },
   { path: 'image-modal', loadChildren: './image-modal/image-modal.module#ImageModalPageModule', canActivate: [AuthGuard] },
-  { path: 'producto-create', loadChildren: './views/producto-create/producto-create.module#ProductoCreatePageModule' }
+  { path: 'producto-create/:id', loadChildren: './views/producto-create/producto-create.module#ProductoCreatePageModule' },
+  { path: 'home', loadChildren: './views/home/home.module#HomePageModule' }
+
 
 
 ];

@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-chat-lista',
@@ -8,7 +8,8 @@ import { Router } from '@angular/router';
 })
 export class ChatListaPage implements OnInit {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private active: ActivatedRoute) {
+  }
 
   ngOnInit() {
   }
@@ -16,5 +17,5 @@ export class ChatListaPage implements OnInit {
   verChat(name: string) {
     this.router.navigate(['/chat-mensajes', name]);
   }
-
+  
 }

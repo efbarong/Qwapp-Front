@@ -1,7 +1,9 @@
 <ion-header no-border>
   <ion-toolbar>
     <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/home"></ion-back-button>
+      </ion-buttons>
     </ion-buttons>
     <ion-buttons slot="end">
       <ion-button (click)="editProfile()">
@@ -13,8 +15,7 @@
 </ion-header>
 <ion-content>
   <ion-card>
-    <ion-card-header routerLink="/perfil-edit">
-
+    <ion-card-header>
       <ion-grid>
         <ion-row class="align-items-center">
           <ion-col size=4>
@@ -95,7 +96,7 @@
     </div>
 
   </ion-card>
-  <ion-fab horizontal="end" vertical="bottom" slot="fixed" routerLink="/producto-create">
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" routerLink="/producto-create/1">
     <ion-fab-button color="primary">
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

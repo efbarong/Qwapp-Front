@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import { Product } from '../../models/product';
 import { UserServices } from '../../services/UserServices';
 import { ProductServices } from '../../services/ProductServices';
+import { ActivatedRoute, Router } from '@angular/router';
 
 const STORAGE_KEY = 'my_imgs';
 
@@ -41,7 +42,9 @@ export class ProductoCreatePage implements OnInit {
     private actionSheetController: ActionSheetController,
     private toastController: ToastController,
     private uService: UserServices,
-    private pService: ProductServices) {
+    private pService: ProductServices,
+    private active: ActivatedRoute,
+    private router: Router) {
 
     this.ciudades = [
       { name: 'Bogota', value: 'A' },
@@ -190,5 +193,15 @@ export class ProductoCreatePage implements OnInit {
     p.locality = this.uService.user.locality;
     this.pService.createProduct(p);
     console.log(p);
+  }
+
+  back() {
+    this.active.params.subscribe(res => {
+      if (res.id === '1') {
+        this.router.navigateByUrl('/perfil');
+      } else if (res.id === '2') {
+        this.router.navigateByUrl('/home');
+      }
+    }).unsubscribe();
   }
 }
