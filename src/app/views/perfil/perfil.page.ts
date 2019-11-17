@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 import { UserServices } from 'src/app/services/UserServices';
 import { user } from '../../models/user';
 import { ProductServices } from 'src/app/services/ProductServices';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-perfil',
@@ -11,9 +12,9 @@ import { ProductServices } from 'src/app/services/ProductServices';
 })
 export class PerfilPage implements OnInit {
 
-  bar = {name: 'Mi perfil', display: 'normal'};
   image: any;
   user: user;
+  products: Product[];
 
   constructor(private router: Router, private uService: UserServices, private pService: ProductServices) {
     this.image = 'https://s3-us-west-1.amazonaws.com/malv.images/images/LhUPHDwes61dbkvaHKZBkJGeFMuV74APSn9Y0M5G.jpg';
@@ -29,8 +30,6 @@ export class PerfilPage implements OnInit {
 
   ionViewDidEnter() {
     this.user = this.uService.user;
-    console.log(this.pService.productList);
+    this.products = this.pService.productList;
   }
-
-
 }

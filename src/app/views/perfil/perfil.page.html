@@ -23,7 +23,7 @@
               <ion-col>
                 <div class="ion-text-center">
                   <ion-icon name="person"></ion-icon>
-                  &nbsp;{{user.name}}
+                  &nbsp;{{user.name | titlecase}}
                 </div>
               </ion-col>
             </ion-row>
@@ -31,7 +31,7 @@
               <ion-col>
                 <div class="ion-text-center">
                   <ion-icon name="locate"></ion-icon>
-                  &nbsp; {{user.locality}}, {{user.city}}
+                  &nbsp; {{user.locality | titlecase}}, {{user.city | titlecase}}
                 </div>
               </ion-col>
             </ion-row>
@@ -39,7 +39,7 @@
               <ion-col size="12">
                 <div class="ion-text-center">
                   <ion-icon name="git-compare"></ion-icon>
-                  &nbsp; {{user.numberChanges}} intercambios
+                  &nbsp; {{user.numberChanges}} Intercambios
                 </div>
               </ion-col>
             </ion-row>
@@ -56,7 +56,7 @@
       </ion-grid>
     </ion-card-header>
 
-    <ion-item lines="full">
+    <ion-item lines="none">
       <ion-label>
         <div class="ion-text-center">
           <h1>Publicaciones</h1>
@@ -64,39 +64,35 @@
       </ion-label>
     </ion-item>
 
-    <ion-list lines="none">
-      <ion-item>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-subtitle>Activo</ion-card-subtitle>
-            <ion-card-title>Producto 1</ion-card-title>
-          </ion-card-header>
-
-        </ion-card>
+    <div class="containerCenter" *ngIf="products">
+      <ion-item class="cardProduct__item" [ngStyle]="{ 'border-left-color': product.state ? 'green': 'red' }"
+        lines="none" *ngFor="let product of products">
+        <ion-text>
+          <span style="font-weight: bold;">{{product.name | titlecase}}</span>
+          <br>
+          <span style="font-size: 10px;">{{product.date | date:'MMM d, yyyy hh:mm'}}</span>
+        </ion-text>
+        <ion-buttons slot="end" style="margin: 0px;">
+          <ion-button (click)="onClick()">
+            <ion-icon slot="icon-only" name="create"></ion-icon>
+          </ion-button>
+          <ion-button (click)="onClick()">
+            <ion-icon style="color: red" slot="icon-only" name="trash"></ion-icon>
+          </ion-button>
+        </ion-buttons>
       </ion-item>
-      <ion-item>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-subtitle>Activo</ion-card-subtitle>
-            <ion-card-title>Producto 2</ion-card-title>
-          </ion-card-header>
+    </div>
 
-        </ion-card>
-      </ion-item>
-      <ion-item>
-        <ion-card>
-          <ion-card-header>
-            <ion-card-subtitle>Activo</ion-card-subtitle>
-            <ion-card-title>Producto 3</ion-card-title>
-          </ion-card-header>
+    <div class="containerCenter" *ngIf="products">
+      <ion-text color="primary" *ngIf="products.length === 0">
+        <h6>No tienes publicaciones<br> Agrega una :)</h6>
+      </ion-text>
+    </div>
 
-        </ion-card>
-      </ion-item>
-    </ion-list>
   </ion-card>
   <ion-fab horizontal="end" vertical="bottom" slot="fixed" routerLink="/producto-create">
-      <ion-fab-button color="primary">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
+    <ion-fab-button color="primary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
