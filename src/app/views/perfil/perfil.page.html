@@ -1,19 +1,17 @@
 <ion-header no-border>
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-menu-button></ion-menu-button>
-		</ion-buttons>
-		<ion-title>Mi Perfil</ion-title>
-	</ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Mi Perfil</ion-title>
+  </ion-toolbar>
 </ion-header>
 <ion-content>
   <ion-card>
-    <ion-card-header  routerLink="/perfil-edit">
-
+    <ion-card-header routerLink="/perfil-edit">
 
       <ion-grid>
         <ion-row class="align-items-center">
-
           <ion-col size=4>
             <ion-avatar class="avatar">
               <img [src]="image" />
@@ -58,12 +56,11 @@
       </ion-grid>
     </ion-card-header>
 
-
     <ion-item lines="full">
       <ion-label>
         <div class="ion-text-center">
-            <h1>Publicaciones</h1>
-          </div>
+          <h1>Publicaciones</h1>
+        </div>
       </ion-label>
     </ion-item>
 

@@ -21,6 +21,7 @@ export class ProductoCreatePage implements OnInit {
   images: Array<any>;
   stateProd: any;
   posSlide: any = 1;
+  rate: any;
   // Slides
   @ViewChild('mySlider', null) slides: IonSlides;
 

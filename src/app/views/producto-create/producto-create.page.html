@@ -1,4 +1,4 @@
-<ion-content fullscreen class="ion-padding-horizontal" scroll-y="false">
+<ion-content class="ion-padding-horizontal" scroll-y="false">
     <ion-slides #mySlider>
       <!--Slide 1-->
       <ion-slide>
@@ -33,7 +33,6 @@
             <ion-select-option *ngFor="let cat of categorias" [value]= 'cat.value'>{{cat.name}}</ion-select-option>
           </ion-select>
         </ion-item>
-        
         
         <!--Estado-->
         <h5 class="text-center">Estado del producto</h5>

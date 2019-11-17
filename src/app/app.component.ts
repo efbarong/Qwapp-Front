@@ -40,11 +40,6 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Ver Chat',
-      url: '/chat-mesaje',
-      icon: 'home'
-    },
-    {
       title: 'Chats',
       url: '/chat-lista',
       icon: 'home'
