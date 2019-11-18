@@ -1,6 +1,6 @@
-<ion-app>
+<ion-app *ngIf="isLogin()">
   <ion-split-pane contentId="main">
-    <ion-menu contentId="main" type="overlay" *ngIf="isLogin()">
+    <ion-menu contentId="main" type="overlay">
       <ion-header>
         <ion-toolbar>
           <ion-title>Qwapp</ion-title>
@@ -30,6 +30,7 @@
       </ion-footer>
     </ion-menu>
     <ion-router-outlet *ngIf="isLogin()" id="main"></ion-router-outlet>
-    <ion-router-outlet *ngIf="!isLogin()"></ion-router-outlet>
   </ion-split-pane>
 </ion-app>
+
+<ion-router-outlet *ngIf="!isLogin()"></ion-router-outlet>
