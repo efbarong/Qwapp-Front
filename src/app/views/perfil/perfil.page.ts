@@ -47,8 +47,9 @@ export class PerfilPage implements OnInit {
     this.router.navigate(['/producto-edit']);
   }
 
-  deleteProduct() {
-    // borrar producto
+  deleteProduct(p: Product) {
+    this.pService.deleteProduct(p.id);
+    this.products.splice(this.products.indexOf(p),1);
   }
   async checknew() {
     /** @TODO Si añadieron un producto, debe aparecer "Has creado un producto satisfactoriamente */
