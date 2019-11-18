@@ -32,18 +32,17 @@ export class ProductServices {
                 });
     }
 
-    deleteProduct(id: string){
+    deleteProduct(id: string) {
         try {
             firebase.initializeApp(environment.firebase);
         } catch (error) {}
         firebase.firestore().collection('Products').doc(id).delete()
-        .then(res =>{
-            console.log("Product deleted Sucessful");
+        .then(res => {
+            console.log('Product deleted Sucessful');
         },
-        err =>{
-            console.log("Error in product delete");
-        }) 
-
+        err => {
+            console.log('Error in product delete');
+        });
     }
 
 
@@ -59,7 +58,7 @@ export class ProductServices {
         ref.where('user', '==', id).get().then(res => {
             res.forEach(element => {
                 // console.log(id + "     " + element.data());
-                let p : Product = JSON.parse(JSON.stringify(element.data()));
+                let p: Product = JSON.parse(JSON.stringify(element.data()));
                 p.id = element.id;
                 this.productList.push(p);
             });
