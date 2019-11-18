@@ -1,10 +1,10 @@
 <ion-header no-border>
-	<ion-toolbar>
-		<ion-buttons slot="start">
-			<ion-menu-button></ion-menu-button>
-		</ion-buttons>
-		<ion-title>Editar Perfil</ion-title>
-	</ion-toolbar>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button defaultHref="/perfil"></ion-back-button>
+    </ion-buttons>
+    <ion-title>Editar Perfil</ion-title>
+  </ion-toolbar>
 </ion-header>
 
 <ion-content>
@@ -16,19 +16,19 @@
     </ion-item>
     <br>
     <ion-item>
-      <ion-label position="stacked" >Nombres<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked">Nombres<ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input [(ngModel)]="u.name"></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-label position="stacked" >Ciudad<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked">Ciudad<ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input [(ngModel)]="u.city"></ion-input>
     </ion-item>
     <br>
     <ion-item>
-      <ion-label position="stacked" >Localidad<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked">Localidad<ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input [(ngModel)]="u.locality"></ion-input>
     </ion-item>
@@ -40,24 +40,16 @@
     </ion-item>
     <br>
     <ion-item>
-      <ion-label position="stacked" >Telefono<ion-text color="danger">*</ion-text>
+      <ion-label position="stacked">Telefono<ion-text color="danger">*</ion-text>
       </ion-label>
       <ion-input [(ngModel)]="u.phone"></ion-input>
     </ion-item>
     <br>
 
     <div class="containerCenter">
-        <button class="buttonSesion" (click) = "send()" routerLink="/perfil" > Confirmar</button>
-    <button class="buttonCancel" routerLink="/perfil"> Cancelar</button>
-    
-  </div>
+      <button class="buttonSesion" (click)="send()" routerLink="/perfil"> Confirmar</button>
+      <button class="buttonCancel" routerLink="/perfil"> Cancelar</button>
+
+    </div>
   </ion-list>
-
-
-
-
-
-
-
-
 </ion-content>

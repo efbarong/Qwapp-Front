@@ -21,18 +21,14 @@ export class LoginPage implements OnInit {
     if (this.user && this.pass) {
       this.login.doLogin(this.user, this.pass, this.router);
       console.log(this.user);
-
     } else {
       console.log('Completa los campos');
     }
   }
-  registrarse() {
-    this.router.navigateByUrl('/register');
-  }
 
-  ionViewDidEnter(){
-    if(localStorage.getItem("sesion")){
-      this.router.navigateByUrl("/perfil");
+  ionViewDidEnter() {
+    if (localStorage.getItem('sesion')) {
+      this.router.navigateByUrl('/home');
     }
   }
 

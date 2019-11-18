@@ -9,7 +9,6 @@ import { user } from '../../models/user';
   styleUrls: ['./perfil-edit.page.scss'],
 })
 export class PerfilEditPage implements OnInit {
-  bar = {name: 'Editar perfil', display: 'normal'};
   image: any;
   u: user;
   constructor(private router: Router, private uServices: UserServices) {

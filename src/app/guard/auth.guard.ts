@@ -14,7 +14,6 @@ export class AuthGuard implements CanActivate {
       console.log('No has iniciado sesion.');
       return this.router.navigateByUrl('/login');
     }
-    console.log('Acceso Exitoso');
     if (!this.uService.user) {
       this.uService.setUserJSON(localStorage.getItem('sesion'));
     }

@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import * as firebase from 'firebase/app';
-// import { FirebaseService } from './firebase.service';
 import { Router } from '@angular/router';
 import { user } from '../models/user';
 import { reject, resolve } from 'q';
@@ -34,17 +33,11 @@ export class UserServices {
 
   trailUser(id: string, router: Router) {
     firebase.firestore().collection('Users').doc(id).get().then((query) => {
-      // this.user = new user();
-      // this.user.id = query.id
-      // this.user.
       this.user = JSON.parse(JSON.stringify(query.data()));
       this.user.id = query.id;
-      // console.log(this.user);
-
       this.pServices.trailUserProducts(query.id);
       localStorage.setItem('sesion', JSON.stringify(this.user));
-      console.log(this.user);
-      router.navigateByUrl('/perfil');
+      router.navigateByUrl('/home');
     });
 
   }

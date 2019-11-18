@@ -1,16 +1,15 @@
-<ion-header translucent>
-  <ion-toolbar>
-    <ion-title>Chats List</ion-title>
-  </ion-toolbar>
-</ion-header>
+<ion-header no-border>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button color="tertiary" defaultHref="/home"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Chats</ion-title>
+    </ion-toolbar>
+  </ion-header>
 
 <ion-content fullscreen>
   <ion-list>
-    <ion-list-header>
-      Mensajes
-    </ion-list-header>
-    
-    <ion-item>
+    <ion-item (click)="verChat('Marlon')">
       <ion-avatar slot="start">
         <img src="assets/img/userempty.png">
       </ion-avatar>
@@ -19,8 +18,8 @@
         <h3>Lorem ipsum dolor sit amet. </h3>
       </ion-label>
     </ion-item>
-    
-    <ion-item>
+
+    <ion-item (click)="verChat('Johann')">
       <ion-avatar slot="start">
         <img src="assets/img/userempty.png">
       </ion-avatar>
@@ -29,16 +28,16 @@
         <h3>Lorem, ipsum.</h3>
       </ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="verChat('Edward')">
       <ion-avatar slot="start">
         <img src="assets/img/userempty.png">
       </ion-avatar>
       <ion-label>
         <h2>Edward</h2>
-        <h3>El futbol es mi droga</h3>
+        <h3>Bah!</h3>
       </ion-label>
     </ion-item>
-    <ion-item>
+    <ion-item (click)="verChat('Carlos')">
       <ion-avatar slot="start">
         <img src="assets/img/userempty.png">
       </ion-avatar>
@@ -49,14 +48,3 @@
     </ion-item>
   </ion-list>
 </ion-content>
-
-
-<!-- <script type="module" src="https://cdn.jsdelivr.net/npm/@ionic/core@4.7.4/dist/ionic/ionic.esm.js"></script>
-  <script nomodule src="https://cdn.jsdelivr.net/npm/@ionic/core@4.7.4/dist/ionic/ionic.js"></script>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ionic/core@4.7.4/css/ionic.bundle.css"/>
-  <style>
-    :root {
-      --ion-safe-area-top: 20px;
-      --ion-safe-area-bottom: 22px;
-    }
-  -->

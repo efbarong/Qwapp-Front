@@ -20,33 +20,18 @@ export class AppComponent {
       icon: 'home'
     },
     {
-      title: 'Editar Perfil',
-      url: '/perfil-edit',
-      icon: 'home'
-    },
-    {
-      title: 'Ver Producto',
-      url: '/producto',
-      icon: 'home'
-    },
-    {
-      title: 'Editar Producto',
-      url: '/producto-edit',
-      icon: 'home'
-    },
-    {
       title: 'Crear Producto',
-      url: '/producto-create',
-      icon: 'home'
-    },
-    {
-      title: 'Ver Chat',
-      url: '/chat-mesaje',
+      url: '/producto-create/2',
       icon: 'home'
     },
     {
       title: 'Chats',
       url: '/chat-lista',
+      icon: 'home'
+    },
+    {
+      title: 'Intercambio',
+      url: '/intercambio',
       icon: 'home'
     }
   ];
@@ -70,6 +55,13 @@ export class AppComponent {
       this.statusBar.show();
       this.splashScreen.hide();
     });
+  }
+
+  isLogin(): boolean {
+    if (localStorage.getItem('sesion')) {
+      return true;
+    }
+    return false;
   }
 
   logout() {

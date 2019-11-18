@@ -26,6 +26,7 @@ export class ProductoEditPage implements OnInit {
   posSlide: any = 1;
   name: string;
   description: string;
+  rate: any;
   // Slides
   @ViewChild('mySlider', null) slides: IonSlides;
 
