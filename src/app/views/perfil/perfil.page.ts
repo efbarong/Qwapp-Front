@@ -1,10 +1,10 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+import { ToastController } from '@ionic/angular';
 import { ProductServices } from 'src/app/services/ProductServices';
 import { UserServices } from 'src/app/services/UserServices';
 import { Product } from '../../models/product';
 import { user } from '../../models/user';
-import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-perfil',
@@ -29,7 +29,6 @@ export class PerfilPage implements OnInit {
   ionViewDidEnter() {
     this.user = this.uService.user;
     this.products = this.pService.productList;
-    console.log(this.products);
   }
 
   editProfile() {
@@ -37,16 +36,13 @@ export class PerfilPage implements OnInit {
   }
 
   editProduct() {
-    /*
-    Enviar a la pagina de editar producto y pasar producto a editar como parametro
-    en la Url de abajo
-
-    Ejem:
-
-    editProduct(producto) {
-    this.router.navigate(['/producto-edit', {producto}]);
-    }
-   */
+    /** @TODO Enviar a la pagina de editar producto y pasar producto a editar como parametro
+     * en la Url de abajo
+     * Ejem:
+     * editProduct(producto) {
+     * this.router.navigate(['/producto-edit', {producto}]);
+     * }
+     */
 
     this.router.navigate(['/producto-edit']);
   }
@@ -55,7 +51,8 @@ export class PerfilPage implements OnInit {
     // borrar producto
   }
   async checknew() {
-    // Si añadieron un producto, debe aparecer "Has creado un producto satisfactoriamente"
+    /** @TODO Si añadieron un producto, debe aparecer "Has creado un producto satisfactoriamente */
+
     const toast = await this.toastController.create({
       message: 'Tu producto se creo satisfactoriamente',
       duration: 3000
