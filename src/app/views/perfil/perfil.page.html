@@ -15,7 +15,7 @@
 </ion-header>
 <ion-content>
   <ion-card>
-    <ion-card-header>
+    <ion-card-content>
       <ion-grid>
         <ion-row class="align-items-center">
           <ion-col size=4>
@@ -60,42 +60,43 @@
           </ion-col>
         </ion-row>
       </ion-grid>
-    </ion-card-header>
-
-    <ion-item lines="none">
-      <ion-label>
-        <div class="ion-text-center">
-          <h1>Publicaciones</h1>
-        </div>
-      </ion-label>
-    </ion-item>
-
-    <div class="containerCenter" *ngIf="products">
-      <ion-item class="cardProduct__item" [ngStyle]="{ 'border-left-color': product.state ? 'green': 'red' }"
-        lines="none" *ngFor="let product of products">
-        <ion-text>
-          <span style="font-weight: bold;">{{product.name | titlecase}}</span>
-          <br>
-          <span style="font-size: 10px;">{{product.date | date:'MMM d, yyyy hh:mm'}}</span>
-        </ion-text>
-        <ion-buttons slot="end" style="margin: 0px;">
-          <ion-button (click)="editProduct()">
-            <ion-icon slot="icon-only" name="create"></ion-icon>
-          </ion-button>
-          <ion-button (click)="deleteProduct()">
-            <ion-icon style="color: red" slot="icon-only" name="trash"></ion-icon>
-          </ion-button>
-        </ion-buttons>
-      </ion-item>
-    </div>
-
-    <div class="containerCenter" *ngIf="products">
-      <ion-text color="primary" *ngIf="products.length === 0">
-        <h6>No tienes publicaciones<br> Agrega una :)</h6>
-      </ion-text>
-    </div>
-
+    </ion-card-content>
   </ion-card>
+
+  <ion-item lines="none">
+    <ion-label>
+      <div class="ion-text-center">
+        <h1>Publicaciones</h1>
+      </div>
+    </ion-label>
+  </ion-item>
+
+  <div class="containerCenter marginBottom__productos" *ngIf="products">
+    <ion-item class="cardProduct__item" [ngStyle]="{ 'border-left-color': product.state ? 'green': 'red' }" lines="none"
+      *ngFor="let product of products">
+      <ion-text>
+        <span style="font-weight: bold;">{{product.name | titlecase}}</span>
+        <br>
+        <span style="font-size: 10px;">{{product.date | date:'MMM d, yyyy hh:mm'}}</span>
+      </ion-text>
+      <ion-buttons slot="end" style="margin: 0px;">
+        <ion-button (click)="editProduct()">
+          <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+        <ion-button (click)="deleteProduct()">
+          <ion-icon style="color: red" slot="icon-only" name="trash"></ion-icon>
+        </ion-button>
+      </ion-buttons>
+    </ion-item>
+  </div>
+
+  <div class="containerCenter" *ngIf="products">
+    <ion-text color="primary" *ngIf="products.length === 0">
+      <h6>No tienes publicaciones<br> Agrega una :)</h6>
+    </ion-text>
+  </div>
+
+
   <ion-fab horizontal="end" vertical="bottom" slot="fixed" routerLink="/producto-create/1">
     <ion-fab-button color="primary">
       <ion-icon name="add"></ion-icon>
