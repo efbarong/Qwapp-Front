@@ -1,74 +1,92 @@
 <ion-header no-border>
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-buttons slot="start">
-          <ion-back-button defaultHref="/home"></ion-back-button>
-        </ion-buttons>
-      </ion-buttons>
-      <ion-buttons slot="end">
-        <ion-button (click)="editProfile()">
-          <ion-icon slot="icon-only" name="settings"></ion-icon>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-buttons slot="end">
+      <ion-button (click)="editProfile()">
+        <ion-icon slot="icon-only" name="settings"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>Mi Perfil</ion-title>
+  </ion-toolbar>
+</ion-header>
+<ion-content>
+  <ion-card>
+    <ion-card-content>
+      <ion-grid>
+        <ion-row class="align-items-center">
+          <ion-col size=4>
+            <ion-avatar class="avatar">
+              <img [src]="image" />
+            </ion-avatar>
+          </ion-col>
+
+          <ion-col class="align-self-center">
+            <ion-row>
+              <ion-col>
+                <div class="ion-text-center">
+                  <ion-icon name="person"></ion-icon>
+                  &nbsp;{{user.name | titlecase}}
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col>
+                <div class="ion-text-center">
+                  <ion-icon name="locate"></ion-icon>
+                  &nbsp; {{user.locality | titlecase}}, {{user.city | titlecase}}
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                <div class="ion-text-center">
+                  <ion-icon name="git-compare"></ion-icon>
+                  &nbsp; {{user.numberChanges}} Intercambios
+                </div>
+              </ion-col>
+            </ion-row>
+            <ion-row>
+              <ion-col size="12">
+                <div class="ion-text-center">
+                  <ion-icon name="star"></ion-icon>
+                  &nbsp; Reputación
+                </div>
+              </ion-col>
+            </ion-row>
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+    </ion-card-content>
+  </ion-card>
+
+  <ion-item lines="none">
+    <ion-label>
+      <div class="ion-text-center">
+        <h1>Publicaciones</h1>
+      </div>
+    </ion-label>
+  </ion-item>
+
+  <div class="containerCenter marginBottom__productos" *ngIf="products">
+    <ion-item class="cardProduct__item" [ngStyle]="{ 'border-left-color': product.state ? 'green': 'red' }" lines="none"
+      *ngFor="let product of products">
+      <ion-text>
+        <span style="font-weight: bold;">{{product.name | titlecase}}</span>
+        <br>
+        <span style="font-size: 10px;">{{product.date | date:'MMM d, yyyy hh:mm'}}</span>
+      </ion-text>
+      <ion-buttons slot="end" style="margin: 0px;">
+        <ion-button (click)="editProduct()">
+          <ion-icon slot="icon-only" name="create"></ion-icon>
+        </ion-button>
+        <ion-button (click)="deleteProduct()">
+          <ion-icon style="color: red" slot="icon-only" name="trash"></ion-icon>
         </ion-button>
       </ion-buttons>
-      <ion-title>Mi Perfil</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content>
-    <ion-card>
-      <ion-card-content>
-        <ion-grid>
-          <ion-row class="align-items-center">
-            <ion-col size=4>
-              <ion-avatar class="avatar">
-                <img [src]="image" />
-              </ion-avatar>
-            </ion-col>
-  
-            <ion-col class="align-self-center">
-              <ion-row>
-                <ion-col>
-                  <div class="ion-text-center">
-                    <ion-icon name="person"></ion-icon>
-                    &nbsp;{{user.name | titlecase}}
-                  </div>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col>
-                  <div class="ion-text-center">
-                    <ion-icon name="locate"></ion-icon>
-                    &nbsp; {{user.locality | titlecase}}, {{user.city | titlecase}}
-                  </div>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <div class="ion-text-center">
-                    <ion-icon name="git-compare"></ion-icon>
-                    &nbsp; {{user.numberChanges}} Intercambios
-                  </div>
-                </ion-col>
-              </ion-row>
-              <ion-row>
-                <ion-col size="12">
-                  <div class="ion-text-center">
-                    <ion-icon name="star"></ion-icon>
-                    &nbsp; Reputación
-                  </div>
-                </ion-col>
-              </ion-row>
-            </ion-col>
-          </ion-row>
-        </ion-grid>
-      </ion-card-content>
-    </ion-card>
-  
-    <ion-item lines="none">
-      <ion-label>
-        <div class="ion-text-center">
-          <h1>Publicaciones</h1>
-        </div>
-      </ion-label>
     </ion-item>
   
     <div class="containerCenter marginBottom__productos" *ngIf="products">
