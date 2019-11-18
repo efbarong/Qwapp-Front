@@ -24,8 +24,7 @@ export class RegisterPage implements OnInit {
       phone: new FormControl('', Validators.required),
       correo: new FormControl('', Validators.required),
       pass1: new FormControl('', Validators.required),
-      pass2: new FormControl('', Validators.required),
-      check: new FormControl('', Validators.required)
+      pass2: new FormControl('', Validators.required)
     });
 
   }
