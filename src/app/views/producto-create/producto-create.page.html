@@ -10,7 +10,7 @@
 
 <ion-content class="ion-padding-horizontal" scroll-y="false">
 	<form [formGroup]="registerForm" (ngSubmit)="createProduct()">
-		<ion-slides #mySlider>
+		<ion-slides #mySlider [options] = slideOpts>
 			
 			<!--Slide 1-->
 			<ion-slide>
