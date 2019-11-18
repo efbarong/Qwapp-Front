@@ -71,23 +71,6 @@
     </ion-label>
   </ion-item>
 
-  <div class="containerCenter marginBottom__productos" *ngIf="products">
-    <ion-item class="cardProduct__item" [ngStyle]="{ 'border-left-color': product.state ? 'green': 'red' }" lines="none"
-      *ngFor="let product of products">
-      <ion-text>
-        <span style="font-weight: bold;">{{product.name | titlecase}}</span>
-        <br>
-        <span style="font-size: 10px;">{{product.date | date:'MMM d, yyyy hh:mm'}}</span>
-      </ion-text>
-      <ion-buttons slot="end" style="margin: 0px;">
-        <ion-button (click)="editProduct()">
-          <ion-icon slot="icon-only" name="create"></ion-icon>
-        </ion-button>
-        <ion-button (click)="deleteProduct()">
-          <ion-icon style="color: red" slot="icon-only" name="trash"></ion-icon>
-        </ion-button>
-      </ion-buttons>
-    </ion-item>
   
     <div class="containerCenter marginBottom__productos" *ngIf="products">
       <ion-item class="cardProduct__item" [ngStyle]="{ 'border-left-color': product.state ? 'green': 'red' }" lines="none"
