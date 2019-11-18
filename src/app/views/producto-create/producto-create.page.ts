@@ -8,6 +8,8 @@ import { Product } from '../../models/product';
 import { UserServices } from '../../services/UserServices';
 import { ProductServices } from '../../services/ProductServices';
 import { ActivatedRoute, Router } from '@angular/router';
+import { user } from '../../models/user';
+import { Validators, FormGroup, FormControl } from '@angular/forms';
 
 const STORAGE_KEY = 'my_imgs';
 
@@ -18,6 +20,8 @@ const STORAGE_KEY = 'my_imgs';
 })
 export class ProductoCreatePage implements OnInit {
   // Variables
+
+  registerForm: FormGroup;
   ciudades: any;
   cc: any;
   categorias: any;
@@ -37,7 +41,6 @@ export class ProductoCreatePage implements OnInit {
     private camera: Camera,
     private file: File,
     private storage: Storage,
-    private plt: Platform,
     private webView: WebView,
     private actionSheetController: ActionSheetController,
     private toastController: ToastController,
@@ -45,13 +48,6 @@ export class ProductoCreatePage implements OnInit {
     private pService: ProductServices,
     private active: ActivatedRoute,
     private router: Router) {
-
-    this.ciudades = [
-      { name: 'Bogota', value: 'A' },
-      { name: 'Cali', value: 'B' },
-      { name: 'Medallo', value: 'C' },
-      { name: 'El rosal', value: 'D' },
-    ];
 
     this.categorias = [
       { name: 'Tecnologia', value: 'A' },
@@ -64,8 +60,15 @@ export class ProductoCreatePage implements OnInit {
       { name: 'Tenis', value: 'H' },
       { name: 'Calzado', value: 'I' }
     ];
+
+    this.registerForm = new FormGroup({
+      nameprod: new FormControl('', Validators.required),
+      description: new FormControl('', Validators.required),
+      // stateProd: new FormControl('', Validators.required)
+    });
     this.images = new Array<any>();
   }
+
   async presentAlert() {
     const alert = await this.alert.create({
       header: 'Bienvenido',
@@ -181,13 +184,16 @@ export class ProductoCreatePage implements OnInit {
   onRateChange(event) {
     console.log('Calificación:', event);
   }
+
   createProduct() {
+    const v = this.registerForm.value;
+    console.log(v);
     const p: Product = new Product();
-    p.name = this.name;
-    p.description = this.description;
+    p.user = this.uService.user.id;
+    p.name = v.nameprod;
+    p.description = v.description;
     p.category = this.ctg;
     p.state = this.stateProd !== 0;
-    p.user = this.uService.user.id;
     p.date = new Date();
     p.city = this.uService.user.city;
     p.locality = this.uService.user.locality;
