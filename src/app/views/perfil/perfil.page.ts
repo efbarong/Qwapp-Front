@@ -49,7 +49,7 @@ export class PerfilPage implements OnInit {
 
   deleteProduct(p: Product) {
     this.pService.deleteProduct(p.id);
-    this.products.splice(this.products.indexOf(p),1);
+    this.products.splice(this.products.indexOf(p), 1);
   }
   async checknew() {
     /** @TODO Si añadieron un producto, debe aparecer "Has creado un producto satisfactoriamente */

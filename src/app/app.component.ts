@@ -57,6 +57,13 @@ export class AppComponent {
     });
   }
 
+  isLogin(): boolean {
+    if (localStorage.getItem('sesion')) {
+      return true;
+    }
+    return false;
+  }
+
   logout() {
     localStorage.removeItem('sesion');
     this.auth.doLogout();
