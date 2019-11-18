@@ -23,7 +23,7 @@
               <img [src]="image" />
             </ion-avatar>
           </ion-col>
-
+          
           <ion-col class="align-self-center">
             <ion-row>
               <ion-col>
@@ -61,7 +61,7 @@
         </ion-row>
       </ion-grid>
     </ion-card-header>
-
+    
     <ion-item lines="none">
       <ion-label>
         <div class="ion-text-center">
@@ -69,10 +69,9 @@
         </div>
       </ion-label>
     </ion-item>
-
+    
     <div class="containerCenter" *ngIf="products">
-      <ion-item class="cardProduct__item" [ngStyle]="{ 'border-left-color': product.state ? 'green': 'red' }"
-        lines="none" *ngFor="let product of products">
+      <ion-item class="cardProduct__item" [ngStyle]="{ 'border-left-color': product.state ? 'green': 'red' }" lines="none" *ngFor="let product of products">
         <ion-text>
           <span style="font-weight: bold;">{{product.name | titlecase}}</span>
           <br>
@@ -88,13 +87,13 @@
         </ion-buttons>
       </ion-item>
     </div>
-
+    
     <div class="containerCenter" *ngIf="products">
       <ion-text color="primary" *ngIf="products.length === 0">
         <h6>No tienes publicaciones<br> Agrega una :)</h6>
       </ion-text>
     </div>
-
+    
   </ion-card>
   <ion-fab horizontal="end" vertical="bottom" slot="fixed" routerLink="/producto-create/1">
     <ion-fab-button color="primary">

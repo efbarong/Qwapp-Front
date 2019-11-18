@@ -28,6 +28,11 @@ export class AppComponent {
       title: 'Chats',
       url: '/chat-lista',
       icon: 'home'
+    },
+    {
+      title: 'Intercambio',
+      url: '/intercambio',
+      icon: 'home'
     }
   ];
 

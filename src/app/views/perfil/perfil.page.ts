@@ -4,6 +4,7 @@ import { ProductServices } from 'src/app/services/ProductServices';
 import { UserServices } from 'src/app/services/UserServices';
 import { Product } from '../../models/product';
 import { user } from '../../models/user';
+import { ToastController } from '@ionic/angular';
 
 @Component({
   selector: 'app-perfil',
@@ -16,7 +17,11 @@ export class PerfilPage implements OnInit {
   user: user;
   products: Product[];
 
-  constructor(private router: Router, private uService: UserServices, private pService: ProductServices) {
+  constructor(
+    private router: Router,
+    private uService: UserServices,
+    private pService: ProductServices,
+    private toastController: ToastController) {
     this.image = 'https://s3-us-west-1.amazonaws.com/malv.images/images/LhUPHDwes61dbkvaHKZBkJGeFMuV74APSn9Y0M5G.jpg';
     this.user = uService.user;
   }
@@ -24,6 +29,7 @@ export class PerfilPage implements OnInit {
   ionViewDidEnter() {
     this.user = this.uService.user;
     this.products = this.pService.productList;
+    console.log(this.products);
   }
 
   editProfile() {
@@ -47,6 +53,14 @@ export class PerfilPage implements OnInit {
 
   deleteProduct() {
     // borrar producto
+  }
+  async checknew() {
+    // Si añadieron un producto, debe aparecer "Has creado un producto satisfactoriamente"
+    const toast = await this.toastController.create({
+      message: 'Tu producto se creo satisfactoriamente',
+      duration: 3000
+    });
+    toast.present();
   }
 
   ngOnInit() {

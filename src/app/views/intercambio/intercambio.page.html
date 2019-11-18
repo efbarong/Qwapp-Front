@@ -1,0 +1,34 @@
+<ion-header>
+	<ion-toolbar>
+		<ion-title>Intercambio</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content>
+	<h4>Seccion de intercambio pokemon</h4>
+	
+	<h6>Instrucciones</h6>
+	<p> Selecciona el producuto que quieres ofertar</p>
+	<p> El otro usario vera tu oferta y decidira si le interesa </p>
+	<p> Espera la respuesta</p>
+	
+	<ion-list *ngIf="products">
+		<ion-radio-group>
+			<ion-list-header>Tus productos disponibles</ion-list-header>
+			<ion-item *ngFor="let product of products">
+				<ion-label>{{product.name}}</ion-label>
+				<ion-thumbnail>
+					<img src="https://comprarpopper.com/wp-content/uploads/2019/05/Popper-Rush-logo.png" />
+				</ion-thumbnail>
+				<ion-radio value=""></ion-radio>
+			</ion-item>
+		</ion-radio-group>
+	</ion-list>
+	
+	<div class="containerCenter" *ngIf="products">
+		<ion-text color="primary" *ngIf="products.length === 0">
+			<h6>No tienes publicaciones<br> Agrega una :)</h6>
+		</ion-text>
+	</div>
+	
+</ion-content>

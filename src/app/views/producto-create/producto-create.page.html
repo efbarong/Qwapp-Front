@@ -115,7 +115,7 @@
         <ion-button fill="solid" expand="full" (click)="next()" *ngIf="posSlide < 3">
           Siguiente <ion-icon name="arrow-dropright-circle"></ion-icon>
         </ion-button>
-        <ion-button fill="solid" expand="full" *ngIf="posSlide == 3" (click)="createProduct()">
+        <ion-button fill="solid" expand="full" *ngIf="posSlide == 3" (click)="createProduct()" routerLink="/perfil">
           Continuar <ion-icon name="checkmark-circle"></ion-icon>
         </ion-button>
       </ion-col>
