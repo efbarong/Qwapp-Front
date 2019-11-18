@@ -16,13 +16,16 @@ export class RegisterPage implements OnInit {
   constructor(private router: Router, private auth: AuthServices) {
 
     this.registerForm = new FormGroup({
-      correo: new FormControl('', Validators.required),
       nombre: new FormControl('', Validators.required),
       edad: new FormControl('', Validators.required),
-      departamento: new FormControl('', Validators.required),
       ciudad: new FormControl('', Validators.required),
+      localidad: new FormControl('', Validators.required),
+      direction: new FormControl('', Validators.required),
+      phone: new FormControl('', Validators.required),
+      correo: new FormControl('', Validators.required),
       pass1: new FormControl('', Validators.required),
       pass2: new FormControl('', Validators.required),
+      check: new FormControl('', Validators.required)
     });
 
   }
@@ -35,20 +38,28 @@ export class RegisterPage implements OnInit {
     e.name = v.nombre;
     e.email = v.correo;
     e.age = v.edad;
-    e.locality = v.departamento;
-    e.city = v.ciudad;
+    e.locality = v.ciudad;
+    e.city = v.localidad;
+    e.direction = v.direction;
+    e.phone = v.phone;
     e.numberChanges = 0;
-    this.auth.doRegister(e, v.pass1).then(res => {
-      if (res) {
-        this.router.navigateByUrl('/login');
-      }
-    });
+
+    if (v.pass1 === v.pass2) {
+      this.auth.doRegister(e, v.pass1).then(res => {
+        if (res) {
+          this.router.navigateByUrl('/login');
+        }
+      });
+    } else {
+      console.log('Las contraseñas no coinciden.');
+    }
+
   }
 
   ngOnInit() {
     // Validar sesion antes de mostrar register
     if (localStorage.getItem('sesion')) {
-      this.router.navigateByUrl('/perfil');
+      this.router.navigateByUrl('/home');
     }
   }
 }

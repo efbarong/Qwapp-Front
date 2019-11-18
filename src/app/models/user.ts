@@ -1,14 +1,11 @@
 export class user {
     id: string;
     name: string;
+    age: number;
     city: string;
     locality: string;
-    numberChanges: number;
-    age: number;
     email: string;
     direction: string;
     phone: string;
-
-    constructor() {
-    }
+    numberChanges: number;
 }
