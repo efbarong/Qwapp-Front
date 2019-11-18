@@ -49,9 +49,7 @@ export class ProductServices {
     trailUserProducts(id: string) {
         try {
             firebase.initializeApp(environment.firebase);
-        } catch (error) {
-
-        }
+        } catch (error) {}
         const ref = firebase.firestore().collection('Products');
         // console.log(zid + " ALV");
 
@@ -63,5 +61,20 @@ export class ProductServices {
                 this.productList.push(p);
             });
         });
+    }
+
+    updateProduct(p: Product){
+        try {
+            firebase.initializeApp(environment.firebase);
+        } catch (error) {}
+
+        firebase.firestore().collection('Products').doc(p.id).set(p).then(
+            res =>{
+                console.log("Product updated Sucessful");
+            },
+            err =>{
+                console.log("Error in product update");
+            }
+        );
     }
 }
