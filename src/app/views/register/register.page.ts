@@ -37,8 +37,8 @@ export class RegisterPage implements OnInit {
     e.name = v.nombre;
     e.email = v.correo;
     e.age = v.edad;
-    e.locality = v.ciudad;
-    e.city = v.localidad;
+    e.locality = v.localidad;
+    e.city = v.ciudad;
     e.direction = v.direction;
     e.phone = v.phone;
     e.numberChanges = 0;
