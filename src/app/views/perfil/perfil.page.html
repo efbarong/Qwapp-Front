@@ -83,23 +83,23 @@
         <ion-button (click)="editProduct()">
           <ion-icon slot="icon-only" name="create"></ion-icon>
         </ion-button>
-        <ion-button (click)="deleteProduct()">
+        <ion-button (click)="deleteProduct(product)">
           <ion-icon style="color: red" slot="icon-only" name="trash"></ion-icon>
         </ion-button>
       </ion-buttons>
     </ion-item>
-
-    <div class="containerCenter" *ngIf="products">
-      <ion-text color="primary" *ngIf="products.length === 0">
-        <h6>No tienes publicaciones<br> Agrega una :)</h6>
-      </ion-text>
-    </div>
-
-
-    <ion-fab horizontal="end" vertical="bottom" slot="fixed" routerLink="/producto-create/1">
-      <ion-fab-button color="primary">
-        <ion-icon name="add"></ion-icon>
-      </ion-fab-button>
-    </ion-fab>
   </div>
+
+  <div class="containerCenter" *ngIf="products">
+    <ion-text color="primary" *ngIf="products.length === 0">
+      <h6>No tienes publicaciones<br> Agrega una :)</h6>
+    </ion-text>
+  </div>
+
+
+  <ion-fab horizontal="end" vertical="bottom" slot="fixed" routerLink="/producto-create/1">
+    <ion-fab-button color="primary">
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
 </ion-content>
