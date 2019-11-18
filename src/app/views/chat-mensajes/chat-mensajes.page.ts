@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-chat-mensajes',
@@ -7,9 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChatMensajesPage implements OnInit {
 
-  constructor() { }
+  name: string;
+
+  constructor(private active: ActivatedRoute) {
+    this.active.params.subscribe(res => {
+      console.log(res);
+      this.name = res.name;
+    });
+  }
 
   ngOnInit() {
+
   }
 
 }

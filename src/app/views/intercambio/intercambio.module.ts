@@ -5,15 +5,12 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IonicModule } from '@ionic/angular';
 
-import { PerfilPage } from './perfil.page';
-import { ToolbarComponent } from '../../components/toolbar/toolbar.component';
-import { ToolbarModule } from '../../components/toolbar/toolbar.module';
-
+import { IntercambioPage } from './intercambio.page';
 
 const routes: Routes = [
   {
     path: '',
-    component: PerfilPage
+    component: IntercambioPage
   }
 ];
 
@@ -24,6 +21,6 @@ const routes: Routes = [
     IonicModule,
     RouterModule.forChild(routes)
   ],
-  declarations: [PerfilPage]
+  declarations: [IntercambioPage]
 })
-export class PerfilPageModule { }
+export class IntercambioPageModule {}

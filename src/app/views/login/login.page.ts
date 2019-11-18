@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AuthServices } from 'src/services/AuthServices';
-import { UserServices } from 'src/services/UserServices';
+import { AuthServices } from 'src/app/services/AuthServices';
+import { UserServices } from 'src/app/services/UserServices';
 
 @Component({
   selector: 'app-login',
@@ -21,18 +21,14 @@ export class LoginPage implements OnInit {
     if (this.user && this.pass) {
       this.login.doLogin(this.user, this.pass, this.router);
       console.log(this.user);
-
     } else {
       console.log('Completa los campos');
     }
   }
-  registrarse() {
-    this.router.navigateByUrl('/register');
-  }
 
-  ionViewDidEnter(){
-    if(localStorage.getItem("sesion")){
-      this.router.navigateByUrl("/perfil");
+  ionViewDidEnter() {
+    if (localStorage.getItem('sesion')) {
+      this.router.navigateByUrl('/home');
     }
   }
 

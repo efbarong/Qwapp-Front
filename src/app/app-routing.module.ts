@@ -23,8 +23,14 @@ const routes: Routes = [
   { path: 'producto', loadChildren: './views/producto/producto.module#ProductoPageModule', canActivate: [AuthGuard] },
   { path: 'producto-edit', loadChildren: './views/producto-edit/producto-edit.module#ProductoEditPageModule', canActivate: [AuthGuard] },
   { path: 'chat-lista', loadChildren: './views/chat-lista/chat-lista.module#ChatListaPageModule', canActivate: [AuthGuard] },
-  { path: 'chat-mensajes', loadChildren: './views/chat-mensajes/chat-mensajes.module#ChatMensajesPageModule', canActivate: [AuthGuard] },
-  { path: 'image-modal', loadChildren: './image-modal/image-modal.module#ImageModalPageModule', canActivate: [AuthGuard] }
+  // tslint:disable-next-line: max-line-length
+  { path: 'chat-mensajes/:name', loadChildren: './views/chat-mensajes/chat-mensajes.module#ChatMensajesPageModule', canActivate: [AuthGuard] },
+  { path: 'image-modal', loadChildren: './image-modal/image-modal.module#ImageModalPageModule', canActivate: [AuthGuard] },
+  { path: 'producto-create/:id', loadChildren: './views/producto-create/producto-create.module#ProductoCreatePageModule' },
+  { path: 'home', loadChildren: './views/home/home.module#HomePageModule' },  { path: 'intercambio', loadChildren: './views/intercambio/intercambio.module#IntercambioPageModule' }
+
+
+
 
 ];
 

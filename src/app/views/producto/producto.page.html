@@ -1,11 +1,12 @@
-<ion-header>
+<ion-header no-border>
 	<ion-toolbar>
+		<ion-buttons slot="start">
+			<ion-menu-button></ion-menu-button>
+		</ion-buttons>
 		<ion-title>Producto</ion-title>
 	</ion-toolbar>
-	<ion-toolbar>
-		<ion-searchbar animated placeholder="Buscar" ></ion-searchbar>
-	</ion-toolbar>
 </ion-header>
+
 <ion-content>
 	<!-- Galeria -->
 	<ion-slides [options]="sliderOpt">
@@ -53,9 +54,9 @@
 				<ion-note slot="end" color="primary">25/25/1444</ion-note>
 			</ion-item>
 			<ion-item>
-					<ion-label>Ubicacion</ion-label>
-					<ion-note slot="end" color="primary">Bogotá</ion-note>
-				</ion-item>
+				<ion-label>Ubicacion</ion-label>
+				<ion-note slot="end" color="primary">Bogotá</ion-note>
+			</ion-item>
 		</ion-list>
 	</ion-card>
 </ion-content>
