@@ -69,7 +69,7 @@ export class ProductServices {
             });
         });
 
-        this.nextPagin = ref.orderBy('date').limit(this.NUMBER_PAGE);
+        this.nextPagin = ref.orderBy('date', 'desc').limit(this.NUMBER_PAGE);
 
         this.getNextPage(id);
     }
@@ -94,7 +94,7 @@ export class ProductServices {
                     }
                 });
                 if (last != null) {
-                    this.nextPagin = ref.orderBy('date').startAfter(last).limit(this.NUMBER_PAGE);
+                    this.nextPagin = ref.orderBy('date', 'desc').startAfter(last).limit(this.NUMBER_PAGE);
                     if (dif === 0) {
                         this.getNextPage(id);
                     }
