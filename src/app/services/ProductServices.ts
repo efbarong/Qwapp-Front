@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { UserServices } from './UserServices';
 import { Product } from '../models/product';
 import * as firebase from 'firebase/app';
 import { environment } from 'src/environments/environment';
 import { Query } from '@angular/fire/firestore';
-import { resolveSanitizationFn } from '@angular/compiler/src/render3/view/template';
 
 @Injectable({
     providedIn: 'root'
@@ -52,7 +50,6 @@ export class ProductServices {
                 });
     }
 
-
     trailUserProducts(id: string) {
         try {
             firebase.initializeApp(environment.firebase);
@@ -70,7 +67,6 @@ export class ProductServices {
         });
 
         this.nextPagin = ref.orderBy('date', 'desc').limit(this.NUMBER_PAGE);
-
         this.getNextPage(id);
     }
 
@@ -105,14 +101,13 @@ export class ProductServices {
         );
     }
 
-
-    restartPage(id: string){
+    restartPage(id: string) {
         const ref = firebase.firestore().collection('Products');
         this.otherProductList = new Array();
         this.nextPagin = ref.orderBy('date', 'desc').limit(this.NUMBER_PAGE);
         this.getNextPage(id);
     }
-    
+
     updateProduct(p: Product) {
         try {
             firebase.initializeApp(environment.firebase);
