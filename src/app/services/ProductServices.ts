@@ -33,7 +33,6 @@ export class ProductServices {
             },
                 err => {
                     console.log('Error in product creation');
-
                 });
     }
 
@@ -55,18 +54,16 @@ export class ProductServices {
             firebase.initializeApp(environment.firebase);
         } catch (error) { }
         const ref = firebase.firestore().collection('Products');
-        // console.log(zid + " ALV");
-
         ref.where('user', '==', id).get().then(res => {
             res.forEach(element => {
-                // console.log(id + "     " + element.data());
                 const p: Product = JSON.parse(JSON.stringify(element.data()));
                 p.id = element.id;
                 this.productList.push(p);
             });
         });
 
-        this.nextPagin = ref.orderBy('date', 'desc').limit(this.NUMBER_PAGE);
+        this.nextPagin = ref.orderBy('date', 'desc').limit(this.NUMBER_PAGE * 2);
+
         this.getNextPage(id);
     }
 
@@ -79,18 +76,28 @@ export class ProductServices {
         this.nextPagin = null;
         xd.get().then(
             res => {
-                const last = res.docs[res.docs.length - 1];
+                let last = res.docs[res.docs.length - 1];
                 let dif = 0;
                 res.forEach(element => {
+                    if (dif === this.NUMBER_PAGE) {
+                        return false;
+                    }
                     const p: Product = JSON.parse(JSON.stringify(element.data()));
                     p.id = element.id;
                     if (p.user !== id) {
                         this.otherProductList.push(p);
                         dif++;
                     }
+                    if (dif === this.NUMBER_PAGE) {
+                        last = res.docs[dif - 1];
+                    }
+
+                    console.log(dif);
+
                 });
+
                 if (last != null) {
-                    this.nextPagin = ref.orderBy('date', 'desc').startAfter(last).limit(this.NUMBER_PAGE);
+                    this.nextPagin = ref.orderBy('date', 'desc').startAfter(last).limit(this.NUMBER_PAGE * 2);
                     if (dif === 0) {
                         this.getNextPage(id);
                     }
