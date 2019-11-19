@@ -34,7 +34,8 @@ export class HomePage implements OnInit {
   print(event) {
     console.log('Begin async operation');
     setTimeout(() => {
-      this.pService.getNextPage(this.user.id);
+      // this.pService.getNextPage(this.user.id);
+      this.pService.restartPage(this.user.id);
       this.products = this.pService.otherProductList;
       console.log(this.pService.otherProductList);
       event.target.complete();

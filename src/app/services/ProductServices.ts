@@ -104,6 +104,15 @@ export class ProductServices {
             }
         );
     }
+
+
+    restartPage(id: string){
+        const ref = firebase.firestore().collection('Products');
+        this.otherProductList = new Array();
+        this.nextPagin = ref.orderBy('date', 'desc').limit(this.NUMBER_PAGE);
+        this.getNextPage(id);
+    }
+    
     updateProduct(p: Product) {
         try {
             firebase.initializeApp(environment.firebase);
