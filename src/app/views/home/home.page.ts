@@ -1,4 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { UserServices } from 'src/app/services/UserServices';
+import { ProductServices } from 'src/app/services/ProductServices';
+import { user } from '../../models/user';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +12,33 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePage implements OnInit {
 
-  constructor() { }
+  user: user;
+  products: Product[];
+  constructor(
+    private router: Router,
+    private uService: UserServices,
+    private pService: ProductServices) {
+    this.user = uService.user;
+  }
 
   ngOnInit() {
+  }
+
+  ionViewDidEnter() {
+    this.user = this.uService.user;
+    this.pService.getNextPage(this.user.id);
+    this.products = this.pService.otherProductList;
+    console.log(this.pService.otherProductList);
+  }
+
+  print(event) {
+    console.log('Begin async operation');
+    setTimeout(() => {
+      this.pService.getNextPage(this.user.id);
+      this.products = this.pService.otherProductList;
+      console.log(this.pService.otherProductList);
+      event.target.complete();
+    }, 2000);
   }
 
 }

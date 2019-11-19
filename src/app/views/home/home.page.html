@@ -9,4 +9,20 @@
 
 <ion-content>
 
+
+  <ion-refresher slot="fixed" (ionRefresh)="print($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="products">
+    <ion-card *ngFor="let product of products">
+      <ion-card-header>
+        <ion-card-subtitle>{{product.date | date}}</ion-card-subtitle>
+        <ion-card-title>{{product.name | titlecase }}</ion-card-title>
+      </ion-card-header>
+      <ion-card-content>
+        {{product.description}}
+      </ion-card-content>
+    </ion-card>
+  </div>
 </ion-content>
