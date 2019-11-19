@@ -28,7 +28,10 @@ const routes: Routes = [
   { path: 'image-modal', loadChildren: './image-modal/image-modal.module#ImageModalPageModule', canActivate: [AuthGuard] },
   { path: 'producto-create/:id', loadChildren: './views/producto-create/producto-create.module#ProductoCreatePageModule' },
   { path: 'home', loadChildren: './views/home/home.module#HomePageModule' },
-  { path: 'intercambio', loadChildren: './views/intercambio/intercambio.module#IntercambioPageModule', canActivate: [AuthGuard] }
+  { path: 'intercambio', loadChildren: './views/intercambio/intercambio.module#IntercambioPageModule', canActivate: [AuthGuard] },
+  // tslint:disable-next-line: max-line-length
+  { path: 'iresume', loadChildren: './views/intercambio-resume/intercambio-resume.module#IntercambioResumePageModule', canActivate: [AuthGuard] }
+
 
 
 
