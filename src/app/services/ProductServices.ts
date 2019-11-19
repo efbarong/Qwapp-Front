@@ -42,28 +42,28 @@ export class ProductServices {
     deleteProduct(id: string) {
         try {
             firebase.initializeApp(environment.firebase);
-        } catch (error) {}
+        } catch (error) { }
         firebase.firestore().collection('Products').doc(id).delete()
-        .then(res => {
-            console.log('Product deleted Sucessful');
-        },
-        err => {
-            console.log('Error in product delete');
-        });
+            .then(res => {
+                console.log('Product deleted Sucessful');
+            },
+                err => {
+                    console.log('Error in product delete');
+                });
     }
 
 
     trailUserProducts(id: string) {
         try {
             firebase.initializeApp(environment.firebase);
-        } catch (error) {}
+        } catch (error) { }
         const ref = firebase.firestore().collection('Products');
         // console.log(zid + " ALV");
 
         ref.where('user', '==', id).get().then(res => {
             res.forEach(element => {
                 // console.log(id + "     " + element.data());
-                let p: Product = JSON.parse(JSON.stringify(element.data()));
+                const p: Product = JSON.parse(JSON.stringify(element.data()));
                 p.id = element.id;
                 this.productList.push(p);
             });
@@ -74,46 +74,47 @@ export class ProductServices {
         this.getNextPage(id);
     }
 
-    getNextPage(id: String){
-        if(this.nextPagin == null) return;
+    getNextPage(id: string) {
+        if (this.nextPagin == null) {
+            return;
+        }
         const ref = firebase.firestore().collection('Products');
-        var xd = this.nextPagin;
+        const xd = this.nextPagin;
         this.nextPagin = null;
         xd.get().then(
-            res =>{
-                var last = res.docs[res.docs.length-1];
-                // console.log(res.docs);
-                var dif = 0;
-                res.forEach( element => {
-                    let p: Product = JSON.parse(JSON.stringify(element.data()));
+            res => {
+                const last = res.docs[res.docs.length - 1];
+                let dif = 0;
+                res.forEach(element => {
+                    const p: Product = JSON.parse(JSON.stringify(element.data()));
                     p.id = element.id;
-                    if(p.user != id){
-                        // console.log(p.id + "   " + id);
+                    if (p.user !== id) {
                         this.otherProductList.push(p);
                         dif++;
                     }
                 });
-                if(last != null){
+                if (last != null) {
                     this.nextPagin = ref.orderBy('date').startAfter(last).limit(this.NUMBER_PAGE);
-                    if(dif == 0)
+                    if (dif === 0) {
                         this.getNextPage(id);
-                }
-                else
+                    }
+                } else {
                     this.nextPagin = null;
+                }
             }
         );
     }
-    updateProduct(p: Product){
+    updateProduct(p: Product) {
         try {
             firebase.initializeApp(environment.firebase);
-        } catch (error) {}
+        } catch (error) { }
 
         firebase.firestore().collection('Products').doc(p.id).set(p).then(
-            res =>{
-                console.log("Product updated Sucessful");
+            res => {
+                console.log('Product updated Sucessful');
             },
-            err =>{
-                console.log("Error in product update");
+            err => {
+                console.log('Error in product update');
             }
         );
     }
