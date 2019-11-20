@@ -67,7 +67,11 @@ export class ProductServices {
         this.getNextPage(id);
     }
 
-    getNextPage(id: string) {
+    getNextPage(id: string){
+        this.getNextPageLimit(id, this.NUMBER_PAGE);
+    }
+
+    getNextPageLimit(id: string, times: number) {
         if (this.nextPagin == null) {
             return;
         }
@@ -76,30 +80,25 @@ export class ProductServices {
         this.nextPagin = null;
         xd.get().then(
             res => {
-                let last = res.docs[res.docs.length - 1];
-                let dif = 0;
+                let last = null;
                 res.forEach(element => {
-                    if (dif === this.NUMBER_PAGE) {
+                    if (!times) {
                         return false;
                     }
                     const p: Product = JSON.parse(JSON.stringify(element.data()));
                     p.id = element.id;
                     if (p.user !== id) {
                         this.otherProductList.push(p);
-                        dif++;
+                        times--;
+                        last = element;
                     }
-                    if (dif === this.NUMBER_PAGE) {
-                        last = res.docs[dif - 1];
-                    }
-
-                    console.log(dif);
 
                 });
 
                 if (last != null) {
                     this.nextPagin = ref.orderBy('date', 'desc').startAfter(last).limit(this.NUMBER_PAGE * 2);
-                    if (dif === 0) {
-                        this.getNextPage(id);
+                    if (times != 0) {
+                        this.getNextPageLimit(id, times);
                     }
                 } else {
                     this.nextPagin = null;
@@ -111,8 +110,12 @@ export class ProductServices {
     restartPage(id: string) {
         const ref = firebase.firestore().collection('Products');
         this.otherProductList = new Array();
-        this.nextPagin = ref.orderBy('date', 'desc').limit(this.NUMBER_PAGE);
+        this.nextPagin = ref.orderBy('date', 'desc').limit(this.NUMBER_PAGE*2);
         this.getNextPage(id);
+    }
+
+    hasMorePage(){
+        return this.nextPagin != null;
     }
 
     updateProduct(p: Product) {

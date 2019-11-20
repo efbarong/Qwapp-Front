@@ -29,22 +29,31 @@ export class HomePage implements OnInit {
 
   ionViewDidEnter() {
     this.user = this.uService.user;
-    this.pService.getNextPage(this.user.id);
+    // this.pService.getNextPage(this.user.id);
     this.products = this.pService.otherProductList;
     console.log(this.pService.otherProductList);
   }
 
   refreshOld(event) {
     console.log('Begin async operation: Old data');
+    // console.log(this.pService.nextPagin);
+    // console.log(this.pService.hasMorePage());
+    
     setTimeout(() => {
       this.pService.getNextPage(this.user.id);
       this.products = this.pService.otherProductList;
-      console.log(this.pService.otherProductList);
       event.target.complete();
+      
     }, 2000);
+    // console.log(this.pService.otherProductList);
+    if(!this.pService.hasMorePage()){
+      console.log("End of Data");
+      this.infiniteScroll.disabled = true;
+    }
   }
-
+  
   refreshNew(event) {
+    this.infiniteScroll.disabled = false;
     console.log('Begin async operation: Update Data');
     setTimeout(() => {
       this.pService.restartPage(this.user.id);
