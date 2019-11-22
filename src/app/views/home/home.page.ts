@@ -39,11 +39,12 @@ export class HomePage implements OnInit {
       this.pService.getNextPage(this.user.id);
       this.products = this.pService.otherProductList;
       event.target.complete();
-
     }, 2000);
     if (!this.pService.hasMorePage()) {
       console.log('End of Data');
       this.infiniteScroll.disabled = true;
+    } else {
+      this.infiniteScroll.disabled = false;
     }
   }
 
@@ -55,12 +56,6 @@ export class HomePage implements OnInit {
       this.products = this.pService.otherProductList;
       console.log(this.pService.otherProductList);
       event.target.complete();
-
-      // App logic to determine if all data is loaded
-      // and disable the infinite scroll
-      if (this.products.length === 10) {
-        event.target.disabled = true;
-      }
     }, 2000);
   }
 
