@@ -43,8 +43,6 @@ export class HomePage implements OnInit {
     if (!this.pService.hasMorePage()) {
       console.log('End of Data');
       this.infiniteScroll.disabled = true;
-    } else {
-      this.infiniteScroll.disabled = false;
     }
   }
 

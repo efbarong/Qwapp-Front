@@ -31,7 +31,9 @@ const routes: Routes = [
   { path: 'home', loadChildren: './views/home/home.module#HomePageModule', canActivate: [AuthGuard]},
   { path: 'intercambio', loadChildren: './views/intercambio/intercambio.module#IntercambioPageModule', canActivate: [AuthGuard] },
   // tslint:disable-next-line: max-line-length
-  { path: 'iresume', loadChildren: './views/intercambio-resume/intercambio-resume.module#IntercambioResumePageModule', canActivate: [AuthGuard] }
+  { path: 'iresume', loadChildren: './views/intercambio-resume/intercambio-resume.module#IntercambioResumePageModule', canActivate: [AuthGuard] },  { path: 'proceso-list', loadChildren: './views/proceso-list/proceso-list.module#ProcesoListPageModule' },
+  { path: 'proceso-resume', loadChildren: './views/proceso-resume/proceso-resume.module#ProcesoResumePageModule' }
+
 
 
 

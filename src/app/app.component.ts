@@ -33,6 +33,11 @@ export class AppComponent {
       title: 'Intercambio',
       url: '/intercambio',
       icon: 'home'
+    },
+    {
+      title: 'En proceso',
+      url: '/proceso-list',
+      icon: 'home'
     }
   ];
 
