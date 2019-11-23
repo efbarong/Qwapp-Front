@@ -57,5 +57,12 @@
         </ion-text>
       </ion-col>
     </ion-row>
+    <ion-row *ngIf="!resume.status">
+      <ion-col size="12">
+        <ion-button (click)="cancelSwap()" class="cancelProcess">
+          <span>Cancelar</span>
+        </ion-button>
+      </ion-col>
+    </ion-row>
   </ion-grid>
 </ion-content>
