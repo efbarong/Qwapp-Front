@@ -14,6 +14,8 @@ export class IntercambioPage implements OnInit {
   image: any;
   user: user;
   products: Product[];
+  btnNxt: boolean;
+  exangeConf: boolean;
 
   constructor(
     private uService: UserServices,
@@ -26,7 +28,6 @@ export class IntercambioPage implements OnInit {
     this.products = this.pService.productList;
     console.log(this.products);
   }
-
   ngOnInit() {
   }
 }

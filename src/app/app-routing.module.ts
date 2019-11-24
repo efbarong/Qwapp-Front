@@ -26,9 +26,15 @@ const routes: Routes = [
   // tslint:disable-next-line: max-line-length
   { path: 'chat-mensajes/:name', loadChildren: './views/chat-mensajes/chat-mensajes.module#ChatMensajesPageModule', canActivate: [AuthGuard] },
   { path: 'image-modal', loadChildren: './image-modal/image-modal.module#ImageModalPageModule', canActivate: [AuthGuard] },
-  { path: 'producto-create/:id', loadChildren: './views/producto-create/producto-create.module#ProductoCreatePageModule' },
-  { path: 'home', loadChildren: './views/home/home.module#HomePageModule' },
-  { path: 'intercambio', loadChildren: './views/intercambio/intercambio.module#IntercambioPageModule', canActivate: [AuthGuard] }
+  // tslint:disable-next-line: max-line-length
+  { path: 'producto-create/:id', loadChildren: './views/producto-create/producto-create.module#ProductoCreatePageModule', canActivate: [AuthGuard] },
+  { path: 'home', loadChildren: './views/home/home.module#HomePageModule', canActivate: [AuthGuard]},
+  { path: 'intercambio', loadChildren: './views/intercambio/intercambio.module#IntercambioPageModule', canActivate: [AuthGuard] },
+  // tslint:disable-next-line: max-line-length
+  { path: 'iresume', loadChildren: './views/intercambio-resume/intercambio-resume.module#IntercambioResumePageModule', canActivate: [AuthGuard] },  { path: 'proceso-list', loadChildren: './views/proceso-list/proceso-list.module#ProcesoListPageModule' },
+  { path: 'proceso-resume', loadChildren: './views/proceso-resume/proceso-resume.module#ProcesoResumePageModule' }
+
+
 
 
 

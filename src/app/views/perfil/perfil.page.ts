@@ -47,7 +47,7 @@ export class PerfilPage implements OnInit {
     this.router.navigate(['/producto-edit']);
   }
 
-  next(){
+  next() {
     this.pService.getNextPage(this.user.id);
     console.log(this.pService.otherProductList);
 

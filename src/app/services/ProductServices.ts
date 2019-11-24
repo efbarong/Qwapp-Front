@@ -1,10 +1,8 @@
 import { Injectable } from '@angular/core';
-import { UserServices } from './UserServices';
 import { Product } from '../models/product';
 import * as firebase from 'firebase/app';
 import { environment } from 'src/environments/environment';
 import { Query } from '@angular/fire/firestore';
-import { resolveSanitizationFn } from '@angular/compiler/src/render3/view/template';
 
 @Injectable({
     providedIn: 'root'
@@ -35,85 +33,102 @@ export class ProductServices {
             },
                 err => {
                     console.log('Error in product creation');
-
                 });
     }
 
     deleteProduct(id: string) {
         try {
             firebase.initializeApp(environment.firebase);
-        } catch (error) {}
+        } catch (error) { }
         firebase.firestore().collection('Products').doc(id).delete()
-        .then(res => {
-            console.log('Product deleted Sucessful');
-        },
-        err => {
-            console.log('Error in product delete');
-        });
+            .then(res => {
+                console.log('Product deleted Sucessful');
+            },
+                err => {
+                    console.log('Error in product delete');
+                });
     }
-
 
     trailUserProducts(id: string) {
         try {
             firebase.initializeApp(environment.firebase);
-        } catch (error) {}
+        } catch (error) { }
         const ref = firebase.firestore().collection('Products');
-        // console.log(zid + " ALV");
-
         ref.where('user', '==', id).get().then(res => {
             res.forEach(element => {
-                // console.log(id + "     " + element.data());
-                let p: Product = JSON.parse(JSON.stringify(element.data()));
+                const p: Product = JSON.parse(JSON.stringify(element.data()));
                 p.id = element.id;
                 this.productList.push(p);
             });
         });
 
-        this.nextPagin = ref.orderBy('date').limit(this.NUMBER_PAGE);
+        this.nextPagin = ref.orderBy('date', 'desc').limit(this.NUMBER_PAGE * 2);
 
         this.getNextPage(id);
     }
 
-    getNextPage(id: String){
-        if(this.nextPagin == null) return;
+    getNextPage(id: string){
+        this.getNextPageLimit(id, this.NUMBER_PAGE);
+    }
+
+    getNextPageLimit(id: string, times: number) {
+        if (this.nextPagin == null) {
+            return;
+        }
         const ref = firebase.firestore().collection('Products');
-        var xd = this.nextPagin;
+        const xd = this.nextPagin;
         this.nextPagin = null;
         xd.get().then(
-            res =>{
-                var last = res.docs[res.docs.length-1];
-                // console.log(res.docs);
-                var dif = 0;
-                res.forEach( element => {
-                    let p: Product = JSON.parse(JSON.stringify(element.data()));
-                    p.id = element.id;
-                    if(p.user != id){
-                        // console.log(p.id + "   " + id);
-                        this.otherProductList.push(p);
-                        dif++;
+            res => {
+                let last = null;
+                res.forEach(element => {
+                    if (!times) {
+                        return false;
                     }
+                    const p: Product = JSON.parse(JSON.stringify(element.data()));
+                    p.id = element.id;
+                    if (p.user !== id) {
+                        this.otherProductList.push(p);
+                        times--;
+                        last = element;
+                    }
+
                 });
-                if(last != null){
-                    this.nextPagin = ref.orderBy('date').startAfter(last).limit(this.NUMBER_PAGE);
-                    if(dif == 0)
-                        this.getNextPage(id);
-                }
-                else
+
+                if (last != null) {
+                    this.nextPagin = ref.orderBy('date', 'desc').startAfter(last).limit(this.NUMBER_PAGE * 2);
+                    if (times != 0) {
+                        this.getNextPageLimit(id, times);
+                    }
+                } else {
                     this.nextPagin = null;
+                }
             }
         );
     }
-    updateProduct(p: Product){
+
+    restartPage(id: string) {
+        const ref = firebase.firestore().collection('Products');
+        this.otherProductList = new Array();
+        this.nextPagin = ref.orderBy('date', 'desc').limit(this.NUMBER_PAGE*2);
+        this.getNextPage(id);
+    }
+
+    hasMorePage(){
+        return this.nextPagin != null;
+    }
+
+    updateProduct(p: Product) {
         try {
             firebase.initializeApp(environment.firebase);
-        } catch (error) {}
+        } catch (error) { }
 
         firebase.firestore().collection('Products').doc(p.id).set(p).then(
-            res =>{
-                console.log("Product updated Sucessful");
+            res => {
+                console.log('Product updated Sucessful');
             },
-            err =>{
-                console.log("Error in product update");
+            err => {
+                console.log('Error in product update');
             }
         );
     }
