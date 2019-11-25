@@ -17,27 +17,27 @@ export class AppComponent {
     {
       title: 'Perfil',
       url: '/perfil',
-      icon: 'home'
+      icon: 'person'
     },
     {
       title: 'Crear Producto',
       url: '/producto-create/2',
-      icon: 'home'
+      icon: 'add'
     },
     {
       title: 'Chats',
       url: '/chat-lista',
-      icon: 'home'
+      icon: 'chatboxes'
     },
     {
       title: 'Intercambio',
       url: '/intercambio',
-      icon: 'home'
+      icon: 'git-compare'
     },
     {
       title: 'En proceso',
       url: '/proceso-list',
-      icon: 'home'
+      icon: 'hammer'
     }
   ];
 

@@ -148,7 +148,7 @@ div.cardCenter > div > ion-item {
 }
 
 div.cardCenter > div > ion-item > ion-icon {
-  color: #2a3081;
+  color:var(--ion-color-fondo);
   font-size: 30px;
   padding: 0px;
 }
@@ -170,7 +170,7 @@ div.center > div {
 }
 
 div.center > div > ion-label {
-  color: #2a3081;
+  color:var(--ion-color-fondo);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -226,3 +226,11 @@ ion-item.cardProduct__item {
 .marginBottom--50px {
   margin-bottom: 50px;
 }
+
+//toolbar
+
+ion-toolbar {
+  --background: var(--ion-color-fondo);
+  --color:white;
+  --min-height:80px;
+  }

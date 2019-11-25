@@ -1,5 +1,5 @@
-<ion-header no-border>
-  <ion-toolbar color="dark">
+<ion-header no-border >
+  <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
     </ion-buttons>
@@ -16,12 +16,13 @@
   <div *ngIf="products">
     <ion-card *ngFor="let product of products">
       <ion-card-header>
-        <ion-card-subtitle>{{product.date | date}}</ion-card-subtitle>
+        
         <ion-card-title>{{product.name | titlecase }}</ion-card-title>
+        <ion-card-subtitle>{{product.date | date}}</ion-card-subtitle>
       </ion-card-header>
-      <ion-card-content>
+      <ion-card-content align-self-center > 
         {{product.description}}
-      </ion-card-content>
+      </ion-card-content> 
     </ion-card>
   </div>
 
