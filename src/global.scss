@@ -148,7 +148,7 @@ div.cardCenter > div > ion-item {
 }
 
 div.cardCenter > div > ion-item > ion-icon {
-  color:var(--ion-color-fondo);
+  color: var(--ion-color-fondo);
   font-size: 30px;
   padding: 0px;
 }
@@ -170,7 +170,7 @@ div.center > div {
 }
 
 div.center > div > ion-label {
-  color:var(--ion-color-fondo);
+  color: var(--ion-color-fondo);
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
 }
 
@@ -231,5 +231,9 @@ ion-item.cardProduct__item {
 
 ion-toolbar {
   --background: var(--ion-color-fondo);
-  --color:white;
-  }
+  --color: white;
+}
+
+.toolbar--color-blank {
+  --background: white;
+}
