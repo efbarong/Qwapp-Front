@@ -1,0 +1,10 @@
+.skeleton {
+  margin: auto;
+  height: 150px;
+  --background-rgb: 20, 0, 131;
+  color: rgb(20, 0, 131);
+}
+
+.colorText {
+    color: var(--ion-color-fondo);
+}

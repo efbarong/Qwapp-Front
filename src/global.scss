@@ -227,6 +227,22 @@ ion-item.cardProduct__item {
   margin-bottom: 50px;
 }
 
+// Resumen del proceso
+
+.photo {
+  height: 250px;
+  width: 250px;
+  margin: auto;
+  padding: 0px;
+}
+
+.cancelProcess {
+  --border-width: 0px;
+  --background: rgb(116, 103, 163);
+  --box-shadow: none;
+  --border-radius: 10px;
+}
+
 //toolbar
 
 ion-toolbar {
@@ -236,4 +252,14 @@ ion-toolbar {
 
 .toolbar--color-blank {
   --background: white;
+}
+
+// Justify content
+
+.justify {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 10px;
 }

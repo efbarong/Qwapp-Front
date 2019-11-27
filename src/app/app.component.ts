@@ -20,24 +20,24 @@ export class AppComponent {
       icon: 'person'
     },
     {
-      title: 'Crear Producto',
+      title: 'Publicar',
       url: '/producto-create/2',
       icon: 'add'
     },
     {
-      title: 'Chats',
-      url: '/chat-lista',
-      icon: 'chatboxes'
-    },
-    {
-      title: 'Intercambio',
+      title: 'Itercambiar',
       url: '/intercambio',
-      icon: 'git-compare'
+      icon: 'swap'
     },
     {
       title: 'En proceso',
       url: '/proceso-list',
       icon: 'hammer'
+    },
+    {
+      title: 'Chats',
+      url: '/chat-lista',
+      icon: 'chatboxes'
     }
   ];
 

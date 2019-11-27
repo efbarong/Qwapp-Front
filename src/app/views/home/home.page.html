@@ -1,4 +1,4 @@
-<ion-header no-border >
+<ion-header no-border>
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-menu-button></ion-menu-button>
@@ -14,26 +14,33 @@
   </ion-refresher>
 
   <div *ngIf="products">
-    <ion-card *ngFor="let product of products">
-      <ion-card-header>
-        
-        <ion-card-title>{{product.name | titlecase }}</ion-card-title>
-        <ion-card-subtitle>{{product.date | date}}</ion-card-subtitle>
-      </ion-card-header>
-      <ion-card-content> 
-        {{product.description}}
-      </ion-card-content> 
+    <ion-card *ngFor="let product of products" (click)="viewProduct(product)">
+      <div style="width: 100%">
+        <ion-skeleton-text class="skeleton" animated></ion-skeleton-text>
+      </div>
+      <ion-card-content>
+        <div class="justify">
+          <span><b>{{product.name | titlecase }}</b></span>
+          <span>{{product.date | date}}</span>
+        </div>
+        <ion-text class="colorText">
+          <p>{{product.description}}</p>
+        </ion-text>
+      </ion-card-content>
     </ion-card>
   </div>
 
   <div *ngIf="infiniteScroll.disabled">
     <ion-item lines="none">
-      <ion-label class="containerCenter"><ion-icon name="checkmark-circle-outline"></ion-icon></ion-label>
+      <ion-label class="containerCenter">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+      </ion-label>
     </ion-item>
   </div>
 
   <ion-infinite-scroll threshold="0px" (ionInfinite)="refreshOld($event)">
-    <ion-infinite-scroll-content style = "font-size: 12px;" loadingSpinner="dots" loadingText="Cargando más publicaciones">
+    <ion-infinite-scroll-content style="font-size: 12px;" loadingSpinner="dots"
+      loadingText="Cargando más publicaciones">
     </ion-infinite-scroll-content>
   </ion-infinite-scroll>
 

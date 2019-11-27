@@ -60,4 +60,9 @@ export class HomePage implements OnInit {
   toggleInfiniteScroll() {
     this.infiniteScroll.disabled = !this.infiniteScroll.disabled;
   }
+
+  viewProduct(producto: any) {
+    console.log(producto);
+    this.router.navigateByUrl('/producto');
+  }
 }
