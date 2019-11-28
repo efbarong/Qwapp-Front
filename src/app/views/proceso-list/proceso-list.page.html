@@ -18,9 +18,9 @@
       </ion-col>
       <ion-col size="10" class="containerCenter border" (click)="viewProcess(p)">
         <ion-text color="primary">
-          {{p.p1}} <b>
+          {{p.productSend.name}} <b>
             <ion-icon name="swap"></ion-icon>
-          </b> {{p.p2}}
+          </b> {{p.productReceiver.name}}
           <br>
           {{p.date | date}}
         </ion-text>

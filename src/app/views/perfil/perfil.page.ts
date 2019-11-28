@@ -5,6 +5,9 @@ import { ProductServices } from 'src/app/services/ProductServices';
 import { UserServices } from 'src/app/services/UserServices';
 import { Product } from '../../models/product';
 import { user } from '../../models/user';
+import { ExchangeServices } from 'src/app/services/ExchangeServices';
+import { Exchange } from 'src/app/models/exchange';
+import { TransitiveCompileNgModuleMetadata } from '@angular/compiler';
 
 @Component({
   selector: 'app-perfil',
@@ -21,7 +24,8 @@ export class PerfilPage implements OnInit {
     private router: Router,
     private uService: UserServices,
     private pService: ProductServices,
-    private toastController: ToastController) {
+    private toastController: ToastController,
+    private exService: ExchangeServices) {
     this.image = 'https://s3-us-west-1.amazonaws.com/malv.images/images/LhUPHDwes61dbkvaHKZBkJGeFMuV74APSn9Y0M5G.jpg';
     this.user = uService.user;
   }
@@ -52,10 +56,25 @@ export class PerfilPage implements OnInit {
     console.log(this.pService.otherProductList);
 
   }
-
+/*
+    Temporalmente voy a usar este boton para crear intercambios, cuando ya este terminado la parte de intercambios
+    descomentar lo de eliminar
+*/
   deleteProduct(p: Product) {
+    /*
     this.pService.deleteProduct(p.id);
     this.products.splice(this.products.indexOf(p), 1);
+    */
+    let newExchange: Exchange = new Exchange();
+    newExchange.sender = this.user.id;
+    newExchange.receiver = "idOtherUser";
+    newExchange.productSend = p;
+    newExchange.productReceiver = p; // other user product
+    newExchange.date = new Date();
+    newExchange.state = true;
+
+    this.exService.createExchange(newExchange); 
+
   }
   async checknew() {
     /** @TODO Si añadieron un producto, debe aparecer "Has creado un producto satisfactoriamente */

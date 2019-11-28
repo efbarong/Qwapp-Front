@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Exchange } from 'src/app/models/exchange';
+import { ExchangeServices } from 'src/app/services/ExchangeServices';
+import { user } from 'src/app/models/user';
+import { UserServices } from 'src/app/services/UserServices';
 
 @Component({
   selector: 'app-proceso-list',
@@ -8,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class ProcesoListPage implements OnInit {
 
+  /*
   procesos: Array<any> = [
     {
       p1: 'Xbox One',
@@ -32,9 +37,13 @@ export class ProcesoListPage implements OnInit {
       status: true
     }
   ];
-  constructor(private router: Router) { }
+*/
+  procesos: Array<Exchange>;
+  constructor(private router: Router, private exService: ExchangeServices, private uServices: UserServices) {
+      this.procesos = exService.getExchagesById(uServices.user.id);
+   }
 
-  viewProcess(cambios) {
+  viewProcess(cambios: Exchange) {
 
     /** @TODO Enviar en vez de 'cambios', solo el id del proceso de cambio de los dos productos y luego
      * pedirlos desde la nueva vista o /proceso-resume con el id

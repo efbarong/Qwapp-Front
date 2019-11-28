@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
+import { ExchangeServices } from 'src/app/services/ExchangeServices';
+import { Exchange } from 'src/app/models/exchange';
 
 @Component({
   selector: 'app-proceso-resume',
@@ -8,9 +10,9 @@ import { Router, ActivatedRoute } from '@angular/router';
 })
 export class ProcesoResumePage implements OnInit {
 
-  constructor(private router: Router, private activeR: ActivatedRoute) { }
+  constructor(private router: Router, private activeR: ActivatedRoute, private exService: ExchangeServices) { }
 
-  resume: any;
+  resume: Exchange;
   ngOnInit() {
     this.activeR.params.subscribe(res => {
       /** @TODO No debe recibir todo el objeto por la url, solo el id del proceso e
@@ -21,7 +23,8 @@ export class ProcesoResumePage implements OnInit {
   }
 
   cancelSwap() {
-    // Hacer algo
+    this.exService.deleteExchangeById(this.resume.id);
+    this.router.navigateByUrl("/proceso-list");
     console.log('Cancelar intercambioo');
   }
 }
