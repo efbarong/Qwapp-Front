@@ -3,6 +3,8 @@ import { Product } from '../../models/product';
 import { ProductServices } from 'src/app/services/ProductServices';
 import { UserServices } from 'src/app/services/UserServices';
 import { user } from '../../models/user';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Exchange } from 'src/app/models/exchange';
 
 @Component({
   selector: 'app-intercambio',
@@ -16,11 +18,32 @@ export class IntercambioPage implements OnInit {
   products: Product[];
   btnNxt: boolean;
   exangeConf: boolean;
-
+  receiver: Product;
+  producto: any;
   constructor(
+    private router: Router,
     private uService: UserServices,
-    private pService: ProductServices) {
+    private pService: ProductServices,
+    private actived: ActivatedRoute) {
     this.user = uService.user;
+  }
+  send(){
+
+    const newExchange: Exchange = new Exchange();
+    newExchange.sender = this.user.id;
+    newExchange.receiver = this.receiver.user;
+    let p: Product;
+    this.products.forEach(e =>{
+      if(e.id == this.producto) 
+        p = e;
+    });
+    newExchange.productSend = p;
+    newExchange.productReceiver = this.receiver; // other user product
+    newExchange.date = new Date();
+    newExchange.state = true;
+
+    console.log(JSON.stringify(newExchange));
+    this.router.navigate(['/iresume', { producto: JSON.stringify(newExchange)}]);
   }
 
   ionViewDidEnter() {
@@ -29,5 +52,9 @@ export class IntercambioPage implements OnInit {
     console.log(this.products);
   }
   ngOnInit() {
+    this.actived.params.subscribe(res => {
+      this.receiver = JSON.parse(res.producto);
+      console.log(this.receiver);
+    });
   }
 }

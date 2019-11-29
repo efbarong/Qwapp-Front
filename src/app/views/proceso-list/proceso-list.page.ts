@@ -39,8 +39,10 @@ export class ProcesoListPage implements OnInit {
   ];
 */
   procesos: Array<Exchange>;
+  procesosRecibidos: Array<Exchange>;
   constructor(private router: Router, private exService: ExchangeServices, private uServices: UserServices) {
       this.procesos = exService.getExchagesById(uServices.user.id);
+      this.procesosRecibidos = exService.getIncomingExchagesById(uServices.user.id);
    }
 
   viewProcess(cambios: Exchange) {

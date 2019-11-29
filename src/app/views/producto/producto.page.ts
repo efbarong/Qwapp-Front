@@ -4,6 +4,8 @@ import { ImageModalPageModule } from 'src/app/image-modal/image-modal.module';
 import { ImageModalPage } from 'src/app/image-modal/image-modal.page';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Product } from '../../models/product';
+import { Exchange } from 'src/app/models/exchange';
+import { UserServices } from 'src/app/services/UserServices';
 
 @Component({
   selector: 'app-producto',
@@ -20,7 +22,7 @@ export class ProductoPage implements OnInit {
   };
 
   producto: Product;
-  constructor(private modalController: ModalController, private router: Router, private actived: ActivatedRoute) {
+  constructor(private modalController: ModalController, private router: Router, private actived: ActivatedRoute, private uService: UserServices) {
   }
 
   openPreview(img) {
@@ -31,6 +33,11 @@ export class ProductoPage implements OnInit {
         img: img
       }
     }).then(modal => modal.present());
+  }
+
+
+  exchange(){
+    this.router.navigate(['/intercambio', { producto: JSON.stringify(this.producto)}]);
   }
   ngOnInit() {
     this.actived.params.subscribe(res => {

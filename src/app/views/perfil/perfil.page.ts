@@ -56,25 +56,10 @@ export class PerfilPage implements OnInit {
     console.log(this.pService.otherProductList);
 
   }
-  /*
-      Temporalmente voy a usar este boton para crear intercambios, cuando ya este terminado la parte de intercambios
-      descomentar lo de eliminar
-  */
+
   deleteProduct(p: Product) {
-    /*
     this.pService.deleteProduct(p.id);
     this.products.splice(this.products.indexOf(p), 1);
-    */
-    const newExchange: Exchange = new Exchange();
-    newExchange.sender = this.user.id;
-    newExchange.receiver = 'idOtherUser';
-    newExchange.productSend = p;
-    newExchange.productReceiver = p; // other user product
-    newExchange.date = new Date();
-    newExchange.state = true;
-
-    this.exService.createExchange(newExchange);
-
   }
   async checknew() {
     /** @TODO Si añadieron un producto, debe aparecer "Has creado un producto satisfactoriamente */

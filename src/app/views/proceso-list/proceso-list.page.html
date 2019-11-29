@@ -11,10 +11,11 @@
 
 <ion-content class="padding">
 
+  Enviadas
   <ion-grid fixed>
     <ion-row class="row" *ngFor="let p of procesos">
       <ion-col size="2">
-        <div class="status" [ngStyle]="{ 'background': p.status ? '#00ff5a': '#d4d4d4' }"></div>
+        <div class="status" [ngStyle]="{ 'background': !p.state ? '#00ff5a': '#d4d4d4' }"></div>
       </ion-col>
       <ion-col size="10" class="containerCenter border" (click)="viewProcess(p)">
         <ion-text color="primary">
@@ -28,4 +29,21 @@
     </ion-row>
   </ion-grid>
 
+  Recibidas
+  <ion-grid fixed>
+      <ion-row class="row" *ngFor="let p of procesosRecibidos">
+        <ion-col size="2">
+          <div class="status" [ngStyle]="{ 'background': !p.state ? '#00ff5a': '#d4d4d4' }"></div>
+        </ion-col>
+        <ion-col size="10" class="containerCenter border" (click)="viewProcess(p)">
+          <ion-text color="primary">
+            {{p.productSend.name}} <b>
+              <ion-icon name="swap"></ion-icon>
+            </b> {{p.productReceiver.name}}
+            <br>
+            {{p.date | date}}
+          </ion-text>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
 </ion-content>

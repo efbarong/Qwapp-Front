@@ -52,17 +52,29 @@
           <p>Fecha de intercambio: <br>
             <b>{{resume.date | date}}</b><br><br>
             Estado de intercambio: <br>
-            <b>{{resume.status | statusCambio}}</b>
+            <b>{{!resume.state | statusCambio}}</b>
           </p>
         </ion-text>
       </ion-col>
     </ion-row>
-    <ion-row *ngIf="!resume.status">
+    <ion-row *ngIf="resume.state && resume.sender == u.id">
       <ion-col size="12">
         <ion-button (click)="cancelSwap()" class="cancelProcess">
           <span>Cancelar</span>
         </ion-button>
       </ion-col>
     </ion-row>
+    <ion-row *ngIf="resume.state && resume.sender != u.id">
+        <ion-col size="12">
+          <ion-button (click)="YESYESYES()" class="cancelProcess">
+            <span>Aceptar intercambio</span>
+          </ion-button>
+        </ion-col>
+        <ion-col size="12">
+            <ion-button (click)="NONONO()" class="cancelProcess">
+              <span>Rechazar intercambio</span>
+            </ion-button>
+          </ion-col>
+      </ion-row>
   </ion-grid>
 </ion-content>
