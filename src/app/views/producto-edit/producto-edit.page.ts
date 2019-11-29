@@ -22,7 +22,6 @@ export class ProductoEditPage implements OnInit {
     private camera: Camera,
     private file: File,
     private storage: Storage,
-    private plt: Platform,
     private webView: WebView,
     private actionSheetController: ActionSheetController,
     private toastController: ToastController,
@@ -167,6 +166,7 @@ export class ProductoEditPage implements OnInit {
   }
 
   updateProduct() {
+    this.pService.updateProduct(this.producto);
     console.log('Actualizando producto');
   }
 
