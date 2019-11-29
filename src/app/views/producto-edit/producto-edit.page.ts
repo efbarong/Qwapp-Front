@@ -166,22 +166,14 @@ export class ProductoEditPage implements OnInit {
     console.log('Calificación:', event);
   }
 
-  updateChanges() {
-    // this.ctg.forEach(element => {
-    //   console.log(this.categorias.get(element));
-    // });
-    const p: Product = new Product();
+  updateProduct() {
+    console.log('Actualizando producto');
+  }
 
-    p.name = this.name;
-    p.description = this.description;
-    p.category = this.ctg;
-    p.state = this.stateProd !== 0;
-    p.user = this.uService.user.id;
-    p.date = new Date();
-    p.city = this.uService.user.city;
-    p.locality = this.uService.user.locality;
-    this.pService.updateProduct(p);
-
-    console.log(p);
+  ngOnInit() {
+    this.actived.params.subscribe(res => {
+      this.producto = JSON.parse(res.producto);
+      console.log(this.producto);
+    });
   }
 }
