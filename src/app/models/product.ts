@@ -10,4 +10,5 @@ export class Product {
     date: Date;
     city: string;
     locality: string;
+    rate: number;
 }

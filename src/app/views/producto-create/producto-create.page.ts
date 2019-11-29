@@ -196,6 +196,7 @@ export class ProductoCreatePage implements OnInit {
     p.images = new Array();
     p.state = this.stateProd !== 0;
     p.date = new Date();
+    p.rate = this.rate;
     p.city = this.uService.user.city;
     p.locality = this.uService.user.locality;
     this.pService.createProduct(p, this.images);
