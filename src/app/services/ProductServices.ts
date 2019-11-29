@@ -46,6 +46,16 @@ export class ProductServices {
         } catch (error) { }
         firebase.firestore().collection('Products').doc(id).delete()
             .then(res => {
+                firebase.firestore().collection('Exchange').where("productSend.id", "==", id).get().then(res => {
+                    res.forEach(element => {
+                        firebase.firestore().collection('Exchange').doc(element.id).delete();
+                    });
+                });
+                firebase.firestore().collection('Exchange').where("productReceiver.id", "==", id).get().then(res => {
+                    res.forEach(element => {
+                        firebase.firestore().collection('Exchange').doc(element.id).delete();
+                    });
+                });
                 console.log('Product deleted Sucessful');
             },
                 err => {
