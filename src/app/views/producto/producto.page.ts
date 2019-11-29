@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ModalController } from '@ionic/angular';
 import { ImageModalPageModule } from 'src/app/image-modal/image-modal.module';
 import { ImageModalPage } from 'src/app/image-modal/image-modal.page';
+import { Router, ActivatedRoute } from '@angular/router';
+import { Product } from '../../models/product';
 
 @Component({
   selector: 'app-producto',
@@ -10,14 +12,15 @@ import { ImageModalPage } from 'src/app/image-modal/image-modal.page';
 })
 export class ProductoPage implements OnInit {
 
-   sliderOpt = {
+  sliderOpt = {
     zoom: false,
     slidesPerView: 1.2,
     centeredSlides: true,
     spaceBetween: 20
   };
 
-  constructor(private modalController: ModalController) {
+  producto: Product;
+  constructor(private modalController: ModalController, private router: Router, private actived: ActivatedRoute) {
   }
 
   openPreview(img) {
@@ -30,6 +33,10 @@ export class ProductoPage implements OnInit {
     }).then(modal => modal.present());
   }
   ngOnInit() {
+    this.actived.params.subscribe(res => {
+      this.producto = JSON.parse(res.producto);
+      console.log(this.producto);
+    });
   }
 
 }

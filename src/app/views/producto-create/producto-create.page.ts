@@ -142,7 +142,7 @@ export class ProductoCreatePage implements OnInit {
       const imag = this.webView.convertFileSrc(imageData);
       console.log(imageData);
       console.log(imag);
-      this.images.push({ path: imag });
+      this.images.push(imag);
       this.presentToast('Foto subida correctamente');
     }, (err) => {
       console.log('Flasho o cancelo');
@@ -193,11 +193,13 @@ export class ProductoCreatePage implements OnInit {
     p.name = v.nameprod;
     p.description = v.description;
     p.category = this.ctg;
+    p.images = new Array();
     p.state = this.stateProd !== 0;
     p.date = new Date();
+    p.rate = this.rate;
     p.city = this.uService.user.city;
     p.locality = this.uService.user.locality;
-    this.pService.createProduct(p);
+    this.pService.createProduct(p, this.images);
     console.log(p);
   }
 

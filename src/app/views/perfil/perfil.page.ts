@@ -39,7 +39,7 @@ export class PerfilPage implements OnInit {
     this.router.navigateByUrl('/perfil-edit');
   }
 
-  editProduct() {
+  editProduct(producto: Product) {
     /** @TODO Enviar a la pagina de editar producto y pasar producto a editar como parametro
      * en la Url de abajo
      * Ejem:
@@ -48,7 +48,7 @@ export class PerfilPage implements OnInit {
      * }
      */
 
-    this.router.navigate(['/producto-edit']);
+    this.router.navigate(['/producto-edit', { producto: JSON.stringify(producto)}]);
   }
 
   next() {
@@ -56,24 +56,24 @@ export class PerfilPage implements OnInit {
     console.log(this.pService.otherProductList);
 
   }
-/*
-    Temporalmente voy a usar este boton para crear intercambios, cuando ya este terminado la parte de intercambios
-    descomentar lo de eliminar
-*/
+  /*
+      Temporalmente voy a usar este boton para crear intercambios, cuando ya este terminado la parte de intercambios
+      descomentar lo de eliminar
+  */
   deleteProduct(p: Product) {
     /*
     this.pService.deleteProduct(p.id);
     this.products.splice(this.products.indexOf(p), 1);
     */
-    let newExchange: Exchange = new Exchange();
+    const newExchange: Exchange = new Exchange();
     newExchange.sender = this.user.id;
-    newExchange.receiver = "idOtherUser";
+    newExchange.receiver = 'idOtherUser';
     newExchange.productSend = p;
     newExchange.productReceiver = p; // other user product
     newExchange.date = new Date();
     newExchange.state = true;
 
-    this.exService.createExchange(newExchange); 
+    this.exService.createExchange(newExchange);
 
   }
   async checknew() {
