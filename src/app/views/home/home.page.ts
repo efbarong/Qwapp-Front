@@ -13,6 +13,7 @@ import { IonInfiniteScroll } from '@ionic/angular';
 })
 export class HomePage implements OnInit {
 
+  rgb = '12,255,12';
   user: user;
   products: Product[];
   @ViewChild(IonInfiniteScroll, null) infiniteScroll: IonInfiniteScroll;
@@ -62,7 +63,6 @@ export class HomePage implements OnInit {
   }
 
   viewProduct(producto: any) {
-    console.log(producto);
-    this.router.navigateByUrl('/producto');
+    this.router.navigate(['/producto', { producto: JSON.stringify(producto) }]);
   }
 }

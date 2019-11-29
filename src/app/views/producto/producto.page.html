@@ -20,10 +20,10 @@
 	<!-- Descripcion -->
 	<ion-card>
 		<ion-card-header>
-			<ion-card-title class="text-center">Descripción</ion-card-title>
+			<ion-card-title class="text-center">{{producto.name | titlecase}}</ion-card-title>
 		</ion-card-header>
 		<ion-card-content>
-			Lorem ipsum dolor, sit amet consectetur adipisicing elit. Cumque, ab!
+			{{producto.description}}
 		</ion-card-content>
 	</ion-card>
 	<!-- Categorias -->
@@ -32,14 +32,8 @@
 			<ion-card-title>Categorias</ion-card-title>
 		</ion-card-header>
 		<ion-card-content>
-			<ion-chip>
-				<ion-label>Tecnologia</ion-label>
-			</ion-chip>
-			<ion-chip>
-				<ion-label>Juegos</ion-label>
-			</ion-chip>
-			<ion-chip>
-				<ion-label>Consolas</ion-label>
+			<ion-chip *ngFor="let cat of producto.category">
+				<ion-label>{{cat}}</ion-label>
 			</ion-chip>
 		</ion-card-content>
 	</ion-card>
@@ -50,15 +44,15 @@
 		<ion-list class="txt">
 			<ion-item>
 				<ion-label>Estado</ion-label>
-				<ion-note slot="end" color="primary">Nuevo</ion-note>
+				<ion-note slot="end" color="primary">{{producto.state}}</ion-note>
 			</ion-item>
 			<ion-item>
 				<ion-label>Fecha</ion-label>
-				<ion-note slot="end" color="primary">25/25/1444</ion-note>
+				<ion-note slot="end" color="primary">{{producto.date | date}}</ion-note>
 			</ion-item>
 			<ion-item>
-				<ion-label>Ubicacion</ion-label>
-				<ion-note slot="end" color="primary">Bogotá</ion-note>
+				<ion-label>Ubicación</ion-label>
+				<ion-note slot="end" color="primary">{{producto.city}}</ion-note>
 			</ion-item>
 		</ion-list>
 	</ion-card>
