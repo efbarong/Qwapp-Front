@@ -183,7 +183,7 @@ export class ProductoEditPage implements OnInit {
     p.date = new Date();
     p.city = this.uService.user.city;
     p.locality = this.uService.user.locality;
-    this.pService.createProduct(p);
+    this.pService.updateProduct(p);
 
     console.log(p);
   }
