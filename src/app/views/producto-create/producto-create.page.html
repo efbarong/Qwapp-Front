@@ -106,27 +106,23 @@
 				<h4>Estas a punto de actualizar tu producto. Pulsa <b>Continuar</b> para terminar.</h4>
 			</ion-slide>
 		</ion-slides>
+		<ion-grid>
+			<ion-row>
+				<ion-col class="" size="6">
+					<ion-button fill="solid" expand="full" (click)="prev()" *ngIf="posSlide > 1">
+						Anterior <ion-icon name="arrow-dropleft-circle"></ion-icon>
+					</ion-button>
+				</ion-col>
+				<ion-col size="6">
+					<ion-button fill="solid" expand="full" (click)="next()" *ngIf="posSlide < 3">
+						Siguiente <ion-icon name="arrow-dropright-circle"></ion-icon>
+					</ion-button>
+					<ion-button fill="solid" type="submit" expand="full" *ngIf="posSlide == 3"
+						[disabled]="registerForm.invalid" routerLink="/perfil">
+						Continuar <ion-icon name="checkmark-circle"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
 	</form>
 </ion-content>
-
-<ion-footer no-border>
-	<!--Botones-->
-	<ion-grid>
-		<ion-row>
-			<ion-col class="" size="6">
-				<ion-button fill="solid" expand="full" (click)="prev()" *ngIf="posSlide > 1">
-					Anterior <ion-icon name="arrow-dropleft-circle"></ion-icon>
-				</ion-button>
-			</ion-col>
-			<ion-col size="6">
-				<ion-button fill="solid" expand="full" (click)="next()" *ngIf="posSlide < 3">
-					Siguiente <ion-icon name="arrow-dropright-circle"></ion-icon>
-				</ion-button>
-				<ion-button fill="solid" type="submit" expand="full" *ngIf="posSlide == 3"
-					[disabled]="registerForm.invalid" routerLink="/perfil">
-					Continuar <ion-icon name="checkmark-circle"></ion-icon>
-				</ion-button>
-			</ion-col>
-		</ion-row>
-	</ion-grid>
-</ion-footer>
