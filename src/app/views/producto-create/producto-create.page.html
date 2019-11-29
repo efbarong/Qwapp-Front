@@ -10,25 +10,25 @@
 
 <ion-content class="ion-padding-horizontal" scroll-y="false">
 	<form [formGroup]="registerForm" (ngSubmit)="createProduct()">
-		<ion-slides #mySlider [options] = slideOpts>
-			
+		<ion-slides #mySlider [options]=slideOpts>
+
 			<!--Slide 1-->
 			<ion-slide>
 				<!-- Content -->
 				<h2>Crea tu producto</h2>
-				
+
 				<!--Nombre-->
 				<ion-item>
 					<ion-label position="floating">Nombre del producto</ion-label>
 					<ion-input required formControlName="nameprod" type="text"></ion-input>
 				</ion-item>
-				
+
 				<!--Descripcion-->
 				<ion-item>
 					<ion-label position="floating">Descripción</ion-label>
 					<ion-textarea required formControlName="description"></ion-textarea>
 				</ion-item>
-				
+
 				<!--Lugar-->
 				<!-- No se si ponerla -->
 				<!-- <ion-item>
@@ -40,15 +40,18 @@
 				<!-- Categorias -->
 				<ion-item>
 					<ion-label>Categorias</ion-label>
-					<ion-select ok-text="Okay" cancel-text="Cancel" [(ngModel)]="ctg" [ngModelOptions]="{standalone: true}" multiple="true">
-						<ion-select-option *ngFor="let cat of categorias" [value]='cat.name'>{{cat.name}}</ion-select-option>
+					<ion-select ok-text="Okay" cancel-text="Cancel" [(ngModel)]="ctg"
+						[ngModelOptions]="{standalone: true}" multiple="true">
+						<ion-select-option *ngFor="let cat of categorias" [value]='cat.name'>{{cat.name}}
+						</ion-select-option>
 					</ion-select>
 				</ion-item>
-				
+
 				<!--Estado-->
 				<h5 class="text-center">Estado del producto</h5>
 				<ion-item>
-					<ion-segment [(ngModel)]="stateProd" [ngModelOptions]="{standalone: true}" (ionChange)="segmentChanged($event)">
+					<ion-segment [(ngModel)]="stateProd" [ngModelOptions]="{standalone: true}"
+						(ionChange)="segmentChanged($event)">
 						<ion-segment-button value="1">
 							<ion-label>Nuevo</ion-label>
 						</ion-segment-button>
@@ -57,36 +60,38 @@
 						</ion-segment-button>
 					</ion-segment>
 				</ion-item>
-				
+
 				<!-- Rating -->
 				<div *ngIf="stateProd == 0">
 					<ion-item lines="none">
 						<ion-label class="ion-text-center">Califica el estado de tu producto</ion-label>
 					</ion-item>
-					<rating [(ngModel)]="rate" [ngModelOptions]="{standalone: true}" readonly="false" size="default" (ngModelChange)="onRateChange($event)">
+					<rating [(ngModel)]="rate" [ngModelOptions]="{standalone: true}" readonly="false" size="default"
+						(ngModelChange)="onRateChange($event)">
 					</rating>
 				</div>
-				
+
 			</ion-slide>
-			
+
 			<!--Slide 2-->
 			<ion-slide>
 				<!-- Content -->
 				<h2>Imagenes del producto</h2>
-				<h3 class="ion-text-center" *ngIf="images.length === 0">Seleccione Imagenes<ion-text color="danger">*</ion-text>
+				<h3 class="ion-text-center" *ngIf="images.length === 0">Seleccione Imagenes<ion-text color="danger">*
+					</ion-text>
 				</h3>
 				<ion-list>
 					<ion-item *ngFor="let img of images; index as pos">
 						<ion-thumbnail slot="start">
 							<ion-img [src]="img.path"></ion-img>
 						</ion-thumbnail>
-						
+
 						<ion-button slot="end" fill="clear" (click)="deleteImg(img, pos)">
 							<ion-icon slot="icon-only" name="trash"></ion-icon>
 						</ion-button>
 					</ion-item>
 				</ion-list>
-				
+
 				<!--Subir foto-->
 				<ion-footer>
 					<ion-toolbar>
@@ -101,24 +106,27 @@
 				<h4>Estas a punto de actualizar tu producto. Pulsa <b>Continuar</b> para terminar.</h4>
 			</ion-slide>
 		</ion-slides>
-		
-		<!--Botones-->
-		<ion-grid>
-			<ion-row>
-				<ion-col class="" size="6">
-					<ion-button fill="solid" expand="full" (click)="prev()" *ngIf="posSlide > 1">
-						Anterior <ion-icon name="arrow-dropleft-circle"></ion-icon>
-					</ion-button>
-				</ion-col>
-				<ion-col size="6">
-					<ion-button fill="solid" expand="full" (click)="next()" *ngIf="posSlide < 3">
-						Siguiente <ion-icon name="arrow-dropright-circle"></ion-icon>
-					</ion-button>
-					<ion-button fill="solid" type="submit" expand="full" *ngIf="posSlide == 3" [disabled] ="registerForm.invalid" routerLink="/perfil">
-						Continuar <ion-icon name="checkmark-circle"></ion-icon>
-					</ion-button>
-				</ion-col>
-			</ion-row>
-		</ion-grid>
 	</form>
 </ion-content>
+
+<ion-footer no-border>
+	<!--Botones-->
+	<ion-grid>
+		<ion-row>
+			<ion-col class="" size="6">
+				<ion-button fill="solid" expand="full" (click)="prev()" *ngIf="posSlide > 1">
+					Anterior <ion-icon name="arrow-dropleft-circle"></ion-icon>
+				</ion-button>
+			</ion-col>
+			<ion-col size="6">
+				<ion-button fill="solid" expand="full" (click)="next()" *ngIf="posSlide < 3">
+					Siguiente <ion-icon name="arrow-dropright-circle"></ion-icon>
+				</ion-button>
+				<ion-button fill="solid" type="submit" expand="full" *ngIf="posSlide == 3"
+					[disabled]="registerForm.invalid" routerLink="/perfil">
+					Continuar <ion-icon name="checkmark-circle"></ion-icon>
+				</ion-button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-footer>
