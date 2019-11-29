@@ -3,6 +3,7 @@ import { Product } from '../models/product';
 import * as firebase from 'firebase/app';
 import { environment } from 'src/environments/environment';
 import { Query } from '@angular/fire/firestore';
+import { element } from 'protractor';
 
 @Injectable({
     providedIn: 'root'
@@ -19,7 +20,7 @@ export class ProductServices {
         this.otherProductList = new Array();
     }
 
-    createProduct(p: Product) {
+    createProduct(p: Product, imagesList: Array<String>) {
         try {
             firebase.initializeApp(environment.firebase);
         } catch (error) {
@@ -29,6 +30,9 @@ export class ProductServices {
             .then(res => {
                 p.id = res.id;
                 this.productList.push(p);
+                imagesList.forEach(element => {
+                    this.uploadImage(element, p.id);
+                });
                 console.log('Product Added Sucessful');
             },
                 err => {
@@ -131,5 +135,45 @@ export class ProductServices {
                 console.log('Error in product update');
             }
         );
+
     }
+    uploadImage(imageURI, id: string){
+        let p: Product;
+        this.productList.forEach(element =>{
+            if(element.id == id){
+                p = element;
+            }
+        })
+        return new Promise<any>((resolve, reject) => {
+          let storageRef = firebase.storage().ref();
+          let imageRef = storageRef.child('ProductImages').child(id + imageURI);
+          this.encodeImageUri(imageURI, function(image64){
+            imageRef.putString(image64, 'data_url')
+            .then(snapshot => {
+                p.images.push(snapshot.downloadURL);
+                this.updateProduct(p);
+
+              resolve(snapshot.downloadURL)
+            }, err => {
+              reject(err);
+            })
+          })
+        })
+      }
+
+
+    encodeImageUri(imageUri, callback) {
+        var c = document.createElement('canvas');
+        var ctx = c.getContext("2d");
+        var img = new Image();
+        img.onload = function () {
+          var aux:any = this;
+          c.width = aux.width;
+          c.height = aux.height;
+          ctx.drawImage(img, 0, 0);
+          var dataURL = c.toDataURL("image/jpeg");
+          callback(dataURL);
+        };
+        img.src = imageUri;
+      };
 }
