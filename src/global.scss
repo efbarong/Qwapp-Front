@@ -263,3 +263,22 @@ ion-toolbar {
   width: 100%;
   margin-bottom: 10px;
 }
+
+.fab {
+  width: 85px !important;
+  height: 85px !important;
+  color: white !important;
+}
+
+ion-fab-button{
+    --background: var(--ion-color-fondo);
+}
+
+.ion-text-center h1 {
+  width: 100%;
+  text-align: center;
+  color: black;
+  font-size: 20px;
+  font-family: "Fredoka One", cursive;
+  display: block;
+}
