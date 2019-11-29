@@ -139,6 +139,8 @@ export class ProductServices {
 
         firebase.firestore().collection('Products').doc(p.id).set(p).then(
             res => {
+                console.log("UPDATE PRODUCT ALV BY IMAGE");
+                
                 console.log(res);
             },
             err => {
@@ -160,6 +162,8 @@ export class ProductServices {
             this.encodeImageUri(imageURI, function(image64) {
                 imageRef.putString(image64, 'data_url')
                     .then(snapshot => {
+                        console.log("Link: " + snapshot.downloadURL);
+                        
                         p.images.push(snapshot.downloadURL);
                         this.updateProduct(p);
 
