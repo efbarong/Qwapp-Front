@@ -71,7 +71,7 @@ export class ProductServices {
         this.getNextPage(id);
     }
 
-    getNextPage(id: string){
+    getNextPage(id: string) {
         this.getNextPageLimit(id, this.NUMBER_PAGE);
     }
 
@@ -101,7 +101,7 @@ export class ProductServices {
 
                 if (last != null) {
                     this.nextPagin = ref.orderBy('date', 'desc').startAfter(last).limit(this.NUMBER_PAGE * 2);
-                    if (times != 0) {
+                    if (times !== 0) {
                         this.getNextPageLimit(id, times);
                     }
                 } else {
@@ -114,11 +114,11 @@ export class ProductServices {
     restartPage(id: string) {
         const ref = firebase.firestore().collection('Products');
         this.otherProductList = new Array();
-        this.nextPagin = ref.orderBy('date', 'desc').limit(this.NUMBER_PAGE*2);
+        this.nextPagin = ref.orderBy('date', 'desc').limit(this.NUMBER_PAGE * 2);
         this.getNextPage(id);
     }
 
-    hasMorePage(){
+    hasMorePage() {
         return this.nextPagin != null;
     }
 
@@ -129,7 +129,7 @@ export class ProductServices {
 
         firebase.firestore().collection('Products').doc(p.id).set(p).then(
             res => {
-                console.log('Product updated Sucessful');
+                console.log(res);
             },
             err => {
                 console.log('Error in product update');
@@ -137,43 +137,42 @@ export class ProductServices {
         );
 
     }
-    uploadImage(imageURI, id: string){
+    uploadImage(imageURI, id: string) {
         let p: Product;
-        this.productList.forEach(element =>{
-            if(element.id == id){
+        this.productList.forEach(element => {
+            if (element.id === id) {
                 p = element;
             }
-        })
+        });
         return new Promise<any>((resolve, reject) => {
-          let storageRef = firebase.storage().ref();
-          let imageRef = storageRef.child('ProductImages').child(id + imageURI);
-          this.encodeImageUri(imageURI, function(image64){
-            imageRef.putString(image64, 'data_url')
-            .then(snapshot => {
-                p.images.push(snapshot.downloadURL);
-                this.updateProduct(p);
+            const storageRef = firebase.storage().ref();
+            const imageRef = storageRef.child('ProductImages').child(id + imageURI);
+            this.encodeImageUri(imageURI, function(image64) {
+                imageRef.putString(image64, 'data_url')
+                    .then(snapshot => {
+                        p.images.push(snapshot.downloadURL);
+                        this.updateProduct(p);
 
-              resolve(snapshot.downloadURL)
-            }, err => {
-              reject(err);
-            })
-          })
-        })
-      }
-
+                        resolve(snapshot.downloadURL);
+                    }, err => {
+                        reject(err);
+                    });
+            });
+        });
+    }
 
     encodeImageUri(imageUri, callback) {
-        var c = document.createElement('canvas');
-        var ctx = c.getContext("2d");
-        var img = new Image();
-        img.onload = function () {
-          var aux:any = this;
-          c.width = aux.width;
-          c.height = aux.height;
-          ctx.drawImage(img, 0, 0);
-          var dataURL = c.toDataURL("image/jpeg");
-          callback(dataURL);
+        const c = document.createElement('canvas');
+        const ctx = c.getContext('2d');
+        const img = new Image();
+        img.onload = function() {
+            const aux: any = this;
+            c.width = aux.width;
+            c.height = aux.height;
+            ctx.drawImage(img, 0, 0);
+            const dataURL = c.toDataURL('image/jpeg');
+            callback(dataURL);
         };
         img.src = imageUri;
-      };
+    }
 }

@@ -52,17 +52,17 @@
 				<ion-item>
 					<ion-segment [(ngModel)]="stateProd" [ngModelOptions]="{standalone: true}"
 						(ionChange)="segmentChanged($event)">
-						<ion-segment-button value="1">
+						<ion-segment-button value='true'>
 							<ion-label>Nuevo</ion-label>
 						</ion-segment-button>
-						<ion-segment-button value="0">
+						<ion-segment-button value='false'>
 							<ion-label>Usado</ion-label>
 						</ion-segment-button>
 					</ion-segment>
 				</ion-item>
 
 				<!-- Rating -->
-				<div *ngIf="stateProd == 0">
+				<div *ngIf="stateProd === 'false'">
 					<ion-item lines="none">
 						<ion-label class="ion-text-center">Califica el estado de tu producto</ion-label>
 					</ion-item>

@@ -27,7 +27,7 @@ export class ProductoCreatePage implements OnInit {
   categorias: any;
   ctg: any;
   images: Array<any>;
-  stateProd: any;
+  stateProd: boolean;
   posSlide: any = 1;
   rate: any;
   name: string;
@@ -92,6 +92,24 @@ export class ProductoCreatePage implements OnInit {
     this.slides.slideNext();
     this.posSlide++;
   }
+
+  // public next() {
+  //   const v = this.registerForm.value;
+  //   console.log(v);
+  //   const p: Product = new Product();
+  //   p.user = this.uService.user.id;
+  //   p.name = v.nameprod;
+  //   p.description = v.description;
+  //   p.category = this.ctg;
+  //   p.images = new Array();
+  //   p.state = this.stateProd as boolean;
+  //   p.date = new Date();
+  //   p.rate = this.rate;
+  //   p.city = this.uService.user.city;
+  //   p.locality = this.uService.user.locality;
+  //   console.log(p);
+
+  // }
   public prev() {
     this.slides.slidePrev();
     this.posSlide--;
@@ -185,6 +203,7 @@ export class ProductoCreatePage implements OnInit {
     console.log('Calificación:', event);
   }
 
+
   createProduct() {
     const v = this.registerForm.value;
     console.log(v);
@@ -194,13 +213,17 @@ export class ProductoCreatePage implements OnInit {
     p.description = v.description;
     p.category = this.ctg;
     p.images = new Array();
-    p.state = this.stateProd !== 0;
+    p.state = this.stateProd as boolean;
     p.date = new Date();
     p.rate = this.rate;
     p.city = this.uService.user.city;
     p.locality = this.uService.user.locality;
     this.pService.createProduct(p, this.images);
     console.log(p);
+  }
+
+  getState() {
+    return this.stateProd;
   }
 
   back() {
