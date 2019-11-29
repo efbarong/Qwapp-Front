@@ -7,6 +7,7 @@ import { Storage } from '@ionic/storage';
 import { Product } from '../../models/product';
 import { UserServices } from 'src/app/services/UserServices';
 import { ProductServices } from 'src/app/services/ProductServices';
+import { ActivatedRoute } from '@angular/router';
 
 const STORAGE_KEY = 'my_imgs';
 @Component({
@@ -15,6 +16,39 @@ const STORAGE_KEY = 'my_imgs';
   styleUrls: ['./producto-edit.page.scss'],
 })
 export class ProductoEditPage implements OnInit {
+
+  // tslint:disable-next-line: max-line-length
+  constructor(
+    private camera: Camera,
+    private file: File,
+    private storage: Storage,
+    private plt: Platform,
+    private webView: WebView,
+    private actionSheetController: ActionSheetController,
+    private toastController: ToastController,
+    private uService: UserServices,
+    private pService: ProductServices,
+    private actived: ActivatedRoute) {
+    this.ciudades = [
+      { name: 'Bogota' },
+      { name: 'Cali' },
+      { name: 'Medallo' },
+      { name: 'El rosal' },
+    ];
+
+    this.categorias = [
+      { name: 'Tecnologia' },
+      { name: 'Celulares' },
+      { name: 'Otros' },
+      { name: 'Libros' },
+      { name: 'Electronica' },
+      { name: 'Laptops' },
+      { name: 'Ropa' },
+      { name: 'Tenis' },
+      { name: 'Calzado' }
+    ];
+    this.images = new Array<any>();
+  }
 
   // Variables
   ciudades: any;
@@ -28,39 +62,9 @@ export class ProductoEditPage implements OnInit {
   description: string;
   rate: any;
   // Slides
-  @ViewChild('mySlider', null) slides: IonSlides;
+  @ViewChild('mySlider', { static: false }) slides: IonSlides;
 
-  // tslint:disable-next-line: max-line-length
-  constructor(
-    private camera: Camera,
-    private file: File,
-    private storage: Storage,
-    private plt: Platform,
-    private webView: WebView,
-    private actionSheetController: ActionSheetController,
-    private toastController: ToastController,
-    private uService: UserServices,
-    private pService: ProductServices) {
-    this.ciudades = [
-      { name: 'Bogota', value: 'A' },
-      { name: 'Cali', value: 'B' },
-      { name: 'Medallo', value: 'C' },
-      { name: 'El rosal', value: 'D' },
-    ];
-
-    this.categorias = [
-      { name: 'Tecnologia', value: 'A' },
-      { name: 'Celulares', value: 'B' },
-      { name: 'Otros', value: 'C' },
-      { name: 'Libros', value: 'D' },
-      { name: 'Electronica', value: 'E' },
-      { name: 'Laptops', value: 'F' },
-      { name: 'Ropa', value: 'G' },
-      { name: 'Tenis', value: 'H' },
-      { name: 'Calzado', value: 'I' }
-    ];
-    this.images = new Array<any>();
-  }
+  producto: Product;
 
   // Mostrar notificación
   async presentToast(text) {
@@ -153,23 +157,16 @@ export class ProductoEditPage implements OnInit {
     });
   }
 
-  ngOnInit() { }
-
-
   // Pruebas
   segmentChanged(ev: any) {
     console.log('Segmento cambiado', this.stateProd);
-  }
-
-  test() {
-    console.log('Ciudad cambiada', this.cc);
   }
 
   onRateChange(event) {
     console.log('Calificación:', event);
   }
 
-  createProduct() {
+  updateChanges() {
     // this.ctg.forEach(element => {
     //   console.log(this.categorias.get(element));
     // });

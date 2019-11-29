@@ -80,7 +80,7 @@
         <span style="font-size: 10px;">{{product.date | date:'MMM d, yyyy hh:mm'}}</span>
       </ion-text>
       <ion-buttons slot="end" style="margin: 0px;">
-        <ion-button (click)="editProduct()">
+        <ion-button (click)="editProduct(product)">
           <ion-icon slot="icon-only" name="create"></ion-icon>
         </ion-button>
         <ion-button (click)="deleteProduct(product)">
