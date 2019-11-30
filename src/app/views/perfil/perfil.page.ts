@@ -26,7 +26,7 @@ export class PerfilPage implements OnInit {
     private pService: ProductServices,
     private toastController: ToastController,
     private exService: ExchangeServices) {
-    this.image = 'https://s3-us-west-1.amazonaws.com/malv.images/images/LhUPHDwes61dbkvaHKZBkJGeFMuV74APSn9Y0M5G.jpg';
+    this.image = 'assets/img/foto.png';
     this.user = uService.user;
   }
 

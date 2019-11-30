@@ -10,9 +10,6 @@
 
 <ion-content>
 
-
-
-
   <ion-refresher slot="fixed" (ionRefresh)="refreshNew($event)">
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
@@ -20,7 +17,7 @@
   <div *ngIf="products">
     <ion-card *ngFor="let product of products" (click)="viewProduct(product)">
       <div style="width: 100%">
-        <ion-skeleton-text class="skeleton" animated></ion-skeleton-text>
+        <ion-skeleton-text class="skeleton"></ion-skeleton-text>
       </div>
       <ion-card-content>
         <div class="justify">
