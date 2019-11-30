@@ -21,6 +21,8 @@ export class ProductoPage implements OnInit {
     spaceBetween: 20
   };
 
+  imgs: number;
+
   producto: Product;
   constructor(private modalController: ModalController, private router: Router, private actived: ActivatedRoute, private uService: UserServices) {
   }
@@ -42,7 +44,10 @@ export class ProductoPage implements OnInit {
   ngOnInit() {
     this.actived.params.subscribe(res => {
       this.producto = JSON.parse(res.producto);
+      this.imgs = this.producto.images.length;
       console.log(this.producto);
+      console.log(this.imgs);
+      
     });
   }
 

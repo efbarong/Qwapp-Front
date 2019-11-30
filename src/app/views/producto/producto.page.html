@@ -12,9 +12,15 @@
 
 <ion-content>
 	<!-- Galeria -->
-	<ion-slides [options]="sliderOpt">
-		<ion-slide *ngFor="let img of [1,2,3]">
-			<img src="assets/img/{{ img }}.png" tappable (click)="openPreview(img)" alt="Dinos">
+	<ion-slides [options]="sliderOpt" *ngIf="imgs > 0">
+		<ion-slide *ngFor="let img of producto.images">
+			<img src="assets/img/{{ img }}.png" tappable (click)="openPreview(img)" alt="ImageProduct">
+		</ion-slide>
+	</ion-slides>
+
+	<ion-slides [options]="sliderOpt" *ngIf="imgs === 0">
+		<ion-slide>
+			<img src="assets/img/default.png" alt="Default">
 		</ion-slide>
 	</ion-slides>
 	<!-- Descripcion -->
