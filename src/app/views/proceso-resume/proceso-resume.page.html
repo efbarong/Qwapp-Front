@@ -1,0 +1,80 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/proceso-list"></ion-back-button>
+      </ion-buttons>
+    </ion-buttons>
+    <ion-title>Resumen</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-grid fixed class="containerCenter">
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="primary">
+          <p>Resumen de tu intercamcbio</p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-thumbnail class="photo">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">{{resume.productSend.name}}</ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="primary">
+          <ion-icon name="swap"></ion-icon>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">
+        <ion-thumbnail class="photo">
+          <ion-skeleton-text animated></ion-skeleton-text>
+        </ion-thumbnail>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col size="12">{{resume.productReceiver.name}}</ion-col>
+    </ion-row>
+
+    <ion-row>
+      <ion-col size="12">
+        <ion-text color="primary">
+          <p>Fecha de intercambio: <br>
+            <b>{{resume.date | date}}</b><br><br>
+            Estado de intercambio: <br>
+            <b>{{!resume.state | statusCambio}}</b>
+          </p>
+        </ion-text>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="resume.state && resume.sender == u.id">
+      <ion-col size="12">
+        <ion-button (click)="cancelSwap()" class="cancelProcess">
+          <span>Cancelar</span>
+        </ion-button>
+      </ion-col>
+    </ion-row>
+    <ion-row *ngIf="resume.state && resume.sender != u.id">
+        <ion-col size="12">
+          <ion-button (click)="YESYESYES()" class="cancelProcess">
+            <span>Aceptar intercambio</span>
+          </ion-button>
+        </ion-col>
+        <ion-col size="12">
+            <ion-button (click)="NONONO()" class="cancelProcess">
+              <span>Rechazar intercambio</span>
+            </ion-button>
+          </ion-col>
+      </ion-row>
+  </ion-grid>
+</ion-content>

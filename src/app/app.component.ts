@@ -1,8 +1,11 @@
 import { Component } from '@angular/core';
-
 import { Platform } from '@ionic/angular';
 import { SplashScreen } from '@ionic-native/splash-screen/ngx';
 import { StatusBar } from '@ionic-native/status-bar/ngx';
+import { AuthServices } from 'src/app/services/AuthServices';
+import { UserServices } from 'src/app/services/UserServices';
+import { Router } from '@angular/router';
+import { ProductServices } from 'src/app/services/ProductServices';
 
 @Component({
   selector: 'app-root',
@@ -10,61 +13,67 @@ import { StatusBar } from '@ionic-native/status-bar/ngx';
   styleUrls: ['app.component.scss']
 })
 export class AppComponent {
- public appPages = [
-    {
-      title: 'Iniciar Sesion',
-      url: '/login',
-      icon: 'home'
-    },
-    {
-      title: 'Registro',
-      url: '/register',
-      icon: 'home'
-    },
+  public appPages = [
     {
       title: 'Perfil',
       url: '/perfil',
-      icon: 'home'
+      icon: 'person'
     },
     {
-      title: 'Editar Perfil',
-      url: '/perfil-edit',
-      icon: 'home'
+      title: 'Publicar',
+      url: '/producto-create/2',
+      icon: 'add'
     },
     {
-      title: 'Ver Producto',
-      url: '/producto',
-      icon: 'home'
-    },
-    {
-      title: 'Editar Producto',
-      url: '/producto-edit',
-      icon: 'home'
-    },
-    {
-      title: 'Ver Chat',
-      url: '/chat-mesaje',
-      icon: 'home'
+      title: 'En proceso',
+      url: '/proceso-list',
+      icon: 'hammer'
     },
     {
       title: 'Chats',
       url: '/chat-lista',
-      icon: 'home'
+      icon: 'chatboxes'
     }
   ];
 
   constructor(
     private platform: Platform,
     private splashScreen: SplashScreen,
-    private statusBar: StatusBar
+    private statusBar: StatusBar,
+    private auth: AuthServices,
+    private uServices: UserServices,
+    private pProduct: ProductServices,
+    private router: Router,
   ) {
     this.initializeApp();
+
   }
 
   initializeApp() {
     this.platform.ready().then(() => {
       this.statusBar.styleDefault();
+      this.statusBar.show();
       this.splashScreen.hide();
     });
+  }
+
+  isLogin(): boolean {
+    if (localStorage.getItem('sesion')) {
+      return true;
+    }
+    return false;
+  }
+
+  logout() {
+    localStorage.removeItem('sesion');
+    this.auth.doLogout();
+    this.uServices.user = null;
+    this.pProduct.productList = new Array();
+    this.pProduct.otherProductList =  new Array();
+    console.log('LIST');
+    console.log(this.pProduct);
+
+
+    this.router.navigateByUrl('/login');
   }
 }

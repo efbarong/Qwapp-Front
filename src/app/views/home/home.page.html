@@ -1,0 +1,54 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-menu-button></ion-menu-button>
+    </ion-buttons>
+    <ion-title>Home</ion-title>
+  </ion-toolbar>
+  <ion-searchbar></ion-searchbar>
+</ion-header>
+
+<ion-content>
+
+  <ion-refresher slot="fixed" (ionRefresh)="refreshNew($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
+
+  <div *ngIf="products">
+    <ion-card *ngFor="let product of products" (click)="viewProduct(product)">
+      <div style="width: 100%">
+        <ion-skeleton-text class="skeleton"></ion-skeleton-text>
+      </div>
+      <ion-card-content>
+        <div class="justify">
+          <span><b>{{product.name | titlecase }}</b></span>
+          <span>{{product.date | date}}</span>
+        </div>
+        <ion-text class="colorText">
+          <p>{{product.description}}</p>
+        </ion-text>
+      </ion-card-content>
+    </ion-card>
+  </div>
+
+  <div *ngIf="infiniteScroll.disabled">
+    <ion-item lines="none">
+      <ion-label class="containerCenter">
+        <ion-icon name="checkmark-circle-outline"></ion-icon>
+      </ion-label>
+    </ion-item>
+  </div>
+
+  <ion-infinite-scroll threshold="0px" (ionInfinite)="refreshOld($event)">
+    <ion-infinite-scroll-content style="font-size: 12px;" loadingSpinner="dots"
+      loadingText="Cargando más publicaciones">
+    </ion-infinite-scroll-content>
+  </ion-infinite-scroll>
+
+  <ion-fab vertical="bottom" horizontal="end" slot="fixed" routerLink="/producto-create/2">
+    <ion-fab-button class="fab">
+      <ion-icon name="add" size="large"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+
+</ion-content>

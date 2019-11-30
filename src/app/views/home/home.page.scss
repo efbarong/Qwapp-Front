@@ -1,0 +1,16 @@
+.skeleton {
+  margin: auto;
+  height: 150px;
+  --background-rgb: 0, 0, 200;
+  color: rgb(20, 0, 131);
+}
+
+.colorText {
+    color: var(--ion-color-fondo);
+}
+
+ion-searchbar{
+  margin-top: 10px;
+  --icon-color:var(--ion-color-fondo);
+  border-radius: 25px;
+}

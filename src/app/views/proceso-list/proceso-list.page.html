@@ -1,0 +1,60 @@
+<ion-header no-border>
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/home">
+        <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+    <ion-title>En proceso</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="padding">
+
+  <div class="containerCenter top">
+    <ion-text color="primary">
+      <span>Enviadas</span>
+    </ion-text>
+  </div>
+  <ion-grid fixed>
+    <ion-row class="row" *ngFor="let p of procesos">
+      <ion-col size="2">
+        <div class="status" [ngStyle]="{ 'background': !p.state ? '#00ff5a': '#d4d4d4' }"></div>
+      </ion-col>
+      <ion-col size="10" class="containerCenter border" (click)="viewProcess(p)">
+        <ion-text color="primary">
+          {{p.productSend.name}} <b>
+            <ion-icon name="swap"></ion-icon>
+          </b> {{p.productReceiver.name}}
+          <br>
+          {{p.date | date}}
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+
+  <ion-item-divider>
+  </ion-item-divider>
+
+  <div class="containerCenter top">
+    <ion-text color="primary">
+      <span>Recibidas</span>
+    </ion-text>
+  </div>
+  <ion-grid fixed>
+    <ion-row class="row" *ngFor="let p of procesosRecibidos">
+      <ion-col size="2">
+        <div class="status" [ngStyle]="{ 'background': !p.state ? '#00ff5a': '#d4d4d4' }"></div>
+      </ion-col>
+      <ion-col size="10" class="containerCenter border" (click)="viewProcess(p)">
+        <ion-text color="primary">
+          {{p.productSend.name}} <b>
+            <ion-icon name="swap"></ion-icon>
+          </b> {{p.productReceiver.name}}
+          <br>
+          {{p.date | date}}
+        </ion-text>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>

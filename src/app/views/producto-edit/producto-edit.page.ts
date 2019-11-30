@@ -4,6 +4,10 @@ import { Camera, CameraOptions, PictureSourceType } from '@ionic-native/camera/n
 import { File } from '@ionic-native/file/ngx';
 import { WebView } from '@ionic-native/ionic-webview/ngx';
 import { Storage } from '@ionic/storage';
+import { Product } from '../../models/product';
+import { UserServices } from 'src/app/services/UserServices';
+import { ProductServices } from 'src/app/services/ProductServices';
+import { ActivatedRoute } from '@angular/router';
 
 const STORAGE_KEY = 'my_imgs';
 @Component({
@@ -12,25 +16,54 @@ const STORAGE_KEY = 'my_imgs';
   styleUrls: ['./producto-edit.page.scss'],
 })
 export class ProductoEditPage implements OnInit {
-  // Variables
-  ciudades: any;
-  cc: any;
-  images: Array<any>;
-  stateProd: any;
-
-  // Slides
-  @ViewChild('mySlider', null) slides: IonSlides;
 
   // tslint:disable-next-line: max-line-length
-  constructor( private camera: Camera, private file: File, private storage: Storage, private plt: Platform, private webView: WebView, private actionSheetController: ActionSheetController, private toastController: ToastController) {
+  constructor(
+    private camera: Camera,
+    private file: File,
+    private storage: Storage,
+    private webView: WebView,
+    private actionSheetController: ActionSheetController,
+    private toastController: ToastController,
+    private uService: UserServices,
+    private pService: ProductServices,
+    private actived: ActivatedRoute) {
     this.ciudades = [
-      {name: 'Bogota',   value: 'A' },
-      {name: 'Cali',     value: 'B' },
-      {name: 'Medallo',  value: 'C' },
-      {name: 'El rosal', value: 'D' },
+      { name: 'Bogota' },
+      { name: 'Cali' },
+      { name: 'Medallo' },
+      { name: 'El rosal' },
+    ];
+
+    this.categorias = [
+      { name: 'Tecnologia' },
+      { name: 'Celulares' },
+      { name: 'Otros' },
+      { name: 'Libros' },
+      { name: 'Electronica' },
+      { name: 'Laptops' },
+      { name: 'Ropa' },
+      { name: 'Tenis' },
+      { name: 'Calzado' }
     ];
     this.images = new Array<any>();
   }
+
+  // Variables
+  ciudades: any;
+  cc: any;
+  categorias: any;
+  ctg: any;
+  images: Array<any>;
+  stateProd: any;
+  posSlide: any = 1;
+  name: string;
+  description: string;
+  rate: any;
+  // Slides
+  @ViewChild('mySlider', { static: false }) slides: IonSlides;
+
+  producto: Product;
 
   // Mostrar notificación
   async presentToast(text) {
@@ -45,9 +78,11 @@ export class ProductoEditPage implements OnInit {
   // Botones del Slide
   public next() {
     this.slides.slideNext();
+    this.posSlide++;
   }
   public prev() {
     this.slides.slidePrev();
+    this.posSlide--;
   }
 
   // Imagenes Slide 2 (Captura de camara o galeria)
@@ -95,7 +130,7 @@ export class ProductoEditPage implements OnInit {
       const imag = this.webView.convertFileSrc(imageData);
       console.log(imageData);
       console.log(imag);
-      this.images.push({path: imag});
+      this.images.push({ path: imag });
       this.presentToast('Foto subida correctamente');
     }, (err) => {
       console.log('Flasho o cancelo');
@@ -121,19 +156,24 @@ export class ProductoEditPage implements OnInit {
     });
   }
 
-  ngOnInit() {}
-
-
   // Pruebas
   segmentChanged(ev: any) {
     console.log('Segmento cambiado', this.stateProd);
   }
 
-  test() {
-    console.log('Ciudad cambiada', this.cc);
-  }
-
   onRateChange(event) {
     console.log('Calificación:', event);
+  }
+
+  updateProduct() {
+    this.pService.updateProduct(this.producto);
+    console.log('Actualizando producto');
+  }
+
+  ngOnInit() {
+    this.actived.params.subscribe(res => {
+      this.producto = JSON.parse(res.producto);
+      console.log(this.producto);
+    });
   }
 }

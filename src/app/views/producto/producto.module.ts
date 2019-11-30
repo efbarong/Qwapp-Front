@@ -6,6 +6,7 @@ import { Routes, RouterModule } from '@angular/router';
 import { IonicModule } from '@ionic/angular';
 
 import { ProductoPage } from './producto.page';
+import { StatusCambioModule } from '../../pipes/status-cambio.module';
 
 const routes: Routes = [
   {
@@ -19,7 +20,8 @@ const routes: Routes = [
     CommonModule,
     FormsModule,
     IonicModule,
-    RouterModule.forChild(routes)
+    RouterModule.forChild(routes),
+    StatusCambioModule
   ],
   declarations: [ProductoPage]
 })

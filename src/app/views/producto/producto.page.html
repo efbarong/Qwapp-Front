@@ -1,25 +1,35 @@
-<ion-header>
-	<ion-toolbar>
-		<ion-title>Producto</ion-title>
-	</ion-toolbar>
-	<ion-toolbar>
-		<ion-searchbar animated placeholder="Buscar" ></ion-searchbar>
-	</ion-toolbar>
-</ion-header>
+<ion-header no-border>
+		<ion-toolbar>
+		  <ion-buttons slot="start">
+			<ion-buttons slot="start">
+			  <ion-back-button></ion-back-button>
+			</ion-buttons>
+		  </ion-buttons>
+		  <ion-title>Producto</ion-title>
+		</ion-toolbar>
+	  </ion-header>
+	  
+
 <ion-content>
 	<!-- Galeria -->
-	<ion-slides [options]="sliderOpt">
-		<ion-slide *ngFor="let img of [1,2,3]">
-			<img src="assets/img/{{ img }}.png" tappable (click)="openPreview(img)" alt="Dinos">
+	<ion-slides [options]="sliderOpt" *ngIf="imgs > 0">
+		<ion-slide *ngFor="let img of producto.images">
+			<img src="assets/img/{{ img }}.png" tappable (click)="openPreview(img)" alt="ImageProduct">
+		</ion-slide>
+	</ion-slides>
+
+	<ion-slides [options]="sliderOpt" *ngIf="imgs === 0">
+		<ion-slide>
+			<img src="assets/img/default.png" alt="Default">
 		</ion-slide>
 	</ion-slides>
 	<!-- Descripcion -->
 	<ion-card>
 		<ion-card-header>
-			<ion-card-title>Descripción</ion-card-title>
+			<ion-card-title class="text-center">{{producto.name | titlecase}}</ion-card-title>
 		</ion-card-header>
 		<ion-card-content>
-			Al averno perros
+			{{producto.description}}
 		</ion-card-content>
 	</ion-card>
 	<!-- Categorias -->
@@ -28,27 +38,33 @@
 			<ion-card-title>Categorias</ion-card-title>
 		</ion-card-header>
 		<ion-card-content>
-			<ion-chip>
-				<ion-label>Trapito</ion-label>
-			</ion-chip>
-			<ion-chip>
-				<ion-label>1444</ion-label>
+			<ion-chip *ngFor="let cat of producto.category">
+				<ion-label>{{cat}}</ion-label>
 			</ion-chip>
 		</ion-card-content>
 	</ion-card>
-	
-	<ion-list>
-		<ion-list-header>
-			Información Adicional
-		</ion-list-header>
-		<ion-item>
-			<ion-label>Estado</ion-label>
-			<ion-note slot="end" color="primary">Nuevo</ion-note>
-		</ion-item>
-		
-		<ion-item>
-			<ion-label>Fecha</ion-label>
-			<ion-note slot="end" color="primary">25/25/1444</ion-note>
-		</ion-item>
-	</ion-list>
+	<ion-card>
+		<ion-card-header>
+			<ion-card-title>Información Adicional</ion-card-title>
+		</ion-card-header>
+		<ion-list class="txt">
+			<ion-item>
+				<ion-label>Estado</ion-label>
+				<ion-note slot="end" color="primary">{{producto.state | estado}}</ion-note>
+			</ion-item>
+			<ion-item>
+				<ion-label>Fecha</ion-label>
+				<ion-note slot="end" color="primary">{{producto.date | date}}</ion-note>
+			</ion-item>
+			<ion-item>
+				<ion-label>Ubicación</ion-label>
+				<ion-note slot="end" color="primary">{{producto.city}}</ion-note>
+			</ion-item>
+		</ion-list>
+	</ion-card>
+	<section>
+			<ion-button expand="block" fill="solid" (click)="exchange()">
+				Enviar solicitud <ion-icon slot="end" name="add"></ion-icon>
+			</ion-button>
+	</section>
 </ion-content>

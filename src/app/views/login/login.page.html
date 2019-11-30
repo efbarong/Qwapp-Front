@@ -1,9 +1,45 @@
-<ion-header>
-  <ion-toolbar>
-    <ion-title>login</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content>
+  <div class="container">
+    <div class="card">
 
+      <div class="cardTop">
+        <h1>Qwapp</h1>
+      </div>
+      <div class="cardCenter">
+        <h1 class="titleCenter">Iniciar sesión</h1>
+        <div>
+          <ion-label>Usuario</ion-label>
+          <ion-item lines="none">
+            <ion-input type="text" [(ngModel)]="user"></ion-input>
+            <ion-icon name="contact" slot="end"></ion-icon>
+          </ion-item>
+        </div>
+        <div>
+          <ion-label>Contraseña</ion-label>
+          <ion-item lines="none">
+            <ion-input [type]="hide ? 'password' : 'text'" [(ngModel)]="pass"></ion-input>
+            <ion-icon [name]="hide ? 'eye':'eye-off'" slot="end" (click)="hide = !hide"></ion-icon>
+          </ion-item>
+          <ion-label class="label">¿Olvidaste tu contraseña?</ion-label>
+        </div>
+        <div class="center">
+          <button class="buttonSesion" (click)="iniciarSesion()">Iniciar sesión</button>
+          <div>
+            <ion-label><i>¿No tienes una cuenta?</i></ion-label><br>
+            <ion-label routerLink="/register"><b>Registrate aqui</b></ion-label>
+          </div>
+        </div>
+      </div>
+
+      <div class="cardBottom">
+        <div class="center">
+          <ion-label style="color: white">Sobre nosotros
+            <span class="aboutIcon">
+              <ion-icon slot="end" name="alert"></ion-icon>
+            </span></ion-label>
+        </div>
+
+      </div>
+    </div>
+  </div>
 </ion-content>

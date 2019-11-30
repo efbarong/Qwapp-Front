@@ -13,7 +13,14 @@ import { IonicStorageModule } from '@ionic/storage';
 
 import { Camera } from '@ionic-native/camera/ngx';
 import { File } from '@ionic-native/file/ngx';
-import { WebView} from '@ionic-native/ionic-webview/ngx';
+import { WebView } from '@ionic-native/ionic-webview/ngx';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { AngularFireModule } from '@angular/fire';
+import { environment } from 'src/environments/environment';
+import { AngularFireAuthModule } from '@angular/fire/auth';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+import { StatusCambioPipe } from './pipes/status-cambio.pipe';
 
 
 @NgModule({
@@ -24,7 +31,13 @@ import { WebView} from '@ionic-native/ionic-webview/ngx';
     IonicModule.forRoot(),
     AppRoutingModule,
     ImageModalPageModule,
-    IonicStorageModule.forRoot()
+    IonicStorageModule.forRoot(),
+    FormsModule, ReactiveFormsModule,
+
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFireAuthModule,
+    AngularFirestoreModule,
+    AngularFireStorageModule
   ],
   providers: [
     StatusBar,
@@ -34,4 +47,6 @@ import { WebView} from '@ionic-native/ionic-webview/ngx';
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule {
+
+}

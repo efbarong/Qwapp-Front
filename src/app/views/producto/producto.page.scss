@@ -1,9 +1,15 @@
 ion-slides{
-    margin-top: 10%;
-    background: #e6e6e6;
-
+    margin-top: 5px;
+    background: white;
     img{
         padding-top: 20px;
         padding-bottom: 20px;
     }
+}
+
+.txt > ion-item > ion-note {
+    font-size: 16px;
+}
+ion-card-content{
+    font-size: 16px;
 }
