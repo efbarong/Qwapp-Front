@@ -25,11 +25,6 @@ export class AppComponent {
       icon: 'add'
     },
     {
-      title: 'Itercambiar',
-      url: '/intercambio',
-      icon: 'swap'
-    },
-    {
       title: 'En proceso',
       url: '/proceso-list',
       icon: 'hammer'
