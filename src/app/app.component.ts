@@ -69,6 +69,7 @@ export class AppComponent {
     this.auth.doLogout();
     this.uServices.user = null;
     this.pProduct.productList = new Array();
+    this.pProduct.otherProductList =  new Array();
     console.log('LIST');
     console.log(this.pProduct);
 

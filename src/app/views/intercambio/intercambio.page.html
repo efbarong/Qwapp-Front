@@ -10,7 +10,7 @@
   </ion-header>
 
 <ion-content class="ion-padding">
-	<h4 class="ion-text-center">Seccion de intercambio pokemon</h4>
+	<h4 class="ion-text-center"><b>Sección de intercambio</b></h4>
 	
 	<h6><b>Instrucciones</b></h6>
 	<p> Selecciona el producto que quieres ofertar</p>
@@ -23,7 +23,7 @@
 			<ion-item *ngFor="let product of products">
 				<ion-label>{{product.name}}</ion-label>
 				<ion-thumbnail>
-					<img src="https://comprarpopper.com/wp-content/uploads/2019/05/Popper-Rush-logo.png" />
+					<img src="assets/img/default.png" />
 				</ion-thumbnail>
 				<ion-radio slot="start" color="primary" value={{product.id}}></ion-radio>
 			</ion-item>
